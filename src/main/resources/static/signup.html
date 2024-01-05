@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" type="text/css" href="signupStyle.css">
+</head>
+<body>
+<div class="container">
+    <form id="myForm">
+        <h2>Sign Up</h2>
+        <div class="form-group">
+            <label>First Name:</label>
+            <input type="text" id="firstname" name="username" required>
+        </div>
+        <div class="form-group">
+            <label>Last Name:</label>
+            <input type="text" id="lastname" name="email" required>
+        </div>
+        <div class="form-group">
+            <label>Age:</label>
+            <input type="text" id="age" name="password" required>
+        </div>
+        <button type="submit">Sign Up</button>
+    </form>
+</div>
+
+<script>
+    function sendData(data,properties,callback){
+        let payload
+        let httpObject = new XMLHttpRequest()
+        httpObject.timeout = 10000
+        httpObject.withCredentials = true
+
+        httpObject.open(properties.method,"http://localhost:8081"+properties.path,true)
+        if(properties.headers){
+            properties.headers.forEach(function(header){
+                httpObject.setRequestHeader(header.key,header.value)
+            })
+        }
+
+        httpObject.onreadystatechange = function(){
+            if(httpObject.readyState == 4 && (httpObject.status == 200 || httpObject.status == 400)){
+                try{
+                    var response  = JSON.parse(httpObject.responseText)
+                }catch(error){
+                    callback(false)
+                    return
+                }
+                callback(response)
+            }else{
+                if(httpObject.readyState == 4){
+                    callback(false)
+                    return
+                }
+            }
+        }
+        httpObject.onabort = function(event){
+            callback(false)
+        }
+        httpObject.onerror = function(event){
+            callback(false)
+        }
+        if(data){
+            if(properties.json){
+                payload = JSON.stringify(data)
+            }else{
+                payload = new FormData();
+                for(key in data){
+                    payload.append(key,data[key])
+                }
+            }
+            httpObject.send(payload)
+        }else{
+            httpObject.send()
+        }
+    }
+
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevents the default form submission
+        let firstname = document.getElementById('firstname').value;
+        let lastname = document.getElementById('lastname').value;
+        let age = document.getElementById('age').value;
+
+        sendData({firstName: firstname,
+                age: age,
+                lastName: lastname
+            },
+            {
+                path:"/api/users/signup",
+                method:"POST",
+                headers: [{
+                    key:"content-type",
+                    value:"application/json"
+                }],
+                json:true
+            },
+            undefined);
+    });
+
+</script>
+</body>
+</html>
