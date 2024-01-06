@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insecure Blog - Login</title>
+    <link rel="stylesheet" href="./login.css">
+    <script src="./js/script.js"></script>
+</head>
+
+<body>
+<h1>Login to Unsecure Blog</h1>
+<form id="myform"> <!-- pay attention to action attribute -->
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+    <input type="submit" value="Login"><br><br>
+
+</form>
+
+<footer>
+    <p>&copy; 2023 Amirali Kazerooni</p>
+</footer>
+
+<div class="notification" id="redNotification" style="background-color: #ad0000; color: #000000;"></div>
+<div class="notification" id="greenNotification" style="background-color: #09b000; color: #000000;"></div>
+
+<script>
+
+    const queryString = window.location.search;
+    const params = new URLSearchParams(queryString);
+
+    document.getElementById('myform').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevents the default form submission
+        let username = document.getElementById('username').value;
+        let password = document.getElementById('password').value;
+
+        sendData({username: username,
+                password: password
+            },
+            {
+                path:"/api/users/login",
+                method:"POST",
+                headers: [{
+                    key:"content-type",
+                    value:"application/json"
+                }],
+                json:true
+            },
+            (response) => {
+                if (response.status === true) {
+                    showNotification(response.msg, "g");
+                    setTimeout(function () {
+                        window.location.href = '/panel';
+                    }, 3000);  // Redirect after 3 seconds
+                }
+                else
+                    showNotification(response.msg, "r");
+
+            });
+    });
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

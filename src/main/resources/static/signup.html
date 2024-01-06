@@ -3,6 +3,7 @@
 <head>
     <title>Sign Up</title>
     <link rel="stylesheet" type="text/css" href="signupStyle.css">
+    <script src="./js/script.js"></script>
 </head>
 <body>
 <div class="container">
@@ -22,58 +23,12 @@
         </div>
         <button type="submit">Sign Up</button>
     </form>
+
+    <div class="notification" id="redNotification" style="background-color: #ad0000; color: #000000;"></div>
+    <div class="notification" id="greenNotification" style="background-color: #09b000; color: #000000;"></div>
 </div>
 
 <script>
-    function sendData(data,properties,callback){
-        let payload
-        let httpObject = new XMLHttpRequest()
-        httpObject.timeout = 10000
-        httpObject.withCredentials = true
-
-        httpObject.open(properties.method,"http://localhost:8081"+properties.path,true)
-        if(properties.headers){
-            properties.headers.forEach(function(header){
-                httpObject.setRequestHeader(header.key,header.value)
-            })
-        }
-
-        httpObject.onreadystatechange = function(){
-            if(httpObject.readyState == 4 && (httpObject.status == 200 || httpObject.status == 400)){
-                try{
-                    var response  = JSON.parse(httpObject.responseText)
-                }catch(error){
-                    callback(false)
-                    return
-                }
-                callback(response)
-            }else{
-                if(httpObject.readyState == 4){
-                    callback(false)
-                    return
-                }
-            }
-        }
-        httpObject.onabort = function(event){
-            callback(false)
-        }
-        httpObject.onerror = function(event){
-            callback(false)
-        }
-        if(data){
-            if(properties.json){
-                payload = JSON.stringify(data)
-            }else{
-                payload = new FormData();
-                for(key in data){
-                    payload.append(key,data[key])
-                }
-            }
-            httpObject.send(payload)
-        }else{
-            httpObject.send()
-        }
-    }
 
     document.getElementById('myForm').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevents the default form submission
@@ -94,7 +49,17 @@
                 }],
                 json:true
             },
-            undefined);
+            (response) => {
+                if (response.status === true) {
+                    showNotification(response.msg, "g");
+                    setTimeout(function () {
+                        window.location.href = '/login';
+                    }, 3000);  // Redirect after 3 seconds
+                }
+                else
+                    showNotification(response.msg, "r");
+
+            });
     });
 
 </script>

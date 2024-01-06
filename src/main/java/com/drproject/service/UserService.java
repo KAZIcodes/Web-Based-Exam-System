@@ -16,5 +16,6 @@ public class UserService {
         // Additional validation, hashing of password, etc., can be done here
         return userRepository.save(user); // Save the user to the database
     }
+
 }
 
