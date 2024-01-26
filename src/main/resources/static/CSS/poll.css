@@ -109,7 +109,7 @@ body {
 }
 
 .submit-btn {
-    display: block;
+/*display:none;*/
     width: 100%;
     background-color: #5D3587;
     color: #fff;
