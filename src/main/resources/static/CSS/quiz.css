@@ -44,6 +44,7 @@ body {
     cursor: pointer;
     font-size: 1em;
     font-family: 'Merriweather Sans', sans-serif;
+    /*display: none;*/
 }
 
 #start-quiz-btn:hover {
