@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moodle Community</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+ 
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,700;1,400&family=Lugrasimo&family=Merriweather+Sans:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="homepage.css" />
+  </head>
+  
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand">
+          <img
+            src="./pics/graduation-cap-school-collage-free-svg-file-SvgHeart.Com copy.png"
+            width="70px"
+            height="80px"
+            alt=""
+          />
+          Moodle</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+
+            </li>
+            <li class="naFv-item">
+  
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input id="searchInput"
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button
+              id="search_button"
+              class="btn btn-outline-success"
+              type="submit"
+            >
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+      
+    </nav>
+
+    <header class="py-5 mb-5">
+      <div class="container text-center">
+        <h1
+          id="welcome"
+          draggable="true"
+          class="display-4 fw-bold text-primary mb-3"
+        >
+          Welcome to the Moodle Community
+        </h1>
+        <p id="first_para" class="lead text-secondary mb-4">
+          A place to get support, ask and answer questions, and contribute to
+          this learning platform, Moodle LMS.
+        </p>
+  
+<button id="first_button" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Login/SignUp
+</button>
+
+    </header>
+
+    <div
+      id="carouselExampleIndicators"
+      class="carousel slide"
+      data-bs-ride="true"
+    >
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Slide 1"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="1"
+          aria-label="Slide 2"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="2"
+          aria-label="Slide 3"
+        ></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img
+            src="./pics/image-blur-education-group-graduates-during-commencement-concept-education-congratulation-university-degree-graduation-ceremony_109549-2862.jpg"
+            class="d-block w-100"
+            alt="..."
+            width="100px"
+            height="450px"
+          />
+        </div>
+        <div class="carousel-item">
+          <img
+            src="./pics/_home_digiprim_digiprima_com_storage_uploads_2021-02-23-121825-online-examination-system-can-be-a-savior-during-COVID.jpeg"
+            class="d-block w-100"
+            alt="..."
+            width="100px"
+            height="450px"
+          />
+        </div>
+        <div class="carousel-item">
+          <img
+            src="./pics/online-exam-system.jpeg"
+            width="100px"
+            height="450px"
+            class="d-block w-100"
+            alt="..."
+          />
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <!-- Cards Section -->
+    <section class="container mt-5">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 id="card1" class="card-title">FAQ</h5>
+              <p class="card-text">
+                if you have any questions, you can visit our FAQ section or ask us!
+           
+              </p>
+              <a id="learnMore" href="#" class="btn btn-primary"> visit</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 id="card2" class="card-title">About us</h5>
+              <p class="card-text">
+             if you need any more information about us, just click here!
+              </p>
+              <a id="courses" href="#" class="btn btn-primary">About us</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 id="card3" class="card-title">Contact us</h5>
+              <p class="card-text">
+                Need help? Our support team is here to assist you.
+              </p>
+              <a id="support" href="#" class="btn btn-primary">contact</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2024 Moodle Community.</p>
+      </div>
+    </footer>
+
+
+      
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
