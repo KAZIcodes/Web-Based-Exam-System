@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<title>studentGrade</title>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,700;1,400&family=Lugrasimo&family=Merriweather+Sans:wght@600&display=swap"
+  rel="stylesheet"
+/>
+
+
+<link
+href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,700;1,400&family=Lugrasimo&family=Merriweather+Sans:wght@600&display=swap"
+rel="stylesheet"
+/>
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+rel="stylesheet"
+/>
+<link rel="stylesheet" href="poll.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand">
+            <img
+              src="./pics/graduate-student-cartoon-avatar-on-white-background-elements-graduating-student-illustration-people-illustration-vector.jpeg"
+              alt="Member's Picture"
+              class="member-picture"
+            />
+    
+          </a>
+          
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a id="homeLink" class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+
+            <li class="naFv-item">
+              <img id="notifIcon" src="./pics/bell.svg" alt="">
+
+            </li>
+            <li class="naFv-item">
+              <a id="notification" class="nav-link" href="#">Notifications</a>
+
+            </li>
+          
+            </ul>
+
+            <form class="d-flex" role="search">
+              <input id="searchInput"
+                class="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button
+                id="search_button"
+                class="btn btn-outline-success"
+                type="submit"
+              >
+                Search
+              </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+
+      <div class="poll-container">
+        <div class="poll-question">
+            <p id="q1">What is your favorite color?</p>
+        </div>
+        <form class="poll-form" id="pollForm"  onsubmit="showResults(event)">
+            <div class="poll-option">
+                <label id="o1" class="option-container">Option 1
+                    <input type="radio" name="poll" value="1">
+                    <span class="checkmark"></span>
+                </label>
+                <div class="progress-bar hidden">
+                    <div id="res" class="progress" style="width: 60%;">60%</div>
+                </div>
+            </div>
+            <div class="poll-option">
+                <label class="option-container">Option 2
+                    <input type="radio" name="poll" value="2">
+                    <span class="checkmark"></span>
+                </label>
+                <div class="progress-bar hidden">
+                    <div class="progress" style="width: 30%;">30%</div>
+                </div>
+            </div>
+            <div class="poll-option">
+                <label class="option-container">Option 3
+                    <input type="radio" name="poll" value="3">
+                    <span class="checkmark"></span>
+                </label>
+                <div class="progress-bar hidden">
+                    <div class="progress" style="width: 10%;">10%</div>
+                </div>
+            </div>
+            <button id="submitButton" type="submit" class="submit-btn">submit</button>
+        </form>
+    </div>
+
+     <!--    <script>
+        function showResults(event) {
+            event.preventDefault(); 
+            var progressBars = document.querySelectorAll('.progress-bar');
+            progressBars.forEach(function(progressBar) {
+                progressBar.classList.remove('hidden'); 
+            });
+        }
+        </script>-->
+   
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
