@@ -1,0 +1,238 @@
+
+.navbar-brand {
+    color: #392467;
+    font-size: 2rem;
+    font-weight: bolder;
+    transition: color 0.3s ease;
+
+    font-family: 'Merriweather Sans', sans-serif;
+
+}
+
+.navbar-brand:hover {
+    color: #5D3587;
+}
+
+.container-fluid {
+    background-color: #f8f9fa;
+    
+}
+
+.form-control{
+    height: 40px;
+    margin-top: 18px;
+
+}
+
+#search_button {
+    
+    background-color: #e2e6ea;
+    height: 35px;
+    padding: 5px;
+   
+    color: #392467;
+    border-color: #5D3587;
+    transition: all 0.3s ease;
+
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+#search_button:hover {
+    background-color: #5D3587;
+    color: #ffffff;
+    border-color: #5D3587;
+}
+
+#first_button {
+    background-color: #392467;
+    border-color: #5D3587;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    
+}
+
+#first_button:hover {
+    background-color: #5D3587;
+}
+#welcome {
+    color: #392467 !important;
+
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+body {
+
+    font-family: 'Merriweather Sans', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link {
+    color: #392467;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #5D3587;
+}
+
+.navbar-toggler {
+    border-color: #5D3587;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(57, 36, 103, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.header {
+    background: #392467;
+    color: #fff;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    color: #fff;
+}
+
+.header p {
+    color: #dcdcdc;
+}
+
+.btn-primary {
+    background-color: #392467;
+    border-color: #5D3587;
+}
+
+.btn-primary:hover {
+    background-color: #5D3587;
+}
+
+.section {
+    padding: 20px 0;
+}
+
+.card {
+    background: #fff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-title {
+    color: #392467;
+}
+
+.card-text {
+    color: #666;
+}
+
+.footer {
+    background: #392467;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.footer p {
+    margin: 0;
+}
+
+
+#first_para {
+    color: #392467;
+}
+
+header {
+    border-bottom: 3px solid #392467;
+}
+
+a:hover, button:hover {
+    transition: all 0.3s ease;
+}
+
+img.img-fluid {
+    transition: transform 0.3s ease;
+}
+
+img.img-fluid:hover {
+    transform: scale(1.03);
+}
+.nav_link{
+    color: rgba(var(--bs-secondary-rgb),var(--bs-text-opacity))!important;
+}
+.dropdown_menu{
+    color: rgba(var(--bs-secondary-rgb),var(--bs-text-opacity))!important;
+}
+
+
+.nav_link, .dropdown_menu {
+    color: rgba(var(--bs-secondary-rgb), var(--bs-text-opacity)) !important;
+}
+
+.navbar .dropdown-menu {
+    background-color: #fff;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+
+.navbar .dropdown-menu .dropdown-item:hover, .navbar .dropdown-menu .dropdown-item:focus {
+    background-color: #e9ecef; 
+    color: #392467; 
+}
+
+.carousel-item img {
+    max-width: 50%; 
+    margin-left: auto;
+    margin-right: auto;
+    display: block; 
+}
+
+.carousel-control-prev, .carousel-control-next {
+    position: absolute;
+    top: 50%; /* Centers the controls vertically */
+    transform: translateY(-50%); /* Aligns the middle of the arrow with the middle of the image */
+}
+
+.carousel-control-prev {
+    left: 20%; 
+}
+
+.carousel-control-next {
+    right: 20%;
+}
+
+button {
+
+    max-width: 200px;
+    width: 100%; /* Full width on small screens */
+    margin: 10px auto;
+    width: 60%;
+    height: 40px;
+    justify-content: center;
+    display: block;
+    color: #fff;
+    background: #392467;
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 20px;
+    outline: none;
+    border: none;
+    border-radius: 7px;
+    transition: .2s ease-in;
+    font-family: 'Merriweather Sans', sans-serif;
+}
