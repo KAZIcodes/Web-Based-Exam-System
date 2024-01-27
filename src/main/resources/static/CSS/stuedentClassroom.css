@@ -1,0 +1,211 @@
+body {
+    font-family: 'Libre Baskerville', serif;
+    font-family: 'Lugrasimo', cursive;
+    font-family: 'Merriweather Sans', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+.section-title {
+    color: #392467;
+    margin-bottom: 1rem;
+}
+
+.list-group-item {
+    cursor: pointer;
+    position: relative;
+}
+
+.list-group-item .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 100%; /* Set width of dropdown to match parent */
+    padding: .5rem 0;
+    margin: .125rem 0 0;
+    font-size: 1rem;
+    color: #392467;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+
+.list-group-item:hover .dropdown-menu {
+    display: block; /* Show dropdown when parent is hovered */
+}
+
+.dropdown-item {
+    display: block;
+    width: 80%;
+    padding: .25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #392467;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    border-radius: .25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+    
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    color: #fff;
+
+    background-color: #5D3587;
+}
+
+.dropdown-item:not(:last-child) {
+    border-bottom: 1px solid #ddd;
+}
+.dropdown-item-box {
+    display: block; 
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    text-decoration: none;
+    color: #392467;
+}
+.dropdown-item-box:hover {
+    background-color: #e2e6ea; /* Change background on hover */
+}
+
+.profile-picture {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+
+    border: 3px solid #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    
+}
+
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    margin-bottom: 1em;
+}
+
+.navbar .navbar-brand {
+    color: #392467;
+    font-size: 2rem;
+    font-family: 'Libre Baskerville', serif;
+    font-family: 'Lugrasimo', cursive;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+.navbar .nav-link {
+    color: #392467;
+    margin-right: 1rem;
+    font-family: 'Libre Baskerville', serif;
+    font-family: 'Lugrasimo', cursive;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+.navbar .form-control {
+    margin-right: .5rem;
+}
+
+.member-picture {
+    width: 65px; 
+    height: 65px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 2px solid #fff; 
+    margin-right: 10px; 
+  }
+
+  #search_button {
+    
+    background-color: #e2e6ea;
+    height: 35px;
+    padding: 5px;
+   
+    color: #392467;
+    border-color: #5D3587;
+    transition: all 0.3s ease;
+    font-family: 'Libre Baskerville', serif;
+    font-family: 'Lugrasimo', cursive;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+#search_button:hover {
+    background-color: #5D3587;
+    color: #ffffff;
+    border-color: #5D3587;
+}
+
+#homeLink{
+    color: #392467;
+}
+
+#notifIcon{
+    margin-right: 5px;
+}
+#notifIcon{
+    margin-left: 0px;
+    width: 25px;
+    margin-top: 10px;
+
+    
+}
+.nav-tabs .nav-link.active {
+    font-weight: bold;
+    text-decoration: underline;
+    text-decoration-color: #5D3587;
+    text-decoration-thickness: 2px;
+}
+#StudentGrade{
+    color: #392467;
+}
+
+#studentCourse{
+    color: #392467;
+}
+
+#studentCourse:hover {
+    background-color: #5D3587;
+    color: #ffffff;
+    border-color: #5D3587;
+}
+
+#StudentGrade:hover {
+    background-color: #5D3587;
+    color: #ffffff;
+    border-color: #5D3587;
+}
+
+#activities{
+    color: #392467;
+}
+#resources{
+    color: #392467;
+}
+
+.card-header .btn:not(.collapsed) {
+    color: #392467; 
+}
+
+.card-header .btn {
+    color: #392467; 
+}
+
+#glossary{
+    color: #392467;
+}
+#glossary:hover {
+    background-color: #5D3587;
+    color: #ffffff;
+    border-color: #5D3587;
+}
