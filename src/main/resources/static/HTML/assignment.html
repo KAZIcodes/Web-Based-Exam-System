@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentAssignment</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,700;1,400&family=Lugrasimo&family=Merriweather+Sans:wght@600&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assignment.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="./pics/graduate-student-cartoon-avatar-on-white-background-elements-graduating-student-illustration-people-illustration-vector.jpeg" alt="Member's Picture" class="member-picture">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a id="homeLink" class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <img id="notifIcon" src="./pics/bell.svg" alt="">
+                    </li>
+                    <li class="nav-item">
+                        <a id="notification" class="nav-link" href="#">Notifications</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button id="search_button" class="btn btn-outline-success" type="submit">
+                        Search
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 id="title" class="assignment-title">Assignment Title</h1>
+
+        <div class="download-section">
+            <a id="downloadQuestion" href="#" class="btn-download" download="Questionnaire.pdf">
+                click to download the question 
+            </a>
+        </div>
+
+        <div class="deadline-container">
+            <p class="deadline-title">Time remaining:</p>
+            <p class="deadline-time" id="deadlineTime">3 days, 4 hours, 12 minutes remaining</p>
+        </div>
+        
+        <p id="description" class="assignment-description">
+            Please read the following instructions carefully before submitting your assignment:
+            <br>
+            - Ensure that your document is in the correct format (e.g., .docx, .pdf)
+            <br>
+            - Name your file appropriately according to the assignment requirements
+            <br>
+            - Submit your assignment before the deadline
+        </p>
+        <form class="assignment-form" action="/submit-assignment" method="post" enctype="multipart/form-data">
+            <div class="upload-section">
+                <label for="file-upload" class="custom-file-upload">
+                    <i id="file" class="fa fa-cloud-upload"></i> Choose File
+                </label>
+                <input id="file-upload" type="file" name="assignment"/>
+            </div>
+            <button id="submitButton" type="submit" class="submit-assignment">Submit Assignment</button>
+        </form>
+    </div>
+  <!-- 
+    <script>
+        function updateDeadline() {
+    const deadline = new Date("2024-02-01T23:59:59"); // Set your deadline date and time
+    const now = new Date();
+    const diff = deadline - now;
+
+    // Calculate time left
+    let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    // Display the result
+    document.getElementById("deadlineTime").innerText = `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds remaining`;
+    
+    // If the countdown is finished, write some text
+    if (diff < 0) {
+        clearInterval(interval);
+        document.getElementById("deadlineTime").innerText = "Deadline has passed";
+    }
+}
+
+// Update the countdown every 1 second
+let interval = setInterval(updateDeadline, 1000);
+
+    </script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
