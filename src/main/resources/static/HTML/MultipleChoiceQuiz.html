@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple choice Quiz </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,700;1,400&family=Lugrasimo&family=Merriweather+Sans:wght@600&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="MultipleChoiceQuiz.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="./pics/graduate-student-cartoon-avatar-on-white-background-elements-graduating-student-illustration-people-illustration-vector.jpeg" alt="Member's Picture" class="member-picture">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a id="homeLink" class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <img id="notifIcon" src="./pics/bell.svg" alt="">
+                    </li>
+                    <li class="nav-item">
+                        <a id="notification" class="nav-link" href="#">Notifications</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button id="search_button" class="btn btn-outline-success" type="submit">
+                        Search
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="quiz-container">
+        <div class="quiz-header">
+            <h1 id="quiz-title">Quiz Title</h1>
+            <hr>
+
+            <div id="StartEndDate">
+                <p id="quiz-start-date">Start Date: <span id="start-date">00:00</span></p>
+                <p id="quiz-end-date">End Date: <span id="end-date">00:00</span></p>
+            </div>
+
+    
+
+            <p id="quiz-timer">Time: <span id="timer-value">00:00</span></p>
+      
+            <button id="start-quiz-btn">Start Quiz</button>
+        </div>
+        <div class="quiz-content" id="quiz-content">
+            <!-- Question 1 -->
+            <div class="question-box">
+                <p id="Qnum1" class="question-number">Question 1:</p>
+                <p id="q1" class="question">What is the capital of France?</p>
+                <ul class="choices">
+                    <li><input type="radio" name="q1" id="q1a1"><label for="q1a1">Paris</label></li>
+                    <li><input type="radio" name="q1" id="q1a2"><label for="q1a2">Rome</label></li>
+                    <li><input type="radio" name="q1" id="q1a3"><label for="q1a3">Berlin</label></li>
+                    <li><input type="radio" name="q1" id="q1a4"><label for="q1a4">Madrid</label></li>
+                </ul>
+            </div>
+       
+        
+        </div>
+        <div class="submit-container">
+            <button id="submit-quiz-btn" class="btn btn-primary">Submit Exam</button>
+        </div>
+
+
+    </div>
+
+    <!-- Results Section (initially hidden) -->
+    <div id="results-container" >
+        <div class="quiz-results" id="quiz-results">
+            <h2>Your Grade: <span id="grade-value">--</span></h2>
+            <p id="grade-summary">You have completed the quiz! Your results will be displayed here.</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
