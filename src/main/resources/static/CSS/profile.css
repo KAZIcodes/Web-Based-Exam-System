@@ -1,0 +1,163 @@
+.profile-info {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    align-items: center;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+.profile-info .section-title {
+    color: #392467;
+    margin-bottom: 1rem;
+}
+
+.profile-info .info {
+    margin-bottom: 1rem;
+   
+}
+
+.profile-info .info p {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+.profile-info .info p strong {
+    color: #392467;
+}
+
+.edit-info-btn {
+    background-color: #392467;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-info-btn:hover {
+    background-color: #5D3587;
+    color: #fff;
+}
+
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+
+.navbar .navbar-brand {
+    color: #392467;
+    font-size: 2rem;
+    font-family: 'Libre Baskerville', serif;
+    font-family: 'Lugrasimo', cursive;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+.navbar .nav-link {
+    color: #392467;
+    margin-right: 1rem;
+
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+.navbar .form-control {
+    margin-right: .5rem;
+}
+
+.member-picture {
+    width: 65px; 
+    height: 65px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 2px solid #fff; 
+    margin-right: 10px; 
+  }
+
+  #search_button {
+    
+    background-color: #e2e6ea;
+    height: 35px;
+    padding: 5px;
+   
+    color: #392467;
+    border-color: #5D3587;
+    transition: all 0.3s ease;
+
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+#search_button:hover {
+    background-color: #5D3587;
+    color: #ffffff;
+    border-color: #5D3587;
+}
+
+#homeLink{
+    color: #392467;
+}
+
+
+.profile-picture {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+
+    border: 3px solid #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    
+}
+
+#notifIcon{
+    margin-right: 5px;
+}
+#notifIcon{
+    margin-left: 0px;
+    width: 25px;
+    margin-top: 10px;
+ 
+}
+
+#experiences{
+
+    width: 77em;
+    border-radius: 3px;
+    border-color: #cbccce;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    padding-left: 3px;
+    font-family: 'Merriweather Sans', sans-serif;
+    
+
+}
+#saveBtn{
+    margin-left: 78.8%;
+    margin-top: 15px;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+.changeInfo{
+    /*display: none;*/
+    margin-bottom: 1em;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 15px;
+    width: 100%;
+}
+
+#op ,#np, #exampleModalLabel{
+    color: #392467;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+.changePass{
+    width: 80%;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 15px;
+}
