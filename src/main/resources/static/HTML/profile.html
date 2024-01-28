@@ -221,6 +221,33 @@
 
     }
 
+    document.getElementById("saveNewPassword").onclick = (event) => {
+        event.preventDefault();
+
+        sendData({oldPass: document.getElementById("newName"),
+                newPass: document.getElementById("newLastname")
+            },
+            {
+                path:"/api/users/changePass",
+                method:"PATCH",
+                headers: [{
+                    key:"content-type",
+                    value:"application/json"
+                }],
+                json:true
+            },
+            (response) => {
+                if (response.status === true) {
+                    showNotification(response.msg, "g");
+                    setTimeout(function () {
+                        window.location.href = '/panel/profile';
+                    }, 3000);  // Redirect after 3 seconds
+                }
+                else
+                    showNotification(response.msg, "r");
+            });
+    }
+
 </script>
 
 </body>

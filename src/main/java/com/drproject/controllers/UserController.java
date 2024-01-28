@@ -117,6 +117,18 @@ public class UserController {
         res = userService.updateProfileInfo(updateInfo, session.getAttribute("username"));
         return ResponseEntity.ok(res);
     }
+    @PatchMapping("/changePass")
+    public ResponseEntity<?> updateProfile(@RequestBody Map<String, Object> updateInfo, HttpSession session) {
+        Map<String, Object> res = new HashMap<>();
+        if (session.getAttribute("username") == null){
+            res.put("status", false);
+            res.put("msg", "Sign in first!");
+            return ResponseEntity.ok(res);
+        }
+        ////////// changepass function that takes old and new pass and username which first checks old and if correct changes to new pass
+        res = userService.changePassword(updateInfo.get("newPass"), updateInfo.get("oldPass"), session.getAttribute("username"));
+        return ResponseEntity.ok(res);
+    }
 
     public static String encryptProfileId(String input) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("MD5");
