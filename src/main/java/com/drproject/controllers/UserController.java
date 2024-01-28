@@ -84,18 +84,6 @@ public class UserController {
         return ResponseEntity.ok(res);
     }
 
-    @PostMapping("/joinClassroom")
-    public ResponseEntity<?> joinClassroom(@RequestBody Map<String, Object> obj, HttpSession session) {
-        if (session.getAttribute("username") == null){
-            Map<String, Object> error = new HashMap<>();
-            error.put("status", false);
-            error.put("msg", "Sign in first!");
-            return ResponseEntity.ok(error);
-        }
-        //joinclassroom method which takes code off the class and adds the user to classroom
-        Map<String, Object> res = userService.joinClassroom(obj.get("linkCode"), session.getAttribute("username"));
-        return ResponseEntity.ok(res);
-    }
 
     @GetMapping("/getProfile")
     public ResponseEntity<?> getProfileLink(HttpSession session) throws NoSuchAlgorithmException {

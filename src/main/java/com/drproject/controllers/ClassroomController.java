@@ -41,6 +41,19 @@ public class ClassroomController {
         }
     }*/
 
+    @PostMapping("/join")
+    public ResponseEntity<?> joinClassroom(@RequestBody Map<String, Object> obj, HttpSession session) {
+        if (session.getAttribute("username") == null){
+            Map<String, Object> error = new HashMap<>();
+            error.put("status", false);
+            error.put("msg", "Sign in first!");
+            return ResponseEntity.ok(error);
+        }
+        //joinclassroom method which takes code off the class and adds the user to classroom
+        Map<String, Object> res = classromService.joinClassroom(obj.get("linkCode"), session.getAttribute("username"));
+        return ResponseEntity.ok(res);
+    }
+
     //adds a classroom
     @PostMapping("/add")
     public ResponseEntity<?> addClassroom(@RequestBody Classroom classroomInfo, HttpSession session) {  ///////Classroom entity needed
@@ -51,7 +64,7 @@ public class ClassroomController {
             return ResponseEntity.ok(error);
         }
         ////////addClass method which returns status and msg
-        Map<String, Object> res = classromService.addClass(session.getAttribute("username"), classroomInfo);
+        Map<String, Object> res = classromService.addClassroom(session.getAttribute("username"), classroomInfo);
         return ResponseEntity.ok(res);
     }
 

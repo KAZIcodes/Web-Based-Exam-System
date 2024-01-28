@@ -257,7 +257,7 @@ rel="stylesheet"
 
     sendData({linkCode: document.getElementById("JoinLink").value},
             {
-              path:"",
+              path:"/api/classrooms/join",
               method:"POST",
               headers: [{
                 key:"content-type",
@@ -274,6 +274,35 @@ rel="stylesheet"
                 }
                 else
                   showNotification(response.msg, "r");
+            });
+  }
+
+  document.getElementById("exampleModalLabel2").onclick = (event) => {
+    event.preventDefault();
+
+    sendData({  name: document.getElementById("newName").value,
+              description: document.getElementById("newDescription").value,
+              startDate: document.getElementById("startDate").value,
+              endDate: document.getElementById("endDate").value
+            },
+            {
+              path:"/api/classrooms/add",
+              method:"POST",
+              headers: [{
+                key:"content-type",
+                value:"application/json"
+              }],
+              json:true
+            },
+            (response) => {
+              if (response.status === true) {
+                showNotification(response.msg, "g");
+                setTimeout(function () {
+                  window.location.href = '/panel';
+                }, 3000);  // Redirect after 3 seconds
+              }
+              else
+                showNotification(response.msg, "r");
             });
   }
 
