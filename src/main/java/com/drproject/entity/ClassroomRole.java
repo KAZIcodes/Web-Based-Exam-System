@@ -15,7 +15,7 @@ public class ClassroomRole {
     @Column(name = "UUID", columnDefinition = "VARCHAR(36)")
     private UUID id;
 
-    @Column
+    @Column(name="roleInClassroom")
     private RoleInClassroom roleInClassroom;
     @ManyToOne
     @JoinColumn(name="classroom_id")

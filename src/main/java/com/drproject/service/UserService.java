@@ -16,7 +16,7 @@ import java.util.HashMap;
 
 @Service
 public class UserService {
-    private final UserRepository userRepository;
+    public final UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -69,34 +69,28 @@ public class UserService {
         HashMap<String, Object> res = new HashMap<>();
         if (userRepository.existsByUsername(username)){
             res.put("obj", userRepository.getUserByUsername(username));
-            res.put("status", false);
-            res.put("msg", "");
+            res.put("status", true);
+            res.put("msg", "user info returned");
             return res;
         }
         res.put("status", false);
         res.put("obj", null);
-        res.put("msg","");
+        res.put("msg","failed to fetch user info");
         return res;
     }
 
-    public HashMap<String,Object> getUserClassrooms(String username){
-        HashMap<String, Object> res = new HashMap<>();
-        if (userRepository.existsByUsername(username)){
-            User user = userRepository.getUserByUsername(username);
-            ArrayList<Classroom> classrooms = new ArrayList<>();
-            ArrayList<ClassroomRole> roleInClassrooms = user.getRoleInClassrooms();
-            for(ClassroomRole classroomRole : roleInClassrooms){
-                classrooms.add(classroomRole.getClassroom());
-            }
 
-            res.put("obj",classrooms);
-            res.put("msg","successfuly returned classrooms");
-            res.put("status", true);
-            return res;
+    public HashMap<String, Object> getUserClassrooms(String username){
+        HashMap<String, Object> res = new HashMap<>();
+        User user = userRepository.getUserByUsername(username);
+        ArrayList<Classroom> classrooms = new ArrayList<>();
+        ArrayList<ClassroomRole> classroomRoles = user.getRoleInClassrooms();
+        for(ClassroomRole c : classroomRoles){
+            classrooms.add(c.getClassroom());
         }
-        res.put("status", false);
-        res.put("obj", null);
-        res.put("msg","failed to fetch user classrooms");
+        res.put("status",true);
+        res.put("obj", classrooms);
+        res.put("msg","successfully fetched classrooms");
         return res;
     }
 
