@@ -15,6 +15,10 @@ public abstract class Activity {
     @Column(name = "UUID", columnDefinition = "VARCHAR(36)")
     private UUID id;
 
+    @ManyToOne
+    @JoinColumn(name = "section")
+    Section section;
+
     @Column(name = "startDate")
     String startDate;
 

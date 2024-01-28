@@ -15,7 +15,7 @@ public class Section {
     @Column(name = "UUID", columnDefinition = "VARCHAR(36)")
     private UUID id;
 
-    @OneToMany(mappedBy = "sections", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "section", cascade = CascadeType.ALL)
     private ArrayList<Activity> activities;
 
     @Column(name = "Title")
