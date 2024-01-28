@@ -53,11 +53,15 @@ public class UserController {
             return ResponseEntity.ok(error);
         }
 
-        Map<String, Object> res = new HashMap<>();
         /////////////getUserInfo to return user data(info) or null if not found
-        Map<String, Object> user = userService.getUserInfo(session.getAttribute("username"));
-        if (user != null){
-            ///maybe some code to get just needed info from user and put it in a JSON to send
+        Map<String, Object> res = userService.getUserInfo(session.getAttribute("username"));
+        if (res.get("status").equals(true)){
+            Map<String, Object> user = new HashMap<>();
+            user.put("username", ((User)res.get("obj")).getUsername());
+            user.put("firstName", ((User)res.get("obj")).getFirstName());
+            user.put("lastName", ((User)res.get("obj")).getLastName());
+            user.put("email", ((User)res.get("obj")).getEmail());
+            user.put("bio", ((User)res.get("obj")).getBio());
             return ResponseEntity.ok(user);
         }
         else {
@@ -98,6 +102,19 @@ public class UserController {
         String link = "/profileImage/" + encryptProfileId("drproject" + session.getAttribute("username") + "drproject");
         res.put("status", true);
         res.put("imageLink", link);
+        return ResponseEntity.ok(res);
+    }
+
+    @PatchMapping("/updateProfile")
+    public ResponseEntity<?> updateProfile(@RequestBody Map<String, Object> updateInfo, HttpSession session) {
+        Map<String, Object> res = new HashMap<>();
+        if (session.getAttribute("username") == null){
+            res.put("status", false);
+            res.put("msg", "Sign in first!");
+            return ResponseEntity.ok(res);
+        }
+        ////////// updateProfileInfo function that takes the username of the user thatwants to update the profile and a map named updateInfo(checks the 4 values for not being empty) and returns the status/msg/obj
+        res = userService.updateProfileInfo(updateInfo, session.getAttribute("username"));
         return ResponseEntity.ok(res);
     }
 

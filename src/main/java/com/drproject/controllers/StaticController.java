@@ -13,9 +13,13 @@ import java.util.Map;
 @Controller
 public class StaticController {
     private final ARservice ARserivce;
-    public StaticController(ARservice ARserivce) {   /////user service class needed
+    private final ClassroomService classroomService;
+
+    public StaticController(ARservice ARserivce, ClassroomService classroomService) {   /////user service class needed
         this.ARserivce = ARserivce;
+        this.classroomService = classroomService;
     }
+
 
     @GetMapping(value = {"/", ""})
     public String home() {
@@ -65,9 +69,17 @@ public class StaticController {
     }
 
     @GetMapping("/classrooms/{classroomId}")
-    public String getClassroom() {
-
-        return "classroom.html";  ////////classroom html needed and then JS should get the data based on the classroomId
+    public String getClassroom(@PathVariable String classroomId, HttpSession session) {
+        if (session.getAttribute("username") == null){
+            return "redirect:/login??msg=Sign in first!";
+        }
+        else {
+            //gerUserRole method that takes username and classroomID and returns the role of the user in string format(teacher or student)
+            String role = classroomService.getUserRole(session.getAttribute("username"), classroomId);
+            if (role.equals("teacher"))
+                return "html/teacherClassroom.html";
+        }
+        return "html/StudentClassroom.html";  ////////classroom html needed and then JS should get the data based on the classroomId
     }
 
     //returns quiz or poll pr assignment templates and has AR= param

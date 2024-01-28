@@ -79,16 +79,8 @@ public class ClassroomController {
         }
 
         //////isInClass method needed in classRoom service which if the user has access to the class then returns a MAP(json) of classroom data else nul
-        Map<String, Object> hasAccess = classromService.isInClass(session.getAttribute("username"), classroomId);
-        if (hasAccess != null){
-            Map<String, Object> res = classromService.getSections(classroomId); //////getSections method a json which has an array of section objects of this class
-            return ResponseEntity.ok(res);
-        }else {
-            Map<String, Object> error = new HashMap<>();
-            error.put("status", false);
-            error.put("msg", "You don't have access to this class or it does not exist!");
-            return ResponseEntity.ok(error);
-        }
+        Map<String, Object> res = classromService.isInClass(session.getAttribute("username"), classroomId);
+        return ResponseEntity.ok(res);
     }
 
     //returns AR data
