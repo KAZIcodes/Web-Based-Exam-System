@@ -68,3 +68,4 @@ function sendData(data,properties,callback){
         httpObject.send()
     }
 }
+

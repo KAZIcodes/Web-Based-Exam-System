@@ -51,15 +51,11 @@ public class StaticController {
     @GetMapping("/panel")
     public String panel(HttpSession session) {
         if (session.getAttribute("username") != null){
-            return "panel.html";                                     //////panel.html missing
+            return "html/memberPanel.html";                                     //////panel.html missing
         }
         return "redirect:/login?msg=Sign in first!";
     }
 
-    @GetMapping("/panel/settings")
-    public String getSettings() {
-        return "settings.html";  ////////classroom html needed and JS in it to get user current data(before edit)
-    }
 
     @GetMapping("/signout")
     public String logout(HttpSession session) {
@@ -89,6 +85,24 @@ public class StaticController {
         }
 
         return "redirect:/classrooms/" + classroomId;  ////////quiz, poll, assignement, glossary html needed and then JS should get the data based on the ArID
+    }
+
+    @GetMapping("/panel/notifications")
+    public String getNotifs(HttpSession session) {
+        if (session.getAttribute("username") == null){
+            return "redirect:/login?msg=Sign in first!";
+        }
+
+        return "html/notification.html";
+    }
+
+    @GetMapping("/panel/profile")
+    public String getProfile(HttpSession session) {
+        if (session.getAttribute("username") == null){
+            return "redirect:/login?msg=Sign in first!";
+        }
+
+        return "html/profile.html";
     }
 }
 

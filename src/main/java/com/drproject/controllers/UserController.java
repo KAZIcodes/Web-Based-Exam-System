@@ -5,6 +5,10 @@ import com.drproject.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,9 +31,9 @@ public class UserController {
     public ResponseEntity<?> signUpUser(@RequestBody Map<String, Object> credentials, HttpSession session) {
         Map<String, Object> res = new HashMap<>();
         /////////////checkCredentials method needed which returns a json with found and role and username attribute
-        Map<String, Object> user = userService.checkCredentials(credentials.get("username"), credentials.get("password"));
-        if (user.get("found") == true){
-            session.setAttribute("username", credentials.get("username"));
+        Map<String, Object> user = userService.checkCredentials(credentials.get("email"), credentials.get("password"));
+        if (user.get("found").equals(true)){
+            session.setAttribute("username", user.get("username"));
             res.put("status", true);
             res.put("msg", "Signed in! Redirecting...");
             return ResponseEntity.ok(res);
@@ -63,6 +67,8 @@ public class UserController {
         }
     }
 
+
+
     //returns the classrooms of a users
     @GetMapping("/classrooms")
     public ResponseEntity<?> userData(HttpSession session) {
@@ -74,18 +80,48 @@ public class UserController {
         }
 
         /////////////getUserClassrooms to return user classrooms or empty user it does not have a classroom
-        Map<String, Object> classrooms = userService.getUserClassrooms(session.getAttribute("username"));
-        if (classrooms != null){
-            ///maybe some code to get just needed info from user and put it in a JSON to send
-            return ResponseEntity.ok(classrooms);
+        Map<String, Object> res = userService.getUserClassrooms(session.getAttribute("username"));
+        return ResponseEntity.ok(res);
+    }
+
+    @PostMapping("/joinClassroom")
+    public ResponseEntity<?> joinClassroom(@RequestBody Map<String, Object> obj, HttpSession session) {
+        if (session.getAttribute("username") == null){
+            Map<String, Object> error = new HashMap<>();
+            error.put("status", false);
+            error.put("msg", "Sign in first!");
+            return ResponseEntity.ok(error);
         }
-        else {
-            Map<String, Object> res = new HashMap<>();
+        //joinclassroom method which takes code off the class and adds the user to classroom
+        Map<String, Object> res = userService.joinClassroom(obj.get("linkCode"), session.getAttribute("username"));
+        return ResponseEntity.ok(res);
+    }
+
+    @GetMapping("/getProfile")
+    public ResponseEntity<?> getProfileLink(HttpSession session) throws NoSuchAlgorithmException {
+        Map<String, Object> res = new HashMap<>();
+        if (session.getAttribute("username") == null){
             res.put("status", false);
-            res.put("msg", "User data not found!");
+            res.put("msg", "Sign in first!");
             return ResponseEntity.ok(res);
         }
+
+
+        String link = "/profileImage/" + encryptProfileId("drproject" + session.getAttribute("username") + "drproject");
+        res.put("status", true);
+        res.put("imageLink", link);
+        return ResponseEntity.ok(res);
     }
+
+    public static String encryptProfileId(String input) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        byte[] md5Bytes = md.digest(input.getBytes());
+        return Base64.getEncoder().encodeToString(md5Bytes);
+    }
+
+
+
+
 
     /*@GetMapping("/isLogedIn")
     public ResponseEntity<?> login(HttpSession session) {
