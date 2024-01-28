@@ -87,6 +87,19 @@ public class UserController {
         Map<String, Object> res = userService.getUserClassrooms(session.getAttribute("username"));
         return ResponseEntity.ok(res);
     }
+    @GetMapping("/notifications")
+    public ResponseEntity<?> userData(HttpSession session) {
+        if (session.getAttribute("username") == null){
+            Map<String, Object> error = new HashMap<>();
+            error.put("status", false);
+            error.put("msg", "Sign in first!");
+            return ResponseEntity.ok(error);
+        }
+
+        /////////////getUserNotifications to return user notifs
+        Map<String, Object> res = userService.getUserNotifications(session.getAttribute("username"));
+        return ResponseEntity.ok(res);
+    }
 
 
     @GetMapping("/getProfile")
