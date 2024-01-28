@@ -98,7 +98,7 @@ rel="stylesheet"
         </ul>
     </div>
 
-    <div class="container mt-4">
+    <div class="container mt-4" id="maindiv">
         <h2 class="section-title">Grades Overview</h2>
         <table class="table">
             <thead>
@@ -128,5 +128,66 @@ rel="stylesheet"
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+    function addSectionGrade(section) {
+        let table = document.createElement("table");
+        table.innerHTML = `
+            <thead>
+                <tr>
+                    <th scope="col">${section.name}</th>    ///////section.name ?
+                    <th scope="col">Score</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        `;
+
+        for (activity of section.activities){
+            let tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${activity.name}</td>   //////activity.grade ? activity.name???
+                <td>${activity.grade}</td>
+            `;
+            table.tBodies[0].appendChild(tr);
+        }
+
+        let tf = document.createElement("tfoot");
+        tf.innerHTML = `
+            <tr>
+                  <th>Total Score Of The Section</th>
+                  <th>${section.totalGrade}</th>    ////////section.totalGrade?
+            </tr>
+        `;
+        table.appendChild(tf);
+
+        document.getElementById("maindiv").appendChild(table);
+    }
+
+
+    let currentUrl = window.location.href;
+    let classroomId = currentUrl.split('/').pop();
+
+    sendData({},
+        {
+            path:`/api/classrooms/${classroomId}/grades`,
+            method:"GET",
+            headers: [{
+                key:"content-type",
+                value:"application/json"
+            }],
+            json:true
+        },
+        (response) => {
+            if (response.status === true) {
+                let count = 1;
+                for (section of response.obj){
+                    addSectionGrade(section);
+                    count++;
+                }
+            }
+        });
+</script>
 </body>
 </html>

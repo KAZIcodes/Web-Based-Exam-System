@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> signUpUser(@RequestBody Map<String, Object> credentials, HttpSession session) {
+    public ResponseEntity<?> login(@RequestBody Map<String, Object> credentials, HttpSession session) {
         Map<String, Object> res = new HashMap<>();
         /////////////checkCredentials method needed which returns a json with found and role and username attribute
         Map<String, Object> user = userService.checkCredentials((String) credentials.get("email"), (String) credentials.get("password"));

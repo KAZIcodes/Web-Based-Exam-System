@@ -56,7 +56,7 @@
     </div>
     <div class="container">
         <h2 id="gloss" class="section-title">Glossary</h2>
-        <table class="table">
+        <table class="table" id="maintable">
             <thead>
                 <tr>
                     <th id="key" scope="col">key</th>
@@ -70,20 +70,61 @@
                     <td>panir </td>
                 </tr>
 
-                <tr>
-                    <td>baghi</td>
-                    <td>andishe eslami professor</td>
-                </tr>
-
-                <tr>
-                    <td>kazeroon</td>
-                    <td>Robo Mobo</td>
-                </tr>
-
             </tbody>
         
         </table>
     </div>
+
+<script>
+    function addTableRow(key, value) {
+        // Create a new table row (tr)
+        let newRow = document.createElement('tr');
+
+        // Create and append table data (td) cells
+        let nameCell = document.createElement('td');
+        nameCell.textContent = key;
+        newRow.appendChild(nameCell);
+
+        let foodCell = document.createElement('td');
+        foodCell.textContent = value;
+        newRow.appendChild(foodCell);
+
+        // Find the table with id 'maintable'
+        let table = document.getElementById('maintable');
+
+        // Find the tbody within the table
+        let tbody = table.querySelector('tbody');
+
+        // Append the new row to the tbody
+        if (tbody) {
+            tbody.appendChild(newRow);
+        } else {
+            console.error('Table body not found.');
+        }
+    }
+
+    let currentUrl = window.location.href;
+    let classroomId = currentUrl.split('/').pop();
+    sendData({},
+        {
+            path:`/api/classrooms/${classroomId}/glossary`,
+            method:"GET",
+            headers: [{
+                key:"content-type",
+                value:"application/json"
+            }],
+            json:true
+        },
+        (response) => {
+            if (response.status === true) {
+                let count = 1;
+                for (pair of response.obj){
+                    addTableRow(pair.key, pair.value);
+                    count++;
+                }
+            }
+        });
+</script>
     
 </body>
 </html>
