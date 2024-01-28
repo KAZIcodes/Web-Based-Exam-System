@@ -94,6 +94,58 @@ public class UserService {
         return res;
     }
 
+    public HashMap<String, Object> updateProfileInfo(HashMap<String, Object> newInfo, String username){
+        HashMap<String, Object> res = new HashMap<>();
+        User user = userRepository.getUserByUsername(username);
+        if(!newInfo.get("username").equals("")){
+            user.setUsername((String)newInfo.get("username"));
+            res.put("msg", "username Updated");
+        }
+        if(!newInfo.get("firstName").equals("")){
+            user.setFirstName((String)newInfo.get("firstName"));
+            res.put("msg", "firstName Updated");
+        }
+        if(!newInfo.get("lastName").equals("")){
+            user.setLastName((String)newInfo.get("lastName"));
+            res.put("msg", "lastName Updated");
+        }
+        if(!newInfo.get("email").equals("")){
+            user.setEmail((String)newInfo.get("email"));
+            res.put("msg", "email Updated");
+        }
+        userRepository.save(user);
+        res.put("status", true);
+        res.put("obj",null);
+        return res;
+    }
+
+    public HashMap<String, Object> changePassword(String newPassword, String oldPassword, String username){
+        HashMap<String, Object> res = new HashMap<>();
+        User user = userRepository.getUserByUsername(username);
+        try {
+            if (encryptString(oldPassword).equals(user.getPassword())){
+                user.setPassword(newPassword);
+                userRepository.save(user);
+                res.put("status", true);
+                res.put("obj", null);
+                res.put("msg", "password changed successfully");
+                return res;
+            }
+            else {
+                res.put("status", false);
+                res.put("obj", null);
+                res.put("msg", "incorrect password");
+                return res;
+            }
+        }
+        catch (NoSuchAlgorithmException noSuchAlgorithmException){
+            res.put("status", false);
+            res.put("obj", null);
+            res.put("msg", "no such algorithm exception(md5 hash failed)");
+            return res;
+        }
+    }
+
 
     private static String encryptString(String input) throws NoSuchAlgorithmException {
         String saltedInput = "DrProject" + input;
