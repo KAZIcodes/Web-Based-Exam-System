@@ -94,6 +94,7 @@ public class UserService {
         return res;
     }
 
+
     public HashMap<String, Object> updateProfileInfo(HashMap<String, Object> newInfo, String username){
         HashMap<String, Object> res = new HashMap<>();
         User user = userRepository.getUserByUsername(username);
@@ -124,7 +125,7 @@ public class UserService {
         User user = userRepository.getUserByUsername(username);
         try {
             if (encryptString(oldPassword).equals(user.getPassword())){
-                user.setPassword(newPassword);
+                user.setPassword(encryptString(newPassword));
                 userRepository.save(user);
                 res.put("status", true);
                 res.put("obj", null);

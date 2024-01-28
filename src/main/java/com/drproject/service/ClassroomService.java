@@ -77,4 +77,39 @@ public class ClassroomService {
         res.put("obj", null);
         return res;
     }
+
+    public HashMap<String, Object> getUserRole(String username, String code){
+        HashMap<String, Object> res = new HashMap<>();
+        User user = userRepository.getUserByUsername(username);
+        if(classroomRepository.existsByCode(UUID.fromString(code))) {
+            Classroom classroom = classroomRepository.getClassroomByCode(UUID.fromString(code));
+            for (ClassroomRole c : classroom.getRoleInClassrooms()){
+                if(c.getUser().equals(user)){
+                    if(c.getRoleInClassroom().equals(RoleInClassroom.ADMIN)){
+                        res.put("obj", "admin");
+                        res.put("status", true);
+                        res.put("msg", "role found");
+                        return res;
+                    }
+                    if(c.getRoleInClassroom().equals(RoleInClassroom.TEACHER)){
+                        res.put("obj", "teacher");
+                        res.put("status", true);
+                        res.put("msg", "role found");
+                        return res;
+                    }
+                    if(c.getRoleInClassroom().equals(RoleInClassroom.STUDENT)){
+                        res.put("obj", "student");
+                        res.put("status", true);
+                        res.put("msg", "role found");
+                        return res;
+                    }
+                }
+            }
+        }
+        res.put("obj", null);
+        res.put("status", true);
+        res.put("msg", "role/classroom not found");
+        return res;
+    }
+
 }
