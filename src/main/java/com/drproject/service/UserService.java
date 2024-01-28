@@ -12,10 +12,10 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User signUpUser(User user) {
+    /*public User signUpUser(User user) {
         // Additional validation, hashing of password, etc., can be done here
         return userRepository.save(user); // Save the user to the database
-    }
+    }*/
 
 }
 

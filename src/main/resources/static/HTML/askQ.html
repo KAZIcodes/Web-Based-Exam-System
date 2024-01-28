@@ -16,7 +16,7 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="askQ.css" />
+    <link rel="stylesheet" href="../CSS/askQ.css" />
   </head>
 
   <body>
@@ -27,7 +27,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <img
-            src="./pics/graduation-cap-school-collage-free-svg-file-SvgHeart.Com copy.png"
+            src="../Pics/graduation-cap-school-collage-free-svg-file-SvgHeart.Com copy.png"
             width="70px"
             height="80px"
             alt=""
@@ -36,7 +36,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a id="homeLink" class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a id="homeLink" class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
                  
         
@@ -72,6 +72,39 @@
         </form>
     </div>
 
+  <script>
+      document.getElementsByClassName('btn')[0].addEventListener('submit', function(event) {
+          event.preventDefault(); // Prevents the default form submission
+          let senderEmail = document.getElementById('senderEmail').value;
+          let Qtitle = document.getElementById('questionTitle').value;
+          let Qtext = document.getElementById('questionDetails').value;
+
+          sendData({senderEmail: senderEmail,
+                  Qtitle: Qtitle,
+                  Qtext: Qtext
+              },
+              {
+                  path:"/api/contact",
+                  method:"POST",
+                  headers: [{
+                      key:"content-type",
+                      value:"application/json"
+                  }],
+                  json:true
+              },
+              (response) => {
+                  if (response.status === true) {
+                      showNotification(response.msg, "g");
+                      setTimeout(function () {
+                          window.location.href = '/contact';
+                      }, 3000);  // Redirect after 3 seconds
+                  }
+                  else
+                      showNotification(response.msg, "r");
+
+              });
+      });
+  </script>
 
 </body>
 </html>

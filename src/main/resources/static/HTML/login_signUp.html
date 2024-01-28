@@ -12,14 +12,15 @@
     />
     
 
-    <link rel="stylesheet" href="./login_signUp.css">
+    <link rel="stylesheet" href="../CSS/login_signUp.css">
+    <script src="../js/script.js"></script>
 </head>
 
 <body>
 
     <nav class="navbar">
         <div class="navbar-container">
-            <img id="capIcon" src="./pics/graduation-cap-school-collage-free-svg-file-SvgHeart.Com copy.png" width="80px" height="90px" alt="">
+            <img id="capIcon" src="../Pics/graduation-cap-school-collage-free-svg-file-SvgHeart.Com copy.png" width="80px" height="90px" alt="">
             <h2 id="MoodleText" class="navbar-link">Moodle</h2>
             <a id="homeLink" href="#" class="navbar-link">Home</a>
         </div>
@@ -32,24 +33,24 @@
             <input type="checkbox" id="chk" hidden="true">
     
             <div class="login">
-                <form>
+                <form id="loginForm">
                     <label for="chk" hidden="true">Login</label>
                     <input id="loginEmail" type="email" name="email" placeholder="Email" required="">
                     <input id="loginPassword" type="password" name="pswd" placeholder="Password" required="">
-                    <button id="loginButton">Login</button>
+                    <button id="loginButton" type="submit">Login</button>
                     <p id="sentence">don't have an account?</p>
                 </form>
             </div>
     
             <div class="signup">
-                <form>
+                <form id="signupForm">
                     <label for="chk" hidden="true">Sign up</label>
                     <input id="usernameSignup" type="text" name="txt" placeholder="User name">
                     <input id="emailSignup" type="email" name="email" placeholder="Email">
                     <input id="passwordSignup" type="password" name="pswd" placeholder="Password">
                     <input id="nameSignup" type="text" name="txt" placeholder="Name">
                     <input id="lastNameSignup" type="text" name="txt" placeholder="Last name">
-                    <button id="signUpButton">Sign up</button>
+                    <button id="signUpButton" type="submit">Sign up</button>
                 </form>
                 
             </div>
@@ -57,6 +58,79 @@
    
 
     </div>
+
+
+<script>
+    const queryString = window.location.search;
+    const params = new URLSearchParams(queryString);
+
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevents the default form submission
+        let email = document.getElementById('loginEmail').value;
+        let password = document.getElementById('loginPassword').value;
+
+        sendData({email: email,
+                password: password
+            },
+            {
+                path:"/api/users/login",
+                method:"POST",
+                headers: [{
+                    key:"content-type",
+                    value:"application/json"
+                }],
+                json:true
+            },
+            (response) => {
+                if (response.status === true) {
+                    showNotification(response.msg, "g");
+                    setTimeout(function () {
+                        window.location.href = '/panel';
+                    }, 3000);  // Redirect after 3 seconds
+                }
+                else
+                    showNotification(response.msg, "r");
+
+            });
+    });
+
+
+    document.getElementById('signupForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevents the default form submission
+        let email = document.getElementById('emailSignup').value;
+        let password = document.getElementById('passwordSignup').value;
+        let username = document.getElementById('usernameSignup').value;
+        let firstName = document.getElementById('nameSignup').value;
+        let lastName = document.getElementById('lastNameSignup').value;
+
+        sendData({email: email,
+                username: username,
+                password: password,
+                firstName: firstName,
+                lastName: lastName
+            },
+            {
+                path:"/api/users/signup",
+                method:"POST",
+                headers: [{
+                    key:"content-type",
+                    value:"application/json"
+                }],
+                json:true
+            },
+            (response) => {
+                if (response.status === true) {
+                    showNotification(response.msg, "g");
+                    setTimeout(function () {
+                        window.location.href = '/';
+                    }, 3000);  // Redirect after 3 seconds
+                }
+                else
+                    showNotification(response.msg, "r");
+
+            });
+    });
+</script>
 </body>
 
 </html>
