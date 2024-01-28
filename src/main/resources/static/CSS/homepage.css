@@ -4,8 +4,7 @@
     font-size: 2rem;
     font-weight: bolder;
     transition: color 0.3s ease;
-    font-family: 'Libre Baskerville', serif;
-    font-family: 'Lugrasimo', cursive;
+
     font-family: 'Merriweather Sans', sans-serif;
 
 }
@@ -34,8 +33,7 @@
     color: #392467;
     border-color: #5D3587;
     transition: all 0.3s ease;
-    font-family: 'Libre Baskerville', serif;
-    font-family: 'Lugrasimo', cursive;
+
     font-family: 'Merriweather Sans', sans-serif;
 }
 
@@ -58,14 +56,12 @@
 }
 #welcome {
     color: #392467 !important;
-    font-family: 'Libre Baskerville', serif;
-    font-family: 'Lugrasimo', cursive;
+
     font-family: 'Merriweather Sans', sans-serif;
 }
 
 body {
-    font-family: 'Libre Baskerville', serif;
-    font-family: 'Lugrasimo', cursive;
+
     font-family: 'Merriweather Sans', sans-serif;
     background-color: #f4f4f4;
     color: #333;
@@ -156,7 +152,6 @@ body {
 }
 
 
-
 #first_para {
     color: #392467;
 }
@@ -181,10 +176,6 @@ img.img-fluid:hover {
 }
 .dropdown_menu{
     color: rgba(var(--bs-secondary-rgb),var(--bs-text-opacity))!important;
-}
-
-#homeLink{
-    color: #392467;
 }
 
 
@@ -225,37 +216,6 @@ img.img-fluid:hover {
     right: 20%;
 }
 
-
-
-.main {
-    width: 350px;
-    max-width: 100%; /* Ensure it doesn't overflow on small screens */
-    height: 550px;
-    overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 5px 20px 50px #000;
-    background: #fff; 
-}
-
-
-
-label {
-    color: #392467; 
-    font-size: 2.3em;
-    justify-content: center;
-    display: flex;
-    margin: 60px;
-    font-weight: bold;
-    cursor: pointer;
-    font-family: 'Libre Baskerville', serif, 'Lugrasimo', cursive, 'Merriweather Sans', sans-serif;
-}
-input {
-    width: calc(100% - 40px); /* Full width minus padding */
-    margin: 10px 20px; /* Consistent margin with padding */
-    padding: 10px;
-    border: 1px solid #ccc; 
-    border-radius: 5px;
-}
 button {
 
     max-width: 200px;
@@ -272,80 +232,7 @@ button {
     margin-top: 20px;
     outline: none;
     border: none;
-    border-radius: 5px;
+    border-radius: 7px;
     transition: .2s ease-in;
-    cursor: pointer;
-    font-family: 'Libre Baskerville', serif, 'Lugrasimo', cursive, 'Merriweather Sans', sans-serif;
+    font-family: 'Merriweather Sans', sans-serif;
 }
-
-.loginSignupBtn:hover {
-    background: #5D3587; 
-}
-
-.signup {
-
-    height: 250px;
-    background: #f8f9fa; 
-    border-radius: 60% / 10%;
-    transform: translateY(-7px);
-    transition: .8s ease-in-out;
-    z-index: 1; 
-}
-
-.signup label {
-    color: #392467; 
-    transform: scale(1);
-    border: #392467;
-}
-
-#chk:checked ~ .signup {
-    transform: translateY(-370px);
-    z-index: 2;
-}
-
-.modal-body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: 'Libre Baskerville', serif, 'Lugrasimo', cursive, 'Merriweather Sans', sans-serif;
-    background-color: #f4f4f4; 
-}
-
-.modal-content{
-    height: 900px;
-}
-
-#chk:checked ~ .login {
-    transform: translateY(-500px); /* Move the signup form up and out of view */
-  
-  }
-
-  #closeButton{
-    background-color: #392467;
-    border-color: #5D3587;
-
-  }
-
-.sentence{
-    margin-top: 50px;
-    height: 0px;
-    color: #392467 ;
-
-}
-.modal-title{
-    color: #392467; 
-}
-
-#LoginTitle{
- 
-    height: 30px;
-}
-
-
-
-
-
-

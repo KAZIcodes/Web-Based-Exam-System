@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login/signUp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,700;1,400&family=Lugrasimo&family=Merriweather+Sans:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    
+
+    <link rel="stylesheet" href="./login_signUp.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <img id="capIcon" src="./pics/graduation-cap-school-collage-free-svg-file-SvgHeart.Com copy.png" width="80px" height="90px" alt="">
+            <h2 id="MoodleText" class="navbar-link">Moodle</h2>
+            <a id="homeLink" href="#" class="navbar-link">Home</a>
+        </div>
+    </nav>
+    
+    
+
+    <div id="body2">
+        <div class="main">
+            <input type="checkbox" id="chk" hidden="true">
+    
+            <div class="login">
+                <form>
+                    <label for="chk" hidden="true">Login</label>
+                    <input id="loginEmail" type="email" name="email" placeholder="Email" required="">
+                    <input id="loginPassword" type="password" name="pswd" placeholder="Password" required="">
+                    <button id="loginButton">Login</button>
+                    <p id="sentence">don't have an account?</p>
+                </form>
+            </div>
+    
+            <div class="signup">
+                <form>
+                    <label for="chk" hidden="true">Sign up</label>
+                    <input id="usernameSignup" type="text" name="txt" placeholder="User name">
+                    <input id="emailSignup" type="email" name="email" placeholder="Email">
+                    <input id="passwordSignup" type="password" name="pswd" placeholder="Password">
+                    <input id="nameSignup" type="text" name="txt" placeholder="Name">
+                    <input id="lastNameSignup" type="text" name="txt" placeholder="Last name">
+                    <button id="signUpButton">Sign up</button>
+                </form>
+                
+            </div>
+    </div>
+   
+
+    </div>
+</body>
+
+</html>

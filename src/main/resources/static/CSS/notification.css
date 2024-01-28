@@ -1,0 +1,130 @@
+body {
+    font-family: 'Merriweather Sans', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+}
+
+.notification-inbox-container {
+   width: 80%;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #392467;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.notification-list {
+    list-style: none;
+    padding: 0;
+}
+
+.notification-item {
+    background-color: #e9e7f4;
+    border-left: 5px solid #392467;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    border-radius: 4px;
+    display: block; /* Ensure the entire area is clickable */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.notification-item h2 {
+    margin-top: 0;
+    color: #392467;
+    font-size: 1.5em;
+}
+
+.notification-item p {
+    color: #333;
+    margin-bottom: 0;
+    font-size: 0.9em;
+}
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+
+.navbar .nav-link {
+    color: #392467;
+    margin-right: 1rem;
+}
+
+.navbar .nav-link:hover {
+    text-decoration: underline;
+    text-decoration-color: #5D3587;
+    text-decoration-thickness: 2px;
+}
+
+
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    margin-bottom: 1em;
+}
+
+.navbar .navbar-brand {
+    color: #392467;
+    font-size: 2rem;
+  
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+
+.navbar .nav-link {
+    color: #392467;
+    margin-right: 1rem;
+ 
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+.navbar .form-control {
+    margin-right: .5rem;
+}
+
+.member-picture {
+    width: 65px; 
+    height: 65px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 2px solid #fff; 
+    margin-right: 10px; 
+  }
+
+  #search_button {
+    
+    background-color: #e2e6ea;
+    height: 35px;
+    padding: 5px;
+   
+    color: #392467;
+    border-color: #5D3587;
+    transition: all 0.3s ease;
+
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+#search_button:hover {
+    background-color: #5D3587;
+    color: #ffffff;
+    border-color: #5D3587;
+}
+
+#homeLink{
+    color: #392467;
+}
+
+.sender{
+    color: #392467;
+}
+
+.notification-text {
+    color: #333;
+    margin-top: 5px;
+    font-size: 0.9em;
+}

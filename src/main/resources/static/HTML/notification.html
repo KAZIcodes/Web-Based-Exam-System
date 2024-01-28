@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>notifications</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,700;1,400&family=Lugrasimo&family=Merriweather+Sans:wght@600&display=swap">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="notification.css">
+    </head>
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="./pics/graduate-student-cartoon-avatar-on-white-background-elements-graduating-student-illustration-people-illustration-vector.jpeg" alt="Member's Picture" class="member-picture">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a id="homeLink" class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+         
+
+                </ul>
+                <form class="d-flex" role="search">
+                    <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button id="search_button" class="btn btn-outline-success" type="submit">
+                        Search
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="notification-inbox-container">
+        <h1>Notification Inbox</h1>
+        <div class="notification-list">
+            <div class="notification-item" id="notif1">
+                <div class="notification-summary">
+                    <h2>New Assignment Posted</h2>
+                    <p class="sender">from: sender</p>
+                    <p class="notification-date">Feb 10, 2024</p>
+                    <p class="notification-text">You have a new assignment due next week. Please check the details in your course portal.</p>
+                </div>
+            </div>
+            <div class="notification-item" id="notif2">
+                <div class="notification-summary">
+                    <h2>Grade Update</h2>
+                    <p class="sender">from: sender</p>
+                    <p class="notification-date">Feb 12, 2024</p>
+                    <p class="notification-text">Your grades for the recent assignment have been posted. Check your progress in the grades section.</p>
+                </div>
+            </div>
+       
+
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

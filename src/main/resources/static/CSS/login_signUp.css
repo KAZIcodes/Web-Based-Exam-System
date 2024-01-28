@@ -1,0 +1,150 @@
+#body2 {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+   margin-top: 10%;
+    flex-direction: column;
+ 
+
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f5f1f9;
+    font-family: 'Merriweather Sans', sans-serif;
+    
+}
+
+.main {
+    width: 350px;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 5px 20px 50px #000;
+    background-color: #fff;
+   
+}
+
+#chk {
+    display: none;
+}
+
+.login {
+    width: 100%;
+    height: 100%;
+
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+label {
+    color: #392467;
+    font-size: 2.3em;
+    justify-content: center;
+    display: flex;
+    margin: 60px;
+    font-weight: bold;
+    cursor: pointer;
+
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+input {
+    width: 60%;
+    height: 20px;
+    background: #e0dede;
+    justify-content: center;
+    display: flex;
+    margin: 20px auto;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+button {
+    width: 60%;
+    height: 40px;
+    margin: 10px auto;
+    justify-content: center;
+    display: block;
+    color: #fff;
+    background: #392467; 
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 20px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    transition: .2s ease-in;
+    cursor: pointer;
+
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+button:hover {
+    background: #5D3587;
+}
+
+.signup{
+    height: 460px;
+    background: #f8f9fa; 
+    border-radius: 60% / 10%;
+    transform: translateY(-180px);
+    transition: .8s ease-in-out;
+    z-index: 1; 
+
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+.signup label {
+    color: #392467; 
+    transform: scale(.9);
+
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+#chk:checked ~ .signup {
+    transform: translateY(-600px);
+    z-index: 2;
+}
+
+#sentence{
+    color: #392467;
+    text-align: center;
+    height: 0px;
+    margin-top: 80px;
+}
+
+#capIcon{
+    margin-left: 0.7em;
+    display: inline-block;
+    margin-top: 1.5em;
+}
+
+.navbar-container {
+    background-color: #fff;
+    height: 6em;
+    display: flex; 
+    align-items: center;
+    justify-content: flex-start; 
+    padding: 0 1em;
+}
+
+.navbar-link {
+    margin-left: 1em; 
+    text-decoration: none; 
+    color: #000;
+    font-size: 1.2em; 
+
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: bolder;
+    color: #392467; 
+
+}
+#MoodleText{
+    font-size: 2rem;
+
+    font-family: 'Merriweather Sans', sans-serif;
+    
+}

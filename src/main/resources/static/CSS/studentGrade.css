@@ -1,0 +1,160 @@
+body {
+
+    font-family: 'Merriweather Sans', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+.section-title {
+    color: #392467;
+    margin-bottom: 1rem;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+.table {
+    background-color: #fff;
+    border-collapse: collapse;
+    box-shadow: 6px 6px 5px rgba(0,0,0,.1);
+}
+
+.table th,
+.table td {
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+    text-align: left;
+    color: #392467;
+    border-radius: 2px;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+.table thead th {
+    background-color: #e9ecef;
+    color: #392467;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+.table tfoot th {
+    background-color: #f8f9fa;
+    color: #392467;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+
+.navbar .nav-link {
+    color: #392467;
+    margin-right: 1rem;
+}
+
+.navbar .nav-link:hover {
+    text-decoration: underline;
+    text-decoration-color: #5D3587;
+    text-decoration-thickness: 2px;
+}
+
+
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    margin-bottom: 1em;
+}
+
+.navbar .navbar-brand {
+    color: #392467;
+    font-size: 2rem;
+
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+
+.navbar .nav-link {
+    color: #392467;
+    margin-right: 1rem;
+
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+.navbar .form-control {
+    margin-right: .5rem;
+}
+
+.member-picture {
+    width: 65px; 
+    height: 65px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 2px solid #fff; 
+    margin-right: 10px; 
+  }
+
+  #search_button {
+    
+    background-color: #e2e6ea;
+    height: 35px;
+    padding: 5px;
+   
+    color: #392467;
+    border-color: #5D3587;
+    transition: all 0.3s ease;
+
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+#search_button:hover {
+    background-color: #5D3587;
+    color: #ffffff;
+    border-color: #5D3587;
+}
+
+#homeLink{
+    color: #392467;
+}
+
+#notifIcon{
+    margin-right: 5px;
+}
+#notifIcon{
+    margin-left: 0px;
+    width: 25px;
+    margin-top: 10px;
+}
+
+#StudentGrade{
+    color: #392467;
+}
+
+#studentCourse{
+    color: #392467;
+}
+
+#studentCourse:hover {
+    background-color: #5D3587;
+    color: #ffffff;
+    border-color: #5D3587;
+}
+
+#StudentGrade:hover {
+    background-color: #5D3587;
+    color: #ffffff;
+    border-color: #5D3587;
+}
+
+.nav-tabs .nav-link.active {
+    font-weight: bold;
+    text-decoration: underline;
+    text-decoration-color: #5D3587;
+    text-decoration-thickness: 2px;
+}
+
+#glossary{
+    color: #392467;
+}
+#glossary:hover {
+    background-color: #5D3587;
+    color: #ffffff;
+    border-color: #5D3587;
+}
