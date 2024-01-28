@@ -31,7 +31,7 @@ public class UserController {
     public ResponseEntity<?> signUpUser(@RequestBody Map<String, Object> credentials, HttpSession session) {
         Map<String, Object> res = new HashMap<>();
         /////////////checkCredentials method needed which returns a json with found and role and username attribute
-        Map<String, Object> user = userService.checkCredentials(credentials.get("email"), credentials.get("password"));
+        Map<String, Object> user = userService.checkCredentials((String) credentials.get("email"), (String) credentials.get("password"));
         if (user.get("found").equals(true)){
             session.setAttribute("username", user.get("username"));
             res.put("status", true);
@@ -54,7 +54,7 @@ public class UserController {
         }
 
         /////////////getUserInfo to return user data(info) or null if not found
-        Map<String, Object> res = userService.getUserInfo(session.getAttribute("username"));
+        Map<String, Object> res = userService.getUserInfo((String) session.getAttribute("username"));
         if (res.get("status").equals(true)){
             Map<String, Object> user = new HashMap<>();
             user.put("username", ((User)res.get("obj")).getUsername());
@@ -75,7 +75,7 @@ public class UserController {
 
     //returns the classrooms of a users
     @GetMapping("/classrooms")
-    public ResponseEntity<?> userData(HttpSession session) {
+    public ResponseEntity<?> classrooms(HttpSession session) {
         if (session.getAttribute("username") == null){
             Map<String, Object> error = new HashMap<>();
             error.put("status", false);
@@ -84,22 +84,22 @@ public class UserController {
         }
 
         /////////////getUserClassrooms to return user classrooms or empty user it does not have a classroom
-        Map<String, Object> res = userService.getUserClassrooms(session.getAttribute("username"));
+        Map<String, Object> res = userService.getUserClassrooms((String) session.getAttribute("username"));
         return ResponseEntity.ok(res);
     }
-    @GetMapping("/notifications")
-    public ResponseEntity<?> userData(HttpSession session) {
-        if (session.getAttribute("username") == null){
-            Map<String, Object> error = new HashMap<>();
-            error.put("status", false);
-            error.put("msg", "Sign in first!");
-            return ResponseEntity.ok(error);
-        }
-
-        /////////////getUserNotifications to return user notifs
-        Map<String, Object> res = userService.getUserNotifications(session.getAttribute("username"));
-        return ResponseEntity.ok(res);
-    }
+//    @GetMapping("/notifications")
+//    public ResponseEntity<?> userData(HttpSession session) {
+//        if (session.getAttribute("username") == null){
+//            Map<String, Object> error = new HashMap<>();
+//            error.put("status", false);
+//            error.put("msg", "Sign in first!");
+//            return ResponseEntity.ok(error);
+//        }
+//
+//        /////////////getUserNotifications to return user notifs
+//        Map<String, Object> res = userService.getUserNotifications(session.getAttribute("username"));
+//        return ResponseEntity.ok(res);
+//    }
 
 
     @GetMapping("/getProfile")
@@ -127,11 +127,11 @@ public class UserController {
             return ResponseEntity.ok(res);
         }
         ////////// updateProfileInfo function that takes the username of the user thatwants to update the profile and a map named updateInfo(checks the 4 values for not being empty) and returns the status/msg/obj
-        res = userService.updateProfileInfo(updateInfo, session.getAttribute("username"));
+        res = userService.updateProfileInfo((HashMap<String, Object>) updateInfo, (String) session.getAttribute("username"));
         return ResponseEntity.ok(res);
     }
     @PatchMapping("/changePass")
-    public ResponseEntity<?> updateProfile(@RequestBody Map<String, Object> updateInfo, HttpSession session) {
+    public ResponseEntity<?> changePass(@RequestBody Map<String, Object> updateInfo, HttpSession session) {
         Map<String, Object> res = new HashMap<>();
         if (session.getAttribute("username") == null){
             res.put("status", false);
@@ -139,7 +139,7 @@ public class UserController {
             return ResponseEntity.ok(res);
         }
         ////////// changepass function that takes old and new pass and username which first checks old and if correct changes to new pass
-        res = userService.changePassword(updateInfo.get("newPass"), updateInfo.get("oldPass"), session.getAttribute("username"));
+        res = userService.changePassword((String) updateInfo.get("newPass"), (String) updateInfo.get("oldPass"), (String) session.getAttribute("username"));
         return ResponseEntity.ok(res);
     }
 

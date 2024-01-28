@@ -1,5 +1,7 @@
 package com.drproject.controllers;
 
+import com.drproject.service.ClassroomService;
+import com.drproject.service.ARservice;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -75,29 +77,29 @@ public class StaticController {
         }
         else {
             //gerUserRole method that takes username and classroomID and returns the role of the user in string format(teacher or student)
-            String role = classroomService.getUserRole(session.getAttribute("username"), classroomId);
-            if (role.equals("teacher"))
+            Map<String, Object> res = classroomService.getUserRole((String) session.getAttribute("username"), classroomId);
+            if (res.get("obj").equals("teacher"))
                 return "html/teacherClassroom.html";
         }
         return "html/StudentClassroom.html";  ////////classroom html needed and then JS should get the data based on the classroomId
     }
 
     //returns quiz or poll pr assignment templates and has AR= param
-    @GetMapping("/{classroomId}/sections/{sectionId}")
-    public String getAR(@RequestParam("AR") String ARid, @PathVariable String classroomId) {
-        AR ar = ARservice.getARdata(ARid);   /////AR service class needed and getARdata method needed and AR entity
-        if (ar.getType() == "quiz"){
-            return "quiz.html";
-        }
-        else if (ar.getType() == "assigenment"){    ////getType method needed for ARs
-            return "assigenment.html";
-        }
-        else if (ar.getType() == "poll"){    ////getType method needed for ARs
-            return "poll.html";
-        }
-
-        return "redirect:/classrooms/" + classroomId;  ////////quiz, poll, assignement, glossary html needed and then JS should get the data based on the ArID
-    }
+//    @GetMapping("/{classroomId}/sections/{sectionId}")
+//    public String getAR(@RequestParam("AR") String ARid, @PathVariable String classroomId) {
+//        AR ar = ARservice.getARdata(ARid);   /////AR service class needed and getARdata method needed and AR entity
+//        if (ar.getType() == "quiz"){
+//            return "quiz.html";
+//        }
+//        else if (ar.getType() == "assigenment"){    ////getType method needed for ARs
+//            return "assigenment.html";
+//        }
+//        else if (ar.getType() == "poll"){    ////getType method needed for ARs
+//            return "poll.html";
+//        }
+//
+//        return "redirect:/classrooms/" + classroomId;  ////////quiz, poll, assignement, glossary html needed and then JS should get the data based on the ArID
+//    }
 
     @GetMapping("/panel/notifications")
     public String getNotifs(HttpSession session) {
