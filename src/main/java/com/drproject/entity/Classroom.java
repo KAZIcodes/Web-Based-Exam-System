@@ -16,13 +16,13 @@ public class Classroom {
     @Column(name = "UUID", columnDefinition = "VARCHAR(36)")
     private UUID id;
 
-    @OneToMany(mappedBy = "classrooms", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL)
     private ArrayList<ClassroomRole> RoleInClassrooms;
 
-    @OneToMany(mappedBy = "classrooms", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL)
     private ArrayList<Section> sections;
 
-    @OneToMany(mappedBy = "classrooms", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL)
     private ArrayList<Glossary> glossaries;
 
     @Column(name="code", columnDefinition = "VARCHAR(36)")

@@ -21,6 +21,9 @@ public class Section {
     @Column(name = "Title")
     private String title;
 
+    @ManyToOne
+    @JoinColumn(name = "classroom")
+    private Classroom classroom;
     public String getTitle() {
         return title;
     }
@@ -35,5 +38,13 @@ public class Section {
 
     public void setActivities(ArrayList<Activity> activities) {
         this.activities = activities;
+    }
+
+    public Classroom getClassroom() {
+        return classroom;
+    }
+
+    public void setClassroom(Classroom classroom) {
+        this.classroom = classroom;
     }
 }

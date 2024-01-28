@@ -30,7 +30,7 @@ public class User {
     @Column(name="bio")
     String bio;
 
-    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private ArrayList<ClassroomRole> roleInClassrooms;
 
     // Constructors

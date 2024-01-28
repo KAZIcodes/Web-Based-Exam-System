@@ -14,4 +14,25 @@ public class Glossary extends Activity{
     @Column(name = "UUID", columnDefinition = "VARCHAR(36)")
     private UUID id;
 
+    @ManyToOne
+    @JoinColumn(name = "classroom")
+    private Classroom classroom;
+
+    @Override
+    public UUID getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public Classroom getClassroom() {
+        return classroom;
+    }
+
+    public void setClassroom(Classroom classroom) {
+        this.classroom = classroom;
+    }
 }
