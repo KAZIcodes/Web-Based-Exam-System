@@ -17,8 +17,8 @@ public class ARservice {
 
     public HashMap<String, Object> getAR(String uuid){
         HashMap<String, Object> res = new HashMap<>();
-        if(arRepository.existsById(UUID.fromString(uuid))){
-            res.put("obj",arRepository.getActivityById(UUID.fromString(uuid)));
+        if(arRepository.existsById(uuid)){
+            res.put("obj",arRepository.getActivityById(uuid));
             res.put("msg","activity object found and returned successfully");
             res.put("status",true);
             return res;
