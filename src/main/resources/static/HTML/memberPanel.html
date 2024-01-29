@@ -254,18 +254,12 @@ rel="stylesheet"
             </ul>
 
             <form class="d-flex" role="search">
-              <input id="searchInput"
-                class="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
               <button
                 id="search_button"
                 class="btn btn-outline-success"
                 type="submit"
               >
-                Search
+                Logout
               </button>
             </form>
           </div>
@@ -480,6 +474,20 @@ rel="stylesheet"
                   }, 3000);  // Redirect after 3 seconds
               } else
                   showNotification(response.msg, "r");
+          });
+  }
+
+  document.getElementById("search_button").onclick = (event) => {
+      event.preventDefault();
+      sendData({},
+          {
+              path: "/logout",
+              method: "GET",
+              headers: [],
+              json: false
+          },
+          (response) => {
+              window.location.href = '/login';
           });
   }
 

@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -121,6 +122,28 @@ public class ClassroomController {
         Map<String, Object> res = classromService.getClassroomGlossary((String) session.getAttribute("username"), classroomId);
         return ResponseEntity.ok(res);
     }
+
+//    @PatchMapping("/{classroomId}/glossary")
+//    public ResponseEntity<?> updateClassroomGlossary(HttpSession session, @PathVariable String classroomId, @RequestBody List<HashMap<String, String>> glossaryList) {
+//        if (session.getAttribute("username") == null){
+//            Map<String, Object> error = new HashMap<>();
+//            error.put("status", false);
+//            error.put("msg", "Sign in first!");
+//            return ResponseEntity.ok(error);
+//        }
+//
+//        /////////////////updateClassroomGlossary method needed in classRoom service which takes new glossary list and updates it for the classroom id it takes
+//        if (classromService.isInClass((String) session.getAttribute("username"), classroomId).get("status").equals(true)){
+//            Map<String, Object> res = classromService.updateClassroomGlossary(classroomId, glossaryList);
+//            return ResponseEntity.ok(res);
+//        }
+//        else {
+//            Map<String, Object> error = new HashMap<>();
+//            error.put("status", false);
+//            error.put("msg", "You don't have access to this classroom!");
+//            return ResponseEntity.ok(error);
+//        }
+//    }
 
     //returns AR data
     @GetMapping("/{classroomId}/ARdata/{ARid}")

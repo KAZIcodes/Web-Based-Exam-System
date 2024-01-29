@@ -16,352 +16,16 @@
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
     />
-    <link rel="stylesheet" href="../CSS/teacherClassroom.css">
-    <script src="../js/script.js"></script>
+    <link rel="stylesheet" href="/CSS/teacherClassroom.css">
+    <script src="/js/script.js"></script>
 </head>
-<style>
-    body {
-
-        font-family: 'Merriweather Sans', sans-serif;
-        background-color: #f4f4f4;
-        color: #333;
-        line-height: 1.6;
-    }
-
-    .section-title {
-        color: #392467;
-        margin-bottom: 1rem;
-    }
-
-    .list-group-item {
-        cursor: pointer;
-        position: relative;
-    }
-
-    .list-group-item .dropdown-menu {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        z-index: 1000;
-        display: none;
-        float: left;
-        min-width: 100%;
-        padding: .5rem 0;
-        margin: .125rem 0 0;
-        font-size: 1rem;
-        color: #392467;
-        text-align: left;
-        list-style: none;
-        background-color: #fff;
-        background-clip: padding-box;
-        border: 1px solid rgba(0,0,0,.15);
-        border-radius: .25rem;
-        box-shadow: 0 2px 4px rgba(0,0,0,.1);
-    }
-
-    .list-group-item:hover .dropdown-menu {
-        display: block;
-    }
-
-    .dropdown-item {
-        display: block;
-        width: 80%;
-        padding: .25rem 1.5rem;
-        clear: both;
-        font-weight: 400;
-        color: #392467;
-        text-align: inherit;
-        white-space: nowrap;
-        background-color: transparent;
-        border: 0;
-        border-radius: .25rem;
-        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
-
-    }
-
-    .dropdown-item:hover, .dropdown-item:focus {
-        color: #fff;
-
-        background-color: #5D3587;
-    }
-
-    .dropdown-item:not(:last-child) {
-        border-bottom: 1px solid #ddd;
-    }
-    .dropdown-item-box {
-        display: block;
-        padding: 10px;
-        margin-bottom: 5px;
-        border-radius: 5px;
-        background-color: #f8f9fa;
-        text-decoration: none;
-        color: #392467;
-    }
-    .dropdown-item-box:hover {
-        background-color: #e2e6ea;
-    }
-
-    .profile-picture {
-        width: 250px;
-        height: 250px;
-        border-radius: 50%;
-        object-fit: cover;
-
-        border: 3px solid #fff;
-        box-shadow: 0 2px 4px rgba(0,0,0,.1);
-
-    }
-
-    .navbar {
-        background-color: #fff;
-        box-shadow: 0 2px 4px rgba(0,0,0,.1);
-        margin-bottom: 1em;
-    }
-
-    .navbar .navbar-brand {
-        color: #392467;
-        font-size: 2rem;
-        font-family: 'Libre Baskerville', serif;
-        font-family: 'Lugrasimo', cursive;
-        font-family: 'Merriweather Sans', sans-serif;
-    }
-
-    .navbar .nav-link {
-        color: #392467;
-        margin-right: 1rem;
-        font-family: 'Libre Baskerville', serif;
-        font-family: 'Lugrasimo', cursive;
-        font-family: 'Merriweather Sans', sans-serif;
-    }
-
-    .navbar .form-control {
-        margin-right: .5rem;
-    }
-
-    .member-picture {
-        width: 65px;
-        height: 65px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 2px solid #fff;
-        margin-right: 10px;
-    }
-
-    #search_button {
-
-        background-color: #e2e6ea;
-        height: 35px;
-        padding: 5px;
-
-        color: #392467;
-        border-color: #5D3587;
-        transition: all 0.3s ease;
-        font-family: 'Libre Baskerville', serif;
-        font-family: 'Lugrasimo', cursive;
-        font-family: 'Merriweather Sans', sans-serif;
-        margin-right: 2em;
-    }
-
-    #search_button:hover {
-        background-color: #5D3587;
-        color: #ffffff;
-        border-color: #5D3587;
-    }
-
-    #homeLink{
-        color: #392467;
-    }
-
-    #notifIcon{
-        margin-right: 5px;
-    }
-    #notifIcon{
-        margin-left: 0px;
-        width: 25px;
-        margin-top: 10px;
-
-
-    }
-    .nav-tabs .nav-link.active {
-        font-weight: bold;
-        text-decoration: underline;
-        text-decoration-color: #5D3587;
-        text-decoration-thickness: 2px;
-    }
-    #StudentGrade{
-        color: #392467;
-    }
-
-    #studentCourse{
-        color: #392467;
-    }
-
-    #studentCourse:hover {
-        background-color: #5D3587;
-        color: #ffffff;
-        border-color: #5D3587;
-    }
-
-    #StudentGrade:hover {
-        background-color: #5D3587;
-        color: #ffffff;
-        border-color: #5D3587;
-    }
-
-    #activities{
-        color: #392467;
-    }
-    #resources{
-        color: #392467;
-    }
-
-    .card-header .btn:not(.collapsed) {
-        color: #392467;
-    }
-
-    .card-header .btn {
-        color: #392467;
-    }
-
-    .edit-icon {
-
-        margin-left: 2em;
-    }
-
-    #toggler{
-        color: #392467;
-    }
-
-
-    #addActivity {
-
-        width: 100%;
-        text-align: left;
-        color: #392467;
-
-    }
-
-
-    #editIconLink{
-        /*display: none;*/
-    }
-
-    .plus{
-        margin-right: 1em;
-        margin-left: 0.1em;
-        /*display: none;*/
-
-    }
-
-    .card-footer{
-        background-color: #f2eff6;
-        display: flex;
-        align-items: center;
-        transition: 0.3s;
-
-        /*display: none;*/
-
-        justify-content: center;
-    }
-    .card-footer:hover{
-
-        background-color: #ebe5f4;
-
-    }
-
-    #toggler{
-        color: #392467;
-    }
-
-    /* Override Bootstrap's default styling for the checked state */
-
-    /* For Bootstrap 5, you might need to target the .form-switch class specifically */
-    .form-switch .form-check-input:checked {
-        background-color: #392467;
-        border-color: #392467;
-    }
-
-    /* For Bootstrap 5, to change the background color of the switch track */
-    .form-switch .form-check-input:checked + .form-check-label::before {
-        background-color: #392467; /* Replace with your desired color */
-    }
-
-    /* For Bootstrap 5, to change the handle color */
-    .form-switch .form-check-input:checked + .form-check-label::after {
-        background-color: #392467; /* Replace with your desired color */
-    }
-
-    .edit{
-        margin-left: 1em;
-        /*display: none;*/
-    }
-
-    #addTopic {
-
-        width: 100%;
-        text-align: left;
-        color: #392467;
-        /*display: none;*/
-
-
-    }
-
-    .edit-topic-form {
-        margin-top: 10px;
-        height: 40px;
-        font-family: 'Merriweather Sans', sans-serif;
-        /*display: none;*/
-
-    }
-
-    .edit-activity-form {
-        margin-top: 10px;
-        height: 40px;
-        font-family: 'Merriweather Sans', sans-serif;
-        /*display: none;*/
-
-    }
-    .btn-primary{
-        background-color: #e2e6ea;
-        height: 35px;
-        color: #392467;
-        border-color: #5D3587;
-        transition: all 0.3s ease;
-
-        font-family: 'Merriweather Sans', sans-serif;
-
-    }
-    .btn-primary:hover{
-        background-color: #392467;
-        color: #ffffff;
-        border-color: #392467;
-    }
-    .btn-activity{
-        background-color: #e2e6ea;
-        border-color: #392467;
-        display: block;
-        margin-top: 1em;
-        color: #392467;
-    }
-
-    .btn-activity:hover{
-        background-color: #392467;
-        border-color: #392467;
-        display: block;
-        color: #fff;
-    }
-
-    .modal-title{
-        color: #392467;
-    }
-</style>
 <body>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand">
             <img id="memberImage"
-                 src="../Pics/graduate-student-cartoon-avatar-on-white-background-elements-graduating-student-illustration-people-illustration-vector.jpeg"
+                 src="/Pics/graduate-student-cartoon-avatar-on-white-background-elements-graduating-student-illustration-people-illustration-vector.jpeg"
                  alt="Member's Picture"
                  class="member-picture"
             />
@@ -386,7 +50,7 @@
                 </li>
 
                 <li class="naFv-item">
-                    <img id="notifIcon" src="../Pics/bell.svg" alt="">
+                    <img id="notifIcon" src="/Pics/bell.svg" alt="">
 
                 </li>
                 <li class="naFv-item">
@@ -422,10 +86,14 @@
 <div class="container mt-2">
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a id="studentCourse" class="nav-link active" aria-current="page" href="#">Course</a>
+            <a id="Course" class="nav-link active" aria-current="page" href="#">Course</a>
         </li>
         <li class="nav-item">
-            <a id="StudentGrade" class="nav-link" href="#">Grades</a>
+            <a id="Grade" class="nav-link" href="#">Grades</a>
+        </li>
+
+        <li class="nav-item">
+            <a id="glossary" class="nav-link" href="#">Glossary</a>
         </li>
     </ul>
 </div>
@@ -441,7 +109,7 @@
                 <button class="btn btn-link btn-block text-left collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#resourceDropdown" aria-expanded="false">
                     topic1
                 </button>
-                <span id="topicLink"><a id="editIconLink" href="#"></span> <img src="../Pics/pencil-square.svg" alt=""></a>
+                <span id="topicLink"><a id="editIconLink" href="#"></span> <img src="/Pics/pencil-square.svg" alt=""></a>
                 <div id="editActivity1" class="edit-activity-form"  >
                     <input type="text" id="newActivityName" placeholder="Enter new activity name" />
                     <button id="saveNewActivity" class="btn btn-primary">Save</button>
@@ -461,7 +129,7 @@
 
                     <button id="addActivity" type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
 
-                        <a id="plusIcon1" class="plus" href="#"> <img src="../Pics/plus-circle.svg" alt=""></a>
+                        <a id="plusIcon1" class="plus" href="#"> <img src="/Pics/plus-circle.svg" alt=""></a>
                         <i class="fas fa-plus"></i> Add another activity
 
                     </button>
@@ -478,22 +146,22 @@
                                 <div class="modal-body" style="background-color: #f2eff6;">
 
                                     <div class="addBox">
-                                        <img id="addQuizIcon" src="../Pics/check-education-exam-svgrepo-com copy.svg" alt="" class="icon" />
+                                        <img id="addQuizIcon" src="/Pics/check-education-exam-svgrepo-com copy.svg" alt="" class="icon" />
                                         <button type="button" class="btn btn-activity" id="addQuiz">Add a New Quiz</button>
                                     </div>
 
                                     <div class="addBox">
-                                        <img id="addPollIcon" src="../Pics/check-education-exam-svgrepo-com copy.svg" alt="" class="icon" />
+                                        <img id="addPollIcon" src="/Pics/check-education-exam-svgrepo-com copy.svg" alt="" class="icon" />
                                         <button type="button" class="btn btn-activity" id="addPoll">Add a New Poll</button>
                                     </div>
 
                                     <div class="addBox">
-                                        <img id="addAssignmentIcon" src="../Pics/check-education-exam-svgrepo-com copy.svg" alt="" class="icon" />
+                                        <img id="addAssignmentIcon" src="/Pics/check-education-exam-svgrepo-com copy.svg" alt="" class="icon" />
                                         <button type="button" class="btn btn-activity" id="addAssignment">Add a New Assignment</button>
                                     </div>
 
                                     <div class="addBox">
-                                        <img id="addResourceIcon" src="../Pics/check-education-exam-svgrepo-com copy.svg" alt="" class="icon" />
+                                        <img id="addResourceIcon" src="/Pics/check-education-exam-svgrepo-com copy.svg" alt="" class="icon" />
                                         <button type="button" class="btn btn-activity" id="addResource">Add a New resource</button>
                                     </div>
 
@@ -511,7 +179,7 @@
 
 
     <button id="addTopic" class="btn btn-link" type="button">
-        <a id="plusIcon2" class="plus" href="#"> <img src="../Pics/plus-circle.svg" alt=""></a>
+        <a id="plusIcon2" class="plus" href="#"> <img src="/Pics/plus-circle.svg" alt=""></a>
         <i id="addTopicText" class="fas fa-plus"></i> Add a topic
     </button>
     <div id="editTopic1" class="edit-activity-form"  >
@@ -531,9 +199,11 @@
 
 <script>
     window.onload = () => {
-        document.getElementById("StudentGrade").href = window.local.href + "/grades";
-        document.getElementById("glossary").href = window.local.href + "/glossary";
+        document.getElementById("Grade").href = window.location.href + "/grades";
+        document.getElementById("glossary").href = window.location.href + "/glossary";
     }
 </script>
+
 </body>
+
 </html>

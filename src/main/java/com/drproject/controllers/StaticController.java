@@ -66,7 +66,7 @@ public class StaticController {
 
 
 
-    @GetMapping("/signout")
+    @GetMapping("/logout")
     public String logout(HttpSession session) {
         // Invalidate the session
         session.invalidate();
@@ -100,7 +100,7 @@ public class StaticController {
                     return getHtmlFile("static/html/studentGrade.html");
                 }
                 else {
-                    return getHtmlFile("static/html/teacherGrade.html");
+                    return getHtmlFile("static/html/teacherGrades.html");
                 }
             }
         }
