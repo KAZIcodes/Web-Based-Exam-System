@@ -37,6 +37,21 @@ public class Choice {
     @Column(name = "text")
     private String text;
 
+    public MultipleAnswer getMultipleAnswer() {
+        return multipleAnswer;
+    }
+
+    public void setMultipleAnswer(MultipleAnswer multipleAnswer) {
+        this.multipleAnswer = multipleAnswer;
+    }
+
+    public List<StudentChoice> getStudentChoices() {
+        return studentChoices;
+    }
+
+    public void setStudentChoices(List<StudentChoice> studentChoices) {
+        this.studentChoices = studentChoices;
+    }
 
     public String getId() {
         return id;
