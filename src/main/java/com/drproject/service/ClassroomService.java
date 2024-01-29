@@ -147,14 +147,13 @@ public class ClassroomService {
                 glossaryEntry.setGlossaryValue(h.get("value"));
                 newEntries.add(glossaryEntry);
                 System.out.println("\n\n\n\n\n\n\n\n\n" + "new: "+glossaryEntry.getGlossaryKey()+" " + glossaryEntry.getGlossaryValue()+"\n\n\n\n\n\n\n\n");
-
             }
             classroom.setGlossaryEntries(newEntries);
             List<GlossaryEntry> e = classroom.getGlossaryEntries();
             for(GlossaryEntry glossaryEntry : e){
                 System.out.println("\n\n\n\n\n\n\n\n\n"+"already in class"+glossaryEntry.getGlossaryKey()+" " + glossaryEntry.getGlossaryValue()+"\n\n\n\n\n\n\n\n");
             }
-            classroomRepository.saveAndFlush(classroom);
+            classroomRepository.save(classroom);
         }
         res.put("status", true);
         res.put("obj", null);
