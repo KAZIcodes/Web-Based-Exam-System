@@ -135,7 +135,7 @@ public class ClassroomService {
     // ArrayList<HashMap<String, String>>
 
     //
-
+/*
     public HashMap<String, Object> getUserGrades(String username, String code){
         HashMap<String, Object> res = new HashMap<>();
         HashMap<String , String> entries = new HashMap<>();
@@ -143,4 +143,6 @@ public class ClassroomService {
 
     }
 
+
+ */
 }
