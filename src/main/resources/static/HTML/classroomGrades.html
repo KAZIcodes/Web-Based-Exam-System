@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>classroom grade</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,700;1,400&family=Lugrasimo&family=Merriweather+Sans:wght@600&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="classroomGrades.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../pics/graduate-student-cartoon-avatar-on-white-background-elements-graduating-student-illustration-people-illustration-vector.jpeg" alt="Member's Picture" class="member-picture">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a id="homeLink" class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <img id="notifIcon" src="./pics/bell.svg" alt="">
+                    </li>
+                    <li class="nav-item">
+                        <a id="notification" class="nav-link" href="#">Notifications</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button id="search_button" class="btn btn-outline-success" type="submit">
+                        Search
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-2">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a id="Course" class="nav-link" aria-current="page" href="./studentPanel/StudentClassroom.html">Course</a>
+            </li>
+            <li class="nav-item">
+                <a id="Grade" class="nav-link active" href="./classroomGrades.html">Grades</a>
+            </li>
+            <li class="nav-item">
+              <a id="glossary" class="nav-link" href="glossary.html">Glossary</a>
+          </li>
+        </ul>
+    </div>
+    
+<div class="container table-container">
+    <h2 id="title">Classroom Grades</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th id="name" scope="col">First Name</th>
+          <th id="lastName" scope="col">Last Name</th>
+          <th id="totalGrade" scope="col">Topic total</th>
+       
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Repeat this part for each student -->
+        <tr>
+          <td id="name1">John</td>
+          <td id="LastName1">Doe</td>
+          <td id="grade1">87%</td>
+         
+        </tr>
+        <!-- End of student's row -->
+      </tbody>
+    </table>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+  </html>
