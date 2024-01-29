@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import java.security.MessageDigest;
 import java.util.Base64;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -36,6 +37,28 @@ public abstract class Activity {
 
     @Column(name="description")
     String description;
+
+
+    // The final grade for each activity
+    @Column(name = "studentLongAnswers")
+    @OneToMany(mappedBy = "activity", cascade = CascadeType.ALL)
+    List<StudentLongAnswer> studentLongAnswers;
+
+    public List<StudentLongAnswer> getStudentLongAnswers() {
+        return studentLongAnswers;
+    }
+
+    public void setStudentLongAnswers(List<StudentLongAnswer> studentLongAnswers) {
+        this.studentLongAnswers = studentLongAnswers;
+    }
+
+    public Section getSection() {
+        return section;
+    }
+
+    public void setSection(Section section) {
+        this.section = section;
+    }
 
     public String getId() {
         return id;

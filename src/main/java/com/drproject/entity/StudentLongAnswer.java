@@ -34,6 +34,35 @@ public class StudentLongAnswer {
     @JoinColumn(name= "longAnswer")
     private LongAnswer longAnswer;
 
+    @ManyToOne
+    @JoinColumn(name="activity")
+    private Activity activity;
+
+
+
+    public String getStudentAnswer() {
+        return studentAnswer;
+    }
+
+    public void setStudentAnswer(String studentAnswer) {
+        this.studentAnswer = studentAnswer;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
+    public Activity getActivity() {
+        return activity;
+    }
+
+    public void setActivity(Activity activity) {
+        this.activity = activity;
+    }
 
     public String getId() {
         return id;
