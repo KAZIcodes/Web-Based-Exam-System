@@ -13,6 +13,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -90,7 +91,7 @@ public class UserService {
         HashMap<String, Object> res = new HashMap<>();
         User user = userRepository.getUserByUsername(username);
         ArrayList<Classroom> classrooms = new ArrayList<>();
-        ArrayList<ClassroomRole> classroomRoles = user.getRoleInClassrooms();
+        List<ClassroomRole> classroomRoles = user.getRoleInClassrooms();
         for(ClassroomRole c : classroomRoles){
             classrooms.add(c.getClassroom());
         }
