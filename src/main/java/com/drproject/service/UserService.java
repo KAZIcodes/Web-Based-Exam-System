@@ -28,13 +28,14 @@ public class UserService {
         HashMap<String, Object> res = new HashMap<>();
         if (userRepository.existsByUsername(user.getUsername())) {
             res.put("status", false);
-            res.put("msg", "username does not exist");
+            res.put("msg", "username already exist");
             res.put("obj",null);
+            return res;
 
         }
         if (userRepository.existsByEmail(user.getEmail())){
             res.put("status", false);
-            res.put("msg", "username does not exist");
+            res.put("msg", "email already exists exist");
             res.put("obj",null);
             return res;
         }
@@ -49,6 +50,9 @@ public class UserService {
         }
 
         userRepository.save(user);
+        res.put("status", true);
+        res.put("msg", "successfully added user");
+        res.put("obj",null);
         return res;
     }
     public HashMap<String , Object> checkCredentials(String email, String password){

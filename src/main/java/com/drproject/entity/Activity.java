@@ -8,10 +8,12 @@ import java.util.Base64;
 import java.util.UUID;
 
 @Entity
-@Table(name="actvities")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "Activity_Type", discriminatorType = DiscriminatorType.STRING)
+@Table(name = "activities")
 public abstract class Activity {
     @Id
-    @Column(name = "UUID", columnDefinition = "VARCHAR(36)")
+    @Column(name = "UUID")
     private String id;
 
     @PrePersist

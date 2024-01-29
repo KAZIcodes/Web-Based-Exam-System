@@ -108,7 +108,7 @@ public class Classroom {
         return sections;
     }
 
-    public void setSections(ArrayList<Section> sections) {
+    public void setSections(List<Section> sections) {
         this.sections = sections;
     }
 
@@ -116,9 +116,6 @@ public class Classroom {
         RoleInClassrooms = roleInClassrooms;
     }
 
-    public void setSections(List<Section> sections) {
-        this.sections = sections;
-    }
 
     public List<GlossaryEntry> getGlossaryEntries() {
         return glossaryEntries;
