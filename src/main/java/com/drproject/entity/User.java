@@ -41,8 +41,13 @@ public class User {
     @Column(name="bio")
     String bio;
 
+    @Column(name = "roleInClassrooms")
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<ClassroomRole> roleInClassrooms ;
+
+    @Column(name="studentChoices")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<StudentChoice> studentChoices ;
 
     public String getId() {
         return id;

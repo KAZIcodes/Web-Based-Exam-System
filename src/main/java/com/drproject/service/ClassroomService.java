@@ -106,27 +106,30 @@ public class ClassroomService {
             }
         }
         res.put("obj", null);
-        res.put("status", true);
+        res.put("status", false);
         res.put("msg", "role/classroom not found");
         return res;
     }
 
     public HashMap<String , Object> getClassroomGlossary(String username, String code){
         HashMap<String, Object> res = new HashMap<>();
-        HashMap<String , String> entries = new HashMap<>();
+        List<HashMap<String, String>> output =new ArrayList<>();
         if(classroomRepository.existsByCode(code)) {
             Classroom classroom = classroomRepository.getClassroomByCode(code);
             List<GlossaryEntry> glossaryEntries = classroom.getGlossaryEntries();
             for(GlossaryEntry g : glossaryEntries){
-                entries.put(g.getGlossaryKey(), g.getGlossaryValue());
+                HashMap<String , String> entry = new HashMap<>();
+                entry.put("value", g.getGlossaryValue());
+                entry.put("key", g.getGlossaryKey());
+                output.add(entry);
             }
             res.put("status", true);
-            res.put("obj", entries);
+            res.put("obj", output);
             res.put("msg", "successfully returned glossary");
             return res;
         }
         res.put("status", false);
-        res.put("obj", entries);
+        res.put("obj", output);
         res.put("msg", "failed to fetch glossary. Classroom may not exist");
         return res;
     }
