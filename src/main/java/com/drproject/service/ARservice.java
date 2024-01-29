@@ -2,6 +2,7 @@ package com.drproject.service;
 
 import com.drproject.entity.*;
 import com.drproject.repository.ARRepository;
+import com.drproject.repository.ClassroomRepository;
 import com.drproject.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +13,12 @@ import java.util.List;
 public class ARservice {
     private final ARRepository arRepository;
     private final UserRepository userRepository;
+    private final ClassroomRepository classroomRepository;
 
-    public ARservice(ARRepository arRepository, UserRepository userRepository) {
+    public ARservice(ARRepository arRepository, UserRepository userRepository, ClassroomRepository classroomRepository) {
         this.arRepository = arRepository;
         this.userRepository = userRepository;
+        this.classroomRepository = classroomRepository;
     }
 
     public HashMap<String, Object> getAR(String uuid){
@@ -30,6 +33,37 @@ public class ARservice {
         res.put("msg", "failed to find activity object");
         res.put("status", false);
         return res;
+    }
+
+    public HashMap<String,Object> getStudentGradeForSection(String username, String classroomCode, String sectionUUID){
+        HashMap<String, Object> res = new HashMap<>();
+        User user = userRepository.getUserByUsername(username);
+        double score = 0;
+
+        if(classroomRepository.existsByCode(classroomCode)){
+            Classroom classroom = classroomRepository.getClassroomByCode(classroomCode);
+            List<Section> sections = classroom.getSections();
+            for(Section s: sections){
+                if (s.getId().equals(sectionUUID)){
+                    List<Activity> sectionActivities = s.getActivities();
+                    for(Activity a : sectionActivities){
+                        HashMap<String,Object> hashMappedRes = getStudentGradeForActivity(username,sectionUUID);
+                        score += Double.parseDouble((String)hashMappedRes.get("obj"));
+                    }
+                }
+            }
+            String out = "" + (score / classroom.getSections().size() * 100);
+            res.put("obj", out);
+            res.put("msg", "returned user score in section");
+            res.put("status", true);
+            return res;
+        }
+        else {
+            res.put("msg", "classroom not found");
+            res.put("status", false);
+            res.put("obj",null);
+            return res;
+        }
     }
 
     public HashMap<String,Object> getStudentGradeForActivity(String username, String uuid){
@@ -64,7 +98,7 @@ public class ARservice {
                             score += questionScore;
                         }
                     }
-                    String out = "" +  score / quiz.getQuestions().size();
+                    String out = "" +  score / quiz.getQuestions().size() * 100;
                     res.put("obj", out);
                     res.put("status", true);
                     res.put("msg", "grade for quiz (assigned by system) returned successfully");

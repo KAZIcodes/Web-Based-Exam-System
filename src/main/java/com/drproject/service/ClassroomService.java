@@ -134,6 +134,28 @@ public class ClassroomService {
         return res;
     }
 
+    public HashMap<String, Object> updateClassroomGlossary(String classroomCode, List<HashMap<String,String>> newGlossaryList){
+        HashMap<String, Object> res = new HashMap<>();
+        List<HashMap<String, String>> output =new ArrayList<>();
+        if(classroomRepository.existsByCode(classroomCode)) {
+            Classroom classroom = classroomRepository.getClassroomByCode(classroomCode);
+            List<GlossaryEntry> newEntries = classroom.getGlossaryEntries();
+            for (HashMap<String, String> h : newGlossaryList) {
+                GlossaryEntry glossaryEntry = new GlossaryEntry();
+                glossaryEntry.setClassroom(classroom);
+                glossaryEntry.setGlossaryKey(h.get("key"));
+                glossaryEntry.setGlossaryValue(h.get("value"));
+                newEntries.add(glossaryEntry);
+            }
+            classroom.setGlossaryEntries(newEntries);
+            classroomRepository.save(classroom);
+        }
+        res.put("status", true);
+        res.put("obj", null);
+        res.put("msg", "successfully changed glossary for classroom");
+        return res;
+    }
+
 
     // ArrayList<HashMap<String, String>>
 
@@ -148,4 +170,6 @@ public class ClassroomService {
 
 
  */
+
+
 }
