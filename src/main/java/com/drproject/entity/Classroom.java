@@ -31,10 +31,12 @@ public class Classroom {
     @Column(name = "sections")
     @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL)
     private List<Section> sections;
-
+/*
     @Column(name = "glossaryKeys")
     private List<HashMap<String,String>> glossaryEntries;
 
+
+ */
 
     @Column(name = "name")
     private String name;
