@@ -94,7 +94,7 @@ public class UserService {
         List<ClassroomRole> classroomRoles = user.getRoleInClassrooms();
         for(ClassroomRole c : classroomRoles){
             classrooms.add(c.getClassroom());
-            System.out.println(c.getClassroom().getName());
+            System.out.println("\n\n\n\n\n\n\n\n\n\n" + c.getClassroom().getName()+"!!!!!!!!!!!!!!!");
         }
         res.put("status",true);
         res.put("obj", classrooms);
