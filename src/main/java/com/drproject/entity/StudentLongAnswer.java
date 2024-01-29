@@ -21,7 +21,7 @@ public class StudentLongAnswer {
 
 
     @ManyToOne
-    @Column(name = "user")
+    @JoinColumn(name = "user")
     private User user;
 
     @Column(name = "studentAnswer")
@@ -31,7 +31,7 @@ public class StudentLongAnswer {
     private String grade; // Nomrei ke teacher vared mikone
 
     @ManyToOne
-    @Column(name= "longAnswer")
+    @JoinColumn(name= "longAnswer")
     private LongAnswer longAnswer;
 
 
