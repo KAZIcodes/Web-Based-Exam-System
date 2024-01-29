@@ -150,10 +150,13 @@ public class ClassroomService {
             }
             classroom.setGlossaryEntries(newEntries);
             classroom.setGlossaryEntries(null);
+            /*
             List<GlossaryEntry> e = classroom.getGlossaryEntries();
             for(GlossaryEntry glossaryEntry : e){
                 System.out.println("\n\n\n\n\n\n\n\n\n"+"already in class"+glossaryEntry.getGlossaryKey()+" " + glossaryEntry.getGlossaryValue()+"\n\n\n\n\n\n\n\n");
             }
+
+             */
             classroomRepository.save(classroom);
         }
         res.put("status", true);
