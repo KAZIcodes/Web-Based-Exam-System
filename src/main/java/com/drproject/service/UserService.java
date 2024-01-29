@@ -34,6 +34,7 @@ public class UserService {
             res.put("status", false);
             res.put("msg", "username does not exist");
             res.put("obj",null);
+            return res;
         }
         try {
             user.setPassword(encryptString(user.getPassword()));
@@ -42,6 +43,7 @@ public class UserService {
             res.put("status", false);
             res.put("msg", "username does not exist");
             res.put("obj",null);
+            return res;
         }
 
         userRepository.save(user);
@@ -50,11 +52,15 @@ public class UserService {
     public HashMap<String , Object> checkCredentials(String email, String password){
         HashMap<String, Object> res = new HashMap<>();
         if(userRepository.existsByEmail(email)){
+            System.out.println("\n\n\n\n\n\n\n\n\n\nkossher1\n\n\n\n\n\n");
             User user = userRepository.getUserByEmail(email);
+            System.out.println("\n\n\n\n\n\n\n\n\n\nkossher2\n\n\n\n\n\n");
             try {
+
                 if (user.getPassword().equals(encryptString(password))){
                     res.put("found",true);
                     res.put("username",user.getUsername());
+                    return res;
                 }
             }
             catch (NoSuchAlgorithmException noSuchAlgorithmException){
