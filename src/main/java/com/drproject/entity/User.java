@@ -40,7 +40,7 @@ public class User {
     @Column(name="bio")
     String bio;
 
-    @Column(name="roleInClassrooms")
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private ArrayList<ClassroomRole> roleInClassrooms;
 
