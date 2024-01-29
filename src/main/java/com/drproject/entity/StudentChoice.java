@@ -5,37 +5,28 @@ import jakarta.persistence.*;
 
 import java.security.MessageDigest;
 import java.util.Base64;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "choices")
-public class Choice {
+@Table(name = "studentChoices")
+public class StudentChoice {
 
     @Id
-    @Column(name = "UUID") // database id
+    @Column(name = "UUID")
     private String id;
-
-    @ManyToOne
-    @JoinColumn(name = "mutltipleAnswer")
-    MultipleAnswer multipleAnswer;
-
-    @Column(name = "studentChoices")
-    @OneToMany(mappedBy = "choice", cascade = CascadeType.ALL)
-    List<StudentChoice> studentChoices;
-
-
     @PrePersist
     public void prePersist(){
         this.id = toBase64(UUID.randomUUID().toString());
     }
 
 
-    @Column(name = "correctness")
-    private String correctness;
+    @ManyToOne
+    @Column(name = "user")
+    private User user;
 
-    @Column(name = "text")
-    private String text;
+    @ManyToOne
+    @Column(name= "choice")
+    private Choice choice;
 
 
     public String getId() {
@@ -46,23 +37,21 @@ public class Choice {
         this.id = id;
     }
 
-
-    public String getCorrectness() {
-        return correctness;
+    public User getUser() {
+        return user;
     }
 
-    public void setCorrectness(String correctness) {
-        this.correctness = correctness;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public String getText() {
-        return text;
+    public Choice getChoice() {
+        return choice;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setChoice(Choice choice) {
+        this.choice = choice;
     }
-
 
     public String toBase64(String input) {
         try {
@@ -74,4 +63,5 @@ public class Choice {
             return null;
         }
     }
+
 }

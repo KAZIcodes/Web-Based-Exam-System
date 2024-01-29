@@ -1,29 +1,35 @@
 package com.drproject.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
 import javax.management.QueryEval;
+import java.util.List;
 
 @Entity
-@DiscriminatorValue("MultipleAnswer")
+@DiscriminatorValue("multipleAnswer")
 public class MultipleAnswer extends Question {
 
     @Column(name = "text")
     String text;
 
-    @Column(name = "option1")
-    String option1;
-    @Column(name= "option2")
-    String option2;
-    @Column(name = "option3")
-    String option3;
-    @Column(name = "option4")
-    String option4;
-    @Column(name="correctOption")
-    String correctOption;
 
+    @Column(name = "choiceList")
+    @OneToMany(mappedBy = "multipleAnswer", cascade = CascadeType.ALL)
+    List<Choice> choiceList;
 
+    public String getText() {
+        return text;
+    }
 
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public List<Choice> getChoiceList() {
+        return choiceList;
+    }
+
+    public void setChoiceList(List<Choice> choiceList) {
+        this.choiceList = choiceList;
+    }
 }
