@@ -154,7 +154,7 @@ public class ClassroomService {
             for(GlossaryEntry glossaryEntry : e){
                 System.out.println("\n\n\n\n\n\n\n\n\n"+"already in class"+glossaryEntry.getGlossaryKey()+" " + glossaryEntry.getGlossaryValue()+"\n\n\n\n\n\n\n\n");
             }
-
+            classroomRepository.saveAndFlush(classroom);
         }
         res.put("status", true);
         res.put("obj", null);
