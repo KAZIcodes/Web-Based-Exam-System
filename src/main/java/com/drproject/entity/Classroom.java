@@ -33,7 +33,7 @@ public class Classroom {
     private List<Section> sections;
 
     @Column(name = "glossaryEntries")
-    @OneToMany(mappedBy = "classroom", cascade = CascadeType.REFRESH)
+    @OneToMany(mappedBy = "classroom", cascade = CascadeType.PERSIST)
     private List<GlossaryEntry> glossaryEntries;
 
 
