@@ -54,7 +54,7 @@
   </ul>
 </div>
 
-<div class="container table-container">
+<div class="container table-container" id="maindiv">
   <h2 id="title">Classroom Grades</h2>
   <table class="table">
     <thead>
@@ -90,6 +90,55 @@
     document.getElementById("Course").href = base
     document.getElementById("glossary").href = base + "/glossary";
   }
+
+  function addRowToTable(firstName, lastName, grade, topic, count) {
+    let table = document.createElement("table");
+    table.innerHTML = `
+          <table class="table" id="${'table'+count}">
+    <thead>
+    <tr>
+      <th id="name" scope="col">First Name</th>
+      <th id="lastName" scope="col">Last Name</th>
+      <th id="totalGrade" scope="col">${topic} Total</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Repeat this part for each student -->
+    <tr>
+      <td id="name1">${firstName}</td>
+      <td id="LastName1">${lastName}</td>
+      <td id="grade1">${grade + '%'} </td>
+
+    </tr>
+    <!-- End of student's row -->
+    </tbody>
+  </table>
+      `;
+
+    document.getElementById("maindiv").appendChild(table);
+  }
+
+
+  sendData({},
+          {
+            path:`/api/classrooms/${classroomId}/grades`,
+            method:"GET",
+            headers: [{
+              key:"content-type",
+              value:"application/json"
+            }],
+            json:true
+          },
+          (response) => {
+            if (response.status === true) {
+              let count = 1;
+              for (person of response.obj){
+                addTableRow(pseron.firstName, pserson.lastName, person.topicGrade, person.topic, count);
+                count++;
+              }
+            }
+          });
 
 
 

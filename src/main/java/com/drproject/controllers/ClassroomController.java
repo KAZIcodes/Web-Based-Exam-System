@@ -133,8 +133,30 @@ public class ClassroomController {
 //        }
 //
 //        /////////////////updateClassroomGlossary method needed in classRoom service which takes new glossary list and updates it for the classroom id it takes
-//        if (classromService.isInClass((String) session.getAttribute("username"), classroomId).get("status").equals(true)){
+//        if (classromService.isInClass((String) session.getAttribute("username"), classroomId).get("obj").equals("teacher")){
 //            Map<String, Object> res = classromService.updateClassroomGlossary(classroomId, glossaryList);
+//            return ResponseEntity.ok(res);
+//        }
+//        else {
+//            Map<String, Object> error = new HashMap<>();
+//            error.put("status", false);
+//            error.put("msg", "You don't have access to this classroom!");
+//            return ResponseEntity.ok(error);
+//        }
+//    }
+
+//    @GetMapping("/{classroomId}/grades")
+//    public ResponseEntity<?> updateClassroomTopicGrades(HttpSession session, @PathVariable String classroomId, @RequestBody List<HashMap<String, String>> glossaryList) {
+//        if (session.getAttribute("username") == null){
+//            Map<String, Object> error = new HashMap<>();
+//            error.put("status", false);
+//            error.put("msg", "Sign in first!");
+//            return ResponseEntity.ok(error);
+//        }
+//
+//        /////////////////updateClassroomGlossary method needed in classRoom service which takes new glossary list and updates it for the classroom id it takes
+//        if (classromService.getUserRole((String) session.getAttribute("username"), classroomId).get("obj").equals("teacher")){
+//            Map<String, Object> res = classromService.getTopicGrades(classroomId);
 //            return ResponseEntity.ok(res);
 //        }
 //        else {
