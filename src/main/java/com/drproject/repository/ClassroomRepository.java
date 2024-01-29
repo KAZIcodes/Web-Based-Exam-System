@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.UUID;
 
 public interface ClassroomRepository extends JpaRepository<Classroom, Long> {
-    boolean existsByCode(@Param("code")UUID code);
-    Classroom getClassroomByCode(@Param("code")UUID code);
+    boolean existsByCode(@Param("code")String code);
+    Classroom getClassroomByCode(@Param("code")String code);
 
 }

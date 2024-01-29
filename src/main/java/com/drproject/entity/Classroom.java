@@ -4,18 +4,24 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.management.relation.Role;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.security.MessageDigest;
+import java.util.*;
 
 @Entity
 @Table(name="classrooms")
 public class Classroom {
     @Id
-    @GeneratedValue(generator = "uuid4")
-    @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "UUID", columnDefinition = "VARCHAR(36)")
-    private UUID id;
+    @Column(name = "UUID") // database id
+    private String id;
+
+    @Column(name="code") // classroom code that is used to join
+    private String code;
+
+    @PrePersist
+    public void prePersist(){
+        this.id = toBase64(UUID.randomUUID().toString());
+        this.code = toBase64(UUID.randomUUID().toString());
+    }
 
 
     @Column(name = "RoleInClassrooms")
@@ -25,15 +31,12 @@ public class Classroom {
     @Column(name = "sections")
     @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL)
     private List<Section> sections;
+/*
+    @Column(name = "glossaryKeys")
+    private List<HashMap<String,String>> glossaryEntries;
 
-    @Column(name = "glossaries")
-    @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL)
-    private List<Glossary> glossaries;
 
-    @Column(name="code", columnDefinition = "VARCHAR(36)")
-    @GeneratedValue(generator = "uuid4")
-    @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
-    private UUID code;
+ */
 
     @Column(name = "name")
     private String name;
@@ -53,19 +56,19 @@ public class Classroom {
         RoleInClassrooms = roleInClassrooms;
     }
 
-    public UUID getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(UUID code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -107,5 +110,16 @@ public class Classroom {
 
     public void setSections(ArrayList<Section> sections) {
         this.sections = sections;
+    }
+
+    public String toBase64(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] md5Bytes = md.digest(input.getBytes());
+            return Base64.getEncoder().encodeToString(md5Bytes);
+        }
+        catch (Exception e) {
+            return null;
+        }
     }
 }

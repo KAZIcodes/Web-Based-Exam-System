@@ -3,17 +3,22 @@ package com.drproject.entity;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.security.MessageDigest;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.UUID;
 
 @Entity
 @Table(name="classroomRoles")
 public class ClassroomRole {
     @Id
-    @GeneratedValue(generator = "uuid4")
-    @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "UUID", columnDefinition = "VARCHAR(36)")
-    private UUID id;
+    @Column(name = "UUID")
+    private String id;
+
+    @PrePersist
+    public void prePersist(){
+        this.id = toBase64(UUID.randomUUID().toString());
+    }
 
     @Column(name="roleInClassroom")
     private RoleInClassroom roleInClassroom;
@@ -25,7 +30,7 @@ public class ClassroomRole {
     @JoinColumn(name="user")
     private User user;
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
@@ -52,5 +57,16 @@ public class ClassroomRole {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String toBase64(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] md5Bytes = md.digest(input.getBytes());
+            return Base64.getEncoder().encodeToString(md5Bytes);
+        }
+        catch (Exception e) {
+            return null;
+        }
     }
 }
