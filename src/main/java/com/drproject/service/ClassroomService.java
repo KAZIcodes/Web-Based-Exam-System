@@ -139,6 +139,7 @@ public class ClassroomService {
         List<HashMap<String, String>> output =new ArrayList<>();
         if(classroomRepository.existsByCode(classroomCode)) {
             Classroom classroom = classroomRepository.getClassroomByCode(classroomCode);
+
             List<GlossaryEntry> newEntries = new ArrayList<>();
             for (HashMap<String, String> h : newGlossaryList) {
                 GlossaryEntry glossaryEntry = new GlossaryEntry();
@@ -150,13 +151,9 @@ public class ClassroomService {
             }
             classroom.setGlossaryEntries(newEntries);
 
-            /*
-            List<GlossaryEntry> e = classroom.getGlossaryEntries();
-            for(GlossaryEntry glossaryEntry : e){
-                System.out.println("\n\n\n\n\n\n\n\n\n"+"already in class"+glossaryEntry.getGlossaryKey()+" " + glossaryEntry.getGlossaryValue()+"\n\n\n\n\n\n\n\n");
+            for (GlossaryEntry entry : newEntries){
+                entry.setClassroom(classroom);
             }
-
-             */
             classroomRepository.save(classroom);
         }
         res.put("status", true);
