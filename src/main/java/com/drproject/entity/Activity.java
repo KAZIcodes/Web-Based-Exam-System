@@ -3,6 +3,8 @@ package com.drproject.entity;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.security.MessageDigest;
+import java.util.Base64;
 import java.util.UUID;
 
 @Entity
@@ -10,10 +12,13 @@ import java.util.UUID;
 @Table(name="actvities")
 public abstract class Activity {
     @Id
-    @GeneratedValue(generator = "uuid4")
-    @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "UUID", columnDefinition = "VARCHAR(36)")
-    private UUID id;
+    private String id;
+
+    @PrePersist
+    public void prePersist(){
+        this.id = toBase64(UUID.randomUUID().toString());
+    }
 
     @ManyToOne
     @JoinColumn(name = "section")
@@ -31,11 +36,11 @@ public abstract class Activity {
     @Column(name="description")
     String description;
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -69,5 +74,15 @@ public abstract class Activity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    public String toBase64(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] md5Bytes = md.digest(input.getBytes());
+            return Base64.getEncoder().encodeToString(md5Bytes);
+        }
+        catch (Exception e) {
+            return null;
+        }
     }
 }

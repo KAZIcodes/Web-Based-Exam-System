@@ -24,8 +24,8 @@ public class ClassroomService {
 
     public HashMap<String, Object> joinClassroom(String code, String username){
         HashMap<String, Object> res = new HashMap<>();
-        if(classroomRepository.existsByCode(UUID.fromString(code))){
-            Classroom classroom = classroomRepository.getClassroomByCode(UUID.fromString(code));
+        if(classroomRepository.existsByCode(code)){
+            Classroom classroom = classroomRepository.getClassroomByCode(code);
             User user = userRepository.getUserByUsername(username);
             ClassroomRole classroomRole = new ClassroomRole();
             classroomRole.setClassroom(classroom);
@@ -60,9 +60,9 @@ public class ClassroomService {
 
     public HashMap<String, Object> isInClass(String username, String code){
         HashMap<String, Object> res = new HashMap<>();
-        if(classroomRepository.existsByCode(UUID.fromString(code))){
+        if(classroomRepository.existsByCode(code)){
             User user = userRepository.getUserByUsername(username);
-            Classroom classroom = classroomRepository.getClassroomByCode(UUID.fromString(code));
+            Classroom classroom = classroomRepository.getClassroomByCode(code);
             List<ClassroomRole> classroomRoles = classroom.getRoleInClassrooms();
             for (ClassroomRole c : classroomRoles){
                 if (c.getUser().equals(user)){
@@ -82,8 +82,8 @@ public class ClassroomService {
     public HashMap<String, Object> getUserRole(String username, String code){
         HashMap<String, Object> res = new HashMap<>();
         User user = userRepository.getUserByUsername(username);
-        if(classroomRepository.existsByCode(UUID.fromString(code))) {
-            Classroom classroom = classroomRepository.getClassroomByCode(UUID.fromString(code));
+        if(classroomRepository.existsByCode(code)) {
+            Classroom classroom = classroomRepository.getClassroomByCode(code);
             for (ClassroomRole c : classroom.getRoleInClassrooms()){
                 if(c.getUser().equals(user)){
                     if(c.getRoleInClassroom().equals(RoleInClassroom.ADMIN)){
@@ -112,5 +112,10 @@ public class ClassroomService {
         res.put("msg", "role/classroom not found");
         return res;
     }
+
+
+    // ArrayList<HashMap<String, String>>
+
+    //
 
 }

@@ -3,36 +3,39 @@ package com.drproject.entity;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.security.MessageDigest;
+import java.util.Base64;
 import java.util.UUID;
 
 @Entity
 @Table(name="glossary")
-public class Glossary extends Activity{
+public class Glossary {
+    // no need to put @Id because field is already defined in parent class
     @Id
-    @GeneratedValue(generator = "uuid4")
-    @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "UUID", columnDefinition = "VARCHAR(36)")
-    private UUID id;
+    private String id;
 
-    @ManyToOne
-    @JoinColumn(name = "classroom")
-    private Classroom classroom;
-
-    @Override
-    public UUID getId() {
-        return id;
+    @PrePersist
+    public void prePersist(){
+        this.id = toBase64(UUID.randomUUID().toString());
     }
 
-    @Override
-    public void setId(UUID id) {
-        this.id = id;
-    }
+    @Column(name="title")
+    String title;
 
-    public Classroom getClassroom() {
-        return classroom;
-    }
+    @Column(name="description")
+    String description;
 
-    public void setClassroom(Classroom classroom) {
-        this.classroom = classroom;
+
+
+    public String toBase64(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] md5Bytes = md.digest(input.getBytes());
+            return Base64.getEncoder().encodeToString(md5Bytes);
+        }
+        catch (Exception e) {
+            return null;
+        }
     }
 }

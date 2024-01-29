@@ -22,11 +22,11 @@ public class User {
      */
     @Column(name = "UUID")
     private String id;
-
     @PrePersist
     public void prePersist(){
         this.id = toBase64(UUID.randomUUID().toString());
     }
+
     @Column(name="firstName")
     String firstName;
     @Column(name="LastName")
@@ -41,15 +41,8 @@ public class User {
     @Column(name="bio")
     String bio;
 
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<ClassroomRole> roleInClassrooms ;
-
-    // Constructors
-
-
-    // Getters for the fields
-
 
     public String getId() {
         return id;

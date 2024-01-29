@@ -105,21 +105,21 @@ public class UserService {
     public HashMap<String, Object> updateProfileInfo(HashMap<String, Object> newInfo, String username){
         HashMap<String, Object> res = new HashMap<>();
         User user = userRepository.getUserByUsername(username);
-        if(!newInfo.get("username").equals("")){
-            user.setUsername((String)newInfo.get("username"));
-            res.put("msg", "username Updated");
+        if(!newInfo.get("bio").equals("")){
+            user.setBio((String)newInfo.get("bio"));
+            res.put("msg", "profile Updated");
         }
         if(!newInfo.get("firstName").equals("")){
             user.setFirstName((String)newInfo.get("firstName"));
-            res.put("msg", "firstName Updated");
+            res.put("msg", "profile Updated");
         }
         if(!newInfo.get("lastName").equals("")){
             user.setLastName((String)newInfo.get("lastName"));
-            res.put("msg", "lastName Updated");
+            res.put("msg", "profile Updated");
         }
         if(!newInfo.get("email").equals("")){
             user.setEmail((String)newInfo.get("email"));
-            res.put("msg", "email Updated");
+            res.put("msg", "profile Updated");
         }
         userRepository.save(user);
         res.put("status", true);
