@@ -141,6 +141,10 @@ public class ClassroomService {
             Classroom classroom = classroomRepository.getClassroomByCode(classroomCode);
 
             List<GlossaryEntry> newEntries = new ArrayList<>();
+            List<GlossaryEntry> oldEntries = classroom.getGlossaryEntries();
+            for (GlossaryEntry entry : oldEntries){
+                entry.setClassroom(null);
+            }
             for (HashMap<String, String> h : newGlossaryList) {
                 GlossaryEntry glossaryEntry = new GlossaryEntry();
                 glossaryEntry.setClassroom(classroom);
