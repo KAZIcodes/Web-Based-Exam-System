@@ -7,6 +7,7 @@ import org.hibernate.annotations.GenericGenerator;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -42,7 +43,7 @@ public class User {
 
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private ArrayList<ClassroomRole> roleInClassrooms = new ArrayList<>();
+    private List<ClassroomRole> roleInClassrooms ;
 
     // Constructors
 
@@ -106,7 +107,7 @@ public class User {
         this.bio = bio;
     }
 
-    public ArrayList<ClassroomRole> getRoleInClassrooms() {
+    public List<ClassroomRole> getRoleInClassrooms() {
         return roleInClassrooms;
     }
 

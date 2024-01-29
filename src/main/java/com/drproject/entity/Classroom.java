@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.management.relation.Role;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -19,15 +20,15 @@ public class Classroom {
 
     @Column(name = "RoleInClassrooms")
     @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL)
-    private ArrayList<ClassroomRole> RoleInClassrooms = new ArrayList<>();
+    private List<ClassroomRole> RoleInClassrooms;
 
     @Column(name = "sections")
     @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL)
-    private ArrayList<Section> sections = new ArrayList<>();
+    private List<Section> sections;
 
     @Column(name = "glossaries")
     @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL)
-    private ArrayList<Glossary> glossaries  = new ArrayList<>();
+    private List<Glossary> glossaries;
 
     @Column(name="code", columnDefinition = "VARCHAR(36)")
     @GeneratedValue(generator = "uuid4")
@@ -44,7 +45,7 @@ public class Classroom {
     private String endDate;
 
 
-    public ArrayList<ClassroomRole> getRoleInClassrooms() {
+    public List<ClassroomRole> getRoleInClassrooms() {
         return RoleInClassrooms;
     }
 
@@ -100,7 +101,7 @@ public class Classroom {
         this.endDate = endDate;
     }
 
-    public ArrayList<Section> getSections() {
+    public List<Section> getSections() {
         return sections;
     }
 
