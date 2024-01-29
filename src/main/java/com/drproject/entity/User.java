@@ -4,18 +4,28 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.Array;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.security.MessageDigest;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.UUID;
 
 @Entity
 @Table(name = "users")
 public class User {
     @Id
+    /*
     @GeneratedValue(generator = "uuid4")
     @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "UUID", columnDefinition = "VARCHAR(255)")
-    private UUID id;
 
+     */
+    @Column(name = "UUID")
+    private String id;
+
+    @PrePersist
+    public void prePersist(){
+        this.id = toBase64(UUID.randomUUID().toString());
+    }
     @Column(name="firstName")
     String firstName;
     @Column(name="LastName")
@@ -38,8 +48,13 @@ public class User {
 
     // Getters for the fields
 
-    public UUID getId() {
+
+    public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -96,5 +111,16 @@ public class User {
 
     public void setRoleInClassrooms(ArrayList<ClassroomRole> roleInClassrooms) {
         this.roleInClassrooms = roleInClassrooms;
+    }
+
+    public String toBase64(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] md5Bytes = md.digest(input.getBytes());
+            return Base64.getEncoder().encodeToString(md5Bytes);
+        }
+        catch (Exception e) {
+            return null;
+        }
     }
 }
