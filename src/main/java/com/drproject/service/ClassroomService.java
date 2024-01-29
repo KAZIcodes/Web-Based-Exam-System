@@ -1,9 +1,6 @@
 package com.drproject.service;
 
-import com.drproject.entity.Classroom;
-import com.drproject.entity.ClassroomRole;
-import com.drproject.entity.RoleInClassroom;
-import com.drproject.entity.User;
+import com.drproject.entity.*;
 import com.drproject.repository.ClassroomRepository;
 import com.drproject.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -55,6 +52,7 @@ public class ClassroomService {
         classroomRepository.save(classroom);
         res.put("status",true);
         res.put("msg", "successfully created new classroom. user = classroom admin.");
+        res.put("obj", null);
         return res;
     }
 
@@ -113,9 +111,36 @@ public class ClassroomService {
         return res;
     }
 
+    public HashMap<String , Object> getClassroomGlossary(String username, String code){
+        HashMap<String, Object> res = new HashMap<>();
+        HashMap<String , String> entries = new HashMap<>();
+        if(classroomRepository.existsByCode(code)) {
+            Classroom classroom = classroomRepository.getClassroomByCode(code);
+            List<GlossaryEntry> glossaryEntries = classroom.getGlossaryEntries();
+            for(GlossaryEntry g : glossaryEntries){
+                entries.put(g.getGlossaryKey(), g.getGlossaryValue());
+            }
+            res.put("status", true);
+            res.put("obj", entries);
+            res.put("msg", "successfully returned glossary");
+            return res;
+        }
+        res.put("status", false);
+        res.put("obj", entries);
+        res.put("msg", "failed to fetch glossary. Classroom may not exist");
+        return res;
+    }
+
 
     // ArrayList<HashMap<String, String>>
 
     //
+
+    public HashMap<String, Object> getUserGrades(String username, String code){
+        HashMap<String, Object> res = new HashMap<>();
+        HashMap<String , String> entries = new HashMap<>();
+        if(classroomRepository.existsByCode(code)) {
+
+    }
 
 }
