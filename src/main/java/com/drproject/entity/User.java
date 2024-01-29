@@ -42,7 +42,7 @@ public class User {
 
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private ArrayList<ClassroomRole> roleInClassrooms;
+    private ArrayList<ClassroomRole> roleInClassrooms = new ArrayList<>();
 
     // Constructors
 

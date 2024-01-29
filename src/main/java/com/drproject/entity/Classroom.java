@@ -19,15 +19,15 @@ public class Classroom {
 
     @Column(name = "RoleInClassrooms")
     @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL)
-    private ArrayList<ClassroomRole> RoleInClassrooms;
+    private ArrayList<ClassroomRole> RoleInClassrooms = new ArrayList<>();
 
     @Column(name = "sections")
     @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL)
-    private ArrayList<Section> sections;
+    private ArrayList<Section> sections = new ArrayList<>();
 
     @Column(name = "glossaries")
     @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL)
-    private ArrayList<Glossary> glossaries;
+    private ArrayList<Glossary> glossaries  = new ArrayList<>();
 
     @Column(name="code", columnDefinition = "VARCHAR(36)")
     @GeneratedValue(generator = "uuid4")
