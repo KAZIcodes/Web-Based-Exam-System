@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -62,7 +63,7 @@ public class ClassroomService {
         if(classroomRepository.existsByCode(UUID.fromString(code))){
             User user = userRepository.getUserByUsername(username);
             Classroom classroom = classroomRepository.getClassroomByCode(UUID.fromString(code));
-            ArrayList<ClassroomRole> classroomRoles = classroom.getRoleInClassrooms();
+            List<ClassroomRole> classroomRoles = classroom.getRoleInClassrooms();
             for (ClassroomRole c : classroomRoles){
                 if (c.getUser().equals(user)){
                     res.put("msg","user found in classroom");
