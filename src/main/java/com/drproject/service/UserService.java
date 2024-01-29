@@ -5,6 +5,7 @@ import com.drproject.entity.ClassroomRole;
 import com.drproject.entity.RoleInClassroom;
 import com.drproject.entity.User;
 import com.drproject.repository.UserRepository;
+import jakarta.persistence.Table;
 import org.springframework.data.web.HateoasPageableHandlerMethodArgumentResolver;
 import org.springframework.stereotype.Service;
 
@@ -90,10 +91,16 @@ public class UserService {
     public HashMap<String, Object> getUserClassrooms(String username){
         HashMap<String, Object> res = new HashMap<>();
         User user = userRepository.getUserByUsername(username);
-        ArrayList<Classroom> classrooms = new ArrayList<>();
+        ArrayList<HashMap<String, Object>> classrooms = new ArrayList<>();
         List<ClassroomRole> classroomRoles = user.getRoleInClassrooms();
         for(ClassroomRole c : classroomRoles){
-            classrooms.add(c.getClassroom());
+            HashMap<String, Object> tempHash = new HashMap<>();
+            tempHash.put("code", c.getClassroom().getCode());
+            tempHash.put("className", c.getClassroom().getName());
+            tempHash.put("startDate", c.getClassroom().getStartDate());
+            tempHash.put("endDate", c.getClassroom().getEndDate());
+            tempHash.put("role", c.roleToString());
+            classrooms.add(tempHash);
             System.out.println("\n\n\n\n\n\n\n\n\n\n" + c.getClassroom().getName()+"!!!!!!!!!!!!!!!");
         }
         res.put("status",true);

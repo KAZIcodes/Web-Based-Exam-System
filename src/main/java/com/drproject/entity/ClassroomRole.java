@@ -59,6 +59,19 @@ public class ClassroomRole {
         this.user = user;
     }
 
+    public String roleToString(){
+        if(this.roleInClassroom.equals(RoleInClassroom.TEACHER)){
+            return "teacher";
+        }
+        if(this.roleInClassroom.equals(RoleInClassroom.ADMIN)){
+            return "admin";
+        }
+        if(this.roleInClassroom.equals(RoleInClassroom.STUDENT)){
+            return "student";
+        }
+        return null;
+    }
+
     public String toBase64(String input) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");

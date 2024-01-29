@@ -128,6 +128,8 @@ public class Classroom {
         this.glossaryEntries = glossaryEntries;
     }
 
+
+
     public String toBase64(String input) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
