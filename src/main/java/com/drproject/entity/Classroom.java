@@ -52,7 +52,7 @@ public class Classroom {
         return RoleInClassrooms;
     }
 
-    public void setRoleInClassrooms(ArrayList<ClassroomRole> roleInClassrooms) {
+    public void setRoleInClassrooms(List<ClassroomRole> roleInClassrooms) {
         RoleInClassrooms = roleInClassrooms;
     }
 
@@ -112,9 +112,7 @@ public class Classroom {
         this.sections = sections;
     }
 
-    public void setRoleInClassrooms(List<ClassroomRole> roleInClassrooms) {
-        RoleInClassrooms = roleInClassrooms;
-    }
+
 
 
     public List<GlossaryEntry> getGlossaryEntries() {
