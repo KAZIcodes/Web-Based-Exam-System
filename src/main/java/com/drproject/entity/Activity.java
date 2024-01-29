@@ -8,7 +8,6 @@ import java.util.Base64;
 import java.util.UUID;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name="actvities")
 public abstract class Activity {
     @Id

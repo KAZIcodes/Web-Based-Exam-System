@@ -31,12 +31,12 @@ public class Classroom {
     @Column(name = "sections")
     @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL)
     private List<Section> sections;
-/*
-    @Column(name = "glossaryKeys")
-    private List<HashMap<String,String>> glossaryEntries;
+
+    @Column(name = "glossaryEntries")
+    @OneToMany(mappedBy = "UUID", cascade = CascadeType.ALL)
+    private List<GlossaryEntry> glossaryEntries;
 
 
- */
 
     @Column(name = "name")
     private String name;
@@ -110,6 +110,22 @@ public class Classroom {
 
     public void setSections(ArrayList<Section> sections) {
         this.sections = sections;
+    }
+
+    public void setRoleInClassrooms(List<ClassroomRole> roleInClassrooms) {
+        RoleInClassrooms = roleInClassrooms;
+    }
+
+    public void setSections(List<Section> sections) {
+        this.sections = sections;
+    }
+
+    public List<GlossaryEntry> getGlossaryEntries() {
+        return glossaryEntries;
+    }
+
+    public void setGlossaryEntries(List<GlossaryEntry> glossaryEntries) {
+        this.glossaryEntries = glossaryEntries;
     }
 
     public String toBase64(String input) {
