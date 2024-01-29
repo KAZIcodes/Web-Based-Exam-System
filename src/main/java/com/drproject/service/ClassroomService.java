@@ -149,7 +149,7 @@ public class ClassroomService {
                 System.out.println("\n\n\n\n\n\n\n\n\n" + "new: "+glossaryEntry.getGlossaryKey()+" " + glossaryEntry.getGlossaryValue()+"\n\n\n\n\n\n\n\n");
             }
             classroom.setGlossaryEntries(newEntries);
-            classroom.setGlossaryEntries(null);
+
             /*
             List<GlossaryEntry> e = classroom.getGlossaryEntries();
             for(GlossaryEntry glossaryEntry : e){
