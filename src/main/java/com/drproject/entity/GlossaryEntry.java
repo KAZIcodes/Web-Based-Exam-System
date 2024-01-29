@@ -10,7 +10,7 @@ import java.util.UUID;
 public class GlossaryEntry {
 
     @Id
-    @Column(name = "UUID", columnDefinition = "VARCHAR(36)")
+    @Column(name = "tUUID")
     private String id;
     @PrePersist
     public void prePersist(){
@@ -25,7 +25,7 @@ public class GlossaryEntry {
     String glossaryValue;
 
     @ManyToOne
-    @JoinColumn(name = "UUID")
+    @JoinColumn(name = "bUUID")
     Classroom classroom;
 
     public String getId() {
