@@ -21,11 +21,11 @@ public class StudentChoice {
 
 
     @ManyToOne
-    @Column(name = "user")
+    @JoinColumn(name = "user")
     private User user;
 
     @ManyToOne
-    @Column(name= "choice")
+    @JoinColumn(name= "choice")
     private Choice choice;
 
 
