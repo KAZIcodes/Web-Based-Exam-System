@@ -25,7 +25,7 @@ public class GlossaryEntry {
     String glossaryValue;
 
     @ManyToOne
-    @JoinColumn(name = "bUUID")
+    @JoinColumn(name = "classroom")
     Classroom classroom;
 
     public String getId() {
