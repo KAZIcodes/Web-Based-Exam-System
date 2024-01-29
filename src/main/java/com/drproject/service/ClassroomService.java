@@ -139,7 +139,7 @@ public class ClassroomService {
         List<HashMap<String, String>> output =new ArrayList<>();
         if(classroomRepository.existsByCode(classroomCode)) {
             Classroom classroom = classroomRepository.getClassroomByCode(classroomCode);
-            List<GlossaryEntry> newEntries = classroom.getGlossaryEntries();
+            List<GlossaryEntry> newEntries = new ArrayList<>();
             for (HashMap<String, String> h : newGlossaryList) {
                 GlossaryEntry glossaryEntry = new GlossaryEntry();
                 glossaryEntry.setClassroom(classroom);

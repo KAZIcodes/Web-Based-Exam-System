@@ -4,6 +4,7 @@ import com.drproject.entity.*;
 import com.drproject.repository.ARRepository;
 import com.drproject.repository.ClassroomRepository;
 import com.drproject.repository.UserRepository;
+import org.springframework.data.web.HateoasPageableHandlerMethodArgumentResolver;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -35,7 +36,7 @@ public class ARservice {
         return res;
     }
 
-    public HashMap<String,Object> getStudentGradeForSection(String username, String classroomCode, String sectionUUID){
+    public HashMap<String, Object> getStudentGradeForClass(String username, String classroomCode){
         HashMap<String, Object> res = new HashMap<>();
         User user = userRepository.getUserByUsername(username);
         double score = 0;
@@ -44,14 +45,44 @@ public class ARservice {
             Classroom classroom = classroomRepository.getClassroomByCode(classroomCode);
             List<Section> sections = classroom.getSections();
             for(Section s: sections){
-                if (s.getId().equals(sectionUUID)){
+                HashMap<String,Object> hashMap = getStudentGradeForSection(username,classroomCode,s.getId());
+                if (hashMap.get("obj").equals(null)){
+                    score += 0;
+                }
+                else {
+                    score += Double.parseDouble((String) hashMap.get("obj"));
+                }
+            }
+            String out = "" + (score/classroom.getSections().size() *100);
+            res.put("obj", out);
+            res.put("msg", "classroom score for user returned successfully");
+            res.put("status", true);
+            return res;
+        }
+        res.put("obj", null);
+        res.put("msg", "classroom doesn't exist");
+        res.put("status", true);
+        return res;
+    }
+
+    public HashMap<String,Object> getStudentGradeForSection(String username, String classroomCode, String sectionUUID){
+        HashMap<String, Object> res = new HashMap<>();
+        User user = userRepository.getUserByUsername(username);
+        double score = 0;
+
+        if(classroomRepository.existsByCode(classroomCode)){
+            Classroom classroom = classroomRepository.getClassroomByCode(classroomCode);
+            List<Section> sections = classroom.getSections();
+            for(Section s: sections) {
+                if (s.getId().equals(sectionUUID)) {
                     List<Activity> sectionActivities = s.getActivities();
-                    for(Activity a : sectionActivities){
-                        HashMap<String,Object> hashMappedRes = getStudentGradeForActivity(username,sectionUUID);
-                        score += Double.parseDouble((String)hashMappedRes.get("obj"));
+                    for (Activity a : sectionActivities) {
+                        HashMap<String, Object> hashMappedRes = getStudentGradeForActivity(username, sectionUUID);
+                        score += Double.parseDouble((String) hashMappedRes.get("obj"));
                     }
                 }
             }
+
             String out = "" + (score / classroom.getSections().size() * 100);
             res.put("obj", out);
             res.put("msg", "returned user score in section");
@@ -126,10 +157,14 @@ public class ARservice {
                         return res;
                     }
                 }
+                res.put("obj","0");
+                res.put("status", true);
+                res.put("msg", "student hasn't participated in activity");
+                return res;
             }
         }
         res.put("status", false);
-        res.put("msg", "Activity is not a quiz");
+        res.put("msg", "activity/classroom does not exist");
         res.put("obj", null);
         return res;
     }
