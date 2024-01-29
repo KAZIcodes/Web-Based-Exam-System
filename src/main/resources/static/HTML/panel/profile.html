@@ -52,7 +52,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a id="homeLink" class="nav-link active" aria-current="page" href="/static">Home</a>
+                    <a id="homeLink" class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
 
                 <li class="naFv-item">
@@ -91,13 +91,13 @@
         <div class="info">
 
             <h2 id="profileInfo" class="section-title">Profile Information</h2>
-            <p><strong>Name:</strong> <span id="memberName">John  </span> <a href="#"> <img src="../Pics/pencil-square.svg" id="firstedit" alt=""></a></p>
+            <p><strong>Name:</strong> <span id="memberName">John <a href="#"> <img src="../Pics/pencil-square.svg" id="firstedit" alt=""></a></span></p>
             <input class="changeInfo" type="text" name="" id="newName" placeholder="new Name" style="display: none">
 
-            <p><strong>Last Name:</strong> <span id="memberLastName">Doe </span><a href="#"> <img src="../Pics/pencil-square.svg" id="secondedit" alt=""></a></p>
+            <p><strong>Last Name:</strong> <span id="memberLastName">Doe <a href="#"> <img src="../Pics/pencil-square.svg" id="secondedit" alt=""></a></span></p>
             <input class="changeInfo" type="text" name="" id="newLastname" placeholder="new LastName" style="display: none">
 
-            <p><strong>Email:</strong> <span id="memberEmail">john.doe@example.com </span><a href="#"> <img src="../Pics/pencil-square.svg" id="thirdedit" alt=""></a></p>
+            <p><strong>Email:</strong> <span id="memberEmail">john.doe@example.com <a href="#"> <img src="../Pics/pencil-square.svg" id="thirdedit" alt=""></a></span></p>
             <input class="changeInfo" type="text" name="" id="newEmail" placeholder="new email" style="display: none">
 
             <br>
@@ -168,16 +168,18 @@
         {
             path:"/api/users/data",
             method:"GET",
-            headers: [],
+            headers: [{
+                key:"content-type",
+                value:"application/json"
+            }],
             json:true
         },
         (response) => {
             if (response.status === true) {
-                console.log(response.firstName);
-                document.getElementById("memberName").textContent = response.firstName;
-                document.getElementById("memberLastName").textContent = response.lastName;
-                document.getElementById("memberEmail").textContent = response.email;
-                document.getElementById("experiences").textContent = response.bio;
+                document.getElementById("memberName").value = response.firstName;
+                document.getElementById("memberLastName").value = response.lastName;
+                document.getElementById("memberEmail").value = response.email;
+                document.getElementById("experiences").value = response.bio;
             }
         });
 
@@ -197,10 +199,10 @@
     document.getElementById("saveBtn").onclick = (event) => {
         event.preventDefault();
 
-        sendData({firstName: document.getElementById("newName").value,
-                    lastName: document.getElementById("newLastname").value,
-                    email: document.getElementById("newEmail").value,
-                    bio: document.getElementById("experiences").value
+        sendData({firstName: document.getElementById("newName"),
+                    lastName: document.getElementById("newLastname"),
+                    email: document.getElementById("newEmail"),
+                    bio: document.getElementById("experiences")
                 },
             {
                 path:"/api/users/updateProfile",
@@ -227,8 +229,8 @@
     document.getElementById("saveNewPassword").onclick = (event) => {
         event.preventDefault();
 
-        sendData({oldPass: document.getElementById("oldPassword").value,
-                newPass: document.getElementById("newPassword").value
+        sendData({oldPass: document.getElementById("newName"),
+                newPass: document.getElementById("newLastname")
             },
             {
                 path:"/api/users/changePass",
