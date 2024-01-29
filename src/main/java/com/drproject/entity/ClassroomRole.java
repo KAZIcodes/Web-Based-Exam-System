@@ -19,12 +19,10 @@ public class ClassroomRole {
     private RoleInClassroom roleInClassroom;
     @ManyToOne
     @JoinColumn(name="classroom")
-    @Column(name = "classroom")
     private Classroom classroom;
 
     @ManyToOne
     @JoinColumn(name="user")
-    @Column(name = "user")
     private User user;
 
     public UUID getId() {
