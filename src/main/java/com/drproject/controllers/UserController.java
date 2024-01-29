@@ -24,6 +24,7 @@ public class UserController {
     @PostMapping("/signup")
     public ResponseEntity<?> signUpUser(@RequestBody User user) {
         Map<String, Object> res = userService.signUpUser(user);   /////signUp function which returns JSON(map) contains status and msg
+
         return ResponseEntity.ok(res);
     }
 

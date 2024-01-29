@@ -4,8 +4,15 @@ import com.drproject.service.ARservice;
 import com.drproject.service.ClassroomService;
 import com.drproject.entity.Classroom;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -84,6 +91,7 @@ public class ClassroomController {
         return ResponseEntity.ok(res);
     }
 
+    //get user grades
 //    @GetMapping("/{classroomId}/grades")
 //    public ResponseEntity<?> getGrades(HttpSession session, @PathVariable String classroomId) {
 //        if (session.getAttribute("username") == null){
@@ -95,23 +103,24 @@ public class ClassroomController {
 //
 //        //////getUserGrades method needed that takes username and classroomID and returns a list of sections in which there are the list of acticity of that section and corresponding grade of the user of that activity and the name of the activity and the name of the section
 //        Map<String, Object> res = classromService.getUserGrades((String) session.getAttribute("username"), classroomId);
+//
 //        return ResponseEntity.ok(res);
 //    }
 
     //returns glosery of the classroom
-//    @GetMapping("/{classroomId}/glossary")
-//    public ResponseEntity<?> getClassroomGlossary(HttpSession session, @PathVariable String classroomId) {
-//        if (session.getAttribute("username") == null){
-//            Map<String, Object> error = new HashMap<>();
-//            error.put("status", false);
-//            error.put("msg", "Sign in first!");
-//            return ResponseEntity.ok(error);
-//        }
-//
-//        //////getClassroomGlossary method needed in classRoom service which returns and array of objsct that has two fields: 1.key 2.value
-//        Map<String, Object> res = classromService.getClassroomGlossary((String) session.getAttribute("username"), classroomId);
-//        return ResponseEntity.ok(res);
-//    }
+    @GetMapping("/{classroomId}/glossary")
+    public ResponseEntity<?> getClassroomGlossary(HttpSession session, @PathVariable String classroomId) {
+        if (session.getAttribute("username") == null){
+            Map<String, Object> error = new HashMap<>();
+            error.put("status", false);
+            error.put("msg", "Sign in first!");
+            return ResponseEntity.ok(error);
+        }
+
+        //////getClassroomGlossary method needed in classRoom service which returns and array of objsct that has two fields: 1.key 2.value
+        Map<String, Object> res = classromService.getClassroomGlossary((String) session.getAttribute("username"), classroomId);
+        return ResponseEntity.ok(res);
+    }
 
     //returns AR data
     @GetMapping("/{classroomId}/ARdata/{ARid}")
@@ -142,4 +151,6 @@ public class ClassroomController {
             return ResponseEntity.ok(error);
         }
     }
+
+
 }

@@ -3,12 +3,19 @@ package com.drproject.controllers;
 import com.drproject.service.ClassroomService;
 import com.drproject.service.ARservice;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,10 +23,13 @@ import java.util.Map;
 public class StaticController {
     private final ARservice ARserivce;
     private final ClassroomService classroomService;
+    private final ResourceLoader resourceLoader;
 
-    public StaticController(ARservice ARserivce, ClassroomService classroomService) {   /////user service class needed
+
+    public StaticController(ARservice ARserivce, ClassroomService classroomService, ResourceLoader resourceLoader) {   /////user service class needed
         this.ARserivce = ARserivce;
         this.classroomService = classroomService;
+        this.resourceLoader = resourceLoader;
     }
 
 
@@ -64,17 +74,55 @@ public class StaticController {
     }
 
     @GetMapping("/classrooms/{classroomId}")
-    public String getClassroom(@PathVariable String classroomId, HttpSession session) {
+    public ResponseEntity<String> getClassroom(@PathVariable String classroomId, HttpSession session) throws IOException {
         if (session.getAttribute("username") == null){
-            return "redirect:/login??msg=Sign in first!";
+            return ResponseEntity.status(302).header("Location", "/login?msg=Sign in first!").build();
         }
         else {
             //gerUserRole method that takes username and classroomID and returns the role of the user in string format(teacher or student)
             Map<String, Object> res = classroomService.getUserRole((String) session.getAttribute("username"), classroomId);
-            if (res.get("obj").equals("teacher"))
-                return "html/teacherClassroom.html";
+            if (res.get("obj").equals("teacher") || res.get("obj").equals("admin"))
+                return getHtmlFile("/static/html/teacherClassroom.html");
         }
-        return "html/StudentClassroom.html";  ////////classroom html needed and then JS should get the data based on the classroomId
+        return getHtmlFile("static/html/StudentClassroom.html");
+    }
+    @GetMapping("/classrooms/{classroomId}/grades")
+    public ResponseEntity<String> gradesClassroom(@PathVariable String classroomId, HttpSession session) throws IOException {
+        if (session.getAttribute("username") == null){
+            return ResponseEntity.status(302).header("Location", "/login?msg=Sign in first!").build();
+        }
+        else {
+            HashMap<String, Object> res = classroomService.getUserRole((String) session.getAttribute("username"), classroomId);
+            if (res.get("status").equals(false)){
+                return ResponseEntity.status(302).header("Location", "/login?msg=You dont have access to this classroom!").build();
+            }else {
+                if (res.get("obj").equals("student")){
+                    return getHtmlFile("static/html/studentGrade.html");
+                }
+                else {
+                    return getHtmlFile("static/html/teacherGrade.html");
+                }
+            }
+        }
+    }
+    @GetMapping("/classrooms/{classroomId}/glossary")
+    public ResponseEntity<String> glossaryClassroom(@PathVariable String classroomId, HttpSession session) throws IOException {
+        if (session.getAttribute("username") == null){
+            return ResponseEntity.status(302).header("Location", "/login?msg=Sign in first!").build();
+        }
+        else {
+            HashMap<String, Object> res = classroomService.getUserRole((String) session.getAttribute("username"), classroomId);
+            if (res.get("status").equals(false)){
+                return ResponseEntity.status(302).header("Location", "/login?msg=You dont have access to this classroom!").build();
+            }else {
+                if (res.get("obj").equals("student")){
+                    return getHtmlFile("static/html/glossary.html");
+                }
+                else {
+                    return getHtmlFile("static/html/teacherGlossary.html");
+                }
+            }
+        }
     }
 
     //returns quiz or poll pr assignment templates and has AR= param
@@ -103,24 +151,45 @@ public class StaticController {
     }
 
     @GetMapping("/panel/notifications")
-    public String getNotifs(HttpSession session) {
+    public ResponseEntity<String> getNotifs(HttpSession session) throws IOException {
         if (session.getAttribute("username") == null){
-            return "redirect:/login?msg=Sign in first!";
+            return ResponseEntity.status(302).header("Location", "/login?msg=Sign in first!").build();
         }
-
-        return "html/notification";
+        return getHtmlFile("static/html/notification.html");
     }
 
-    @GetMapping("/profile")
-    public String getProfile(HttpSession session) {
+//    @GetMapping("/panel/profile")
+//    public String getProfile(HttpSession session) {
+//        if (session.getAttribute("username") == null){
+//            return "redirect:/login?msg=Sign in first!";
+//        }
+//        return "classpath:/static/html/profile.html";
+//    }
+
+    @GetMapping("/panel/profile")
+    public ResponseEntity<String> getHtmlFile(HttpSession session) throws IOException {
         if (session.getAttribute("username") == null){
-            System.out.println("\n\n\n\n\n   kossher111");
-            return "redirect:/login?msg=Sign in first!";
-        }
-        System.out.println("\n\n\n\n\n   kossher2222");
-        return "html/profile.html";
+           return ResponseEntity.status(302).header("Location", "/login?msg=Sign in first!").build();
+       }
+        return getHtmlFile("static/html/profile.html");
     }
 
+    private ResponseEntity<String> getHtmlFile(String filePath) throws IOException {
+        // Load the HTML file as a resource
+        Resource resource = new ClassPathResource(filePath);
+        // Check if the resource exists
+        if (resource.exists()) {
+            // Read the contents of the HTML file
+            byte[] htmlBytes = Files.readAllBytes(Path.of(resource.getURI()));
+            String htmlContent = new String(htmlBytes);
+
+            // Set the Content-Type header to text/html
+            return ResponseEntity.ok().contentType(MediaType.TEXT_HTML).body(htmlContent);
+        } else {
+            // Return a 404 Not Found response if the file does not exist
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 }
 
