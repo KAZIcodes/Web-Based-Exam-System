@@ -26,16 +26,16 @@ body {
     color: #392467;
 }
 
-#quiz-title {
+.quiz-title {
     margin: 0;
     font-family: 'Merriweather Sans', sans-serif;
 }
 
-#quiz-timer {
+.quiz-timer {
     font-weight: bold;
 }
 
-#start-quiz-btn {
+.start-quiz-btn {
     padding: 10px 20px;
     background-color: #392467;
     color: #fff;
@@ -47,12 +47,12 @@ body {
     /*display: none;*/
 }
 
-#start-quiz-btn:hover {
+.start-quiz-btn:hover {
     background-color: #5D3587;
 }
 
-/*.quiz-container { 
-    display: none; 
+/*.quiz-container {
+    display: none;
 }*/
 
 /*.quiz-content{
@@ -146,56 +146,36 @@ display: none;
     margin-right: 10px;
 }
 
-#search_button {
+.search_button {
 
-    background-color: #e2e6ea;
+
     height: 35px;
     padding: 5px;
-
-    color: #392467;
+    background-color: #5D3587;
     border-color: #5D3587;
+    border-radius: 5px;
+    color: #fff;
+
     transition: all 0.3s ease;
 
     font-family: 'Merriweather Sans', sans-serif;
 }
 
-#search_button:hover {
-    background-color: #5D3587;
-    color: #ffffff;
+.search_button:hover {
+    background-color: #392467;
+    color: #fff;
     border-color: #5D3587;
-}
 
+}
 #homeLink{
     color: #392467;
 }
 
-#notifIcon{
+.notifIcon{
     margin-right: 5px;
-}
-#notifIcon{
     margin-left: 0px;
     width: 25px;
     margin-top: 10px;
-}
-
-#StudentGrade{
-    color: #392467;
-}
-
-#studentCourse{
-    color: #392467;
-}
-
-#studentCourse:hover {
-    background-color: #5D3587;
-    color: #ffffff;
-    border-color: #5D3587;
-}
-
-#StudentGrade:hover {
-    background-color: #5D3587;
-    color: #ffffff;
-    border-color: #5D3587;
 }
 
 .nav-tabs .nav-link.active {
@@ -212,7 +192,7 @@ display: none;
 
 }
 
-#submit-quiz-btn {
+.submit-quiz-btn {
     padding: 10px 20px;
     background-color: #392467;
     color: #fff;
@@ -220,17 +200,17 @@ display: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
-    /* display: none; start ke zad none nis dge, show result ke zad dbre none mishe*/
+
     font-family: 'Merriweather Sans', sans-serif;
     margin-bottom: 10px
 }
 
-#submit-quiz-btn:hover {
+.submit-quiz-btn:hover {
     background-color: #5D3587;
 }
 
 .quiz-results {
-    /*display: none; */
+
     margin-top: 20px;
     padding: 20px;
     border: 1px solid #ddd;
@@ -279,6 +259,3 @@ display: none;
     font-family: 'Merriweather Sans', sans-serif;
 
 }
-/*#StartEndDate{
-    display: none;
-}*/

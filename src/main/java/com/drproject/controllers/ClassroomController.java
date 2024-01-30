@@ -192,27 +192,27 @@ public class ClassroomController {
 //    }
 
     //returns AR data for teacher to tashih or for student to do the exam for example
-//    @GetMapping("/{classroomId}/AR/{ARid}")
-//    public ResponseEntity<?> getClassroomSections(HttpSession session, @PathVariable String ARid , @PathVariable String classroomId, @PathVariable String sectionId) {
-//        if (session.getAttribute("username") == null){
-//            Map<String, Object> error = new HashMap<>();
-//            error.put("status", false);
-//            error.put("msg", "Sign in first!");
-//            return ResponseEntity.ok(error);
-//        }
-//
-//        Map<String, Object> res = classromService.getUserRole((String) session.getAttribute("username"), classroomId);
-//        if(res.get("obj").equals("student")){
-//            res = ARserivce.getARdata(ARid);  ///////AR data for student
-//            return ResponseEntity.ok(res);
-//        }
-//        else if (res.get("obj").equals("teacher") || res.get("obj").equals("admin")){
-//            res = ARserivce.getARdataTeacher(ARid);  /////////////AR data for teacher to tashih : [{firstName, lastName, studentGrade}]
-//            return ResponseEntity.ok(res);
-//        }
-//        else
-//            return ResponseEntity.status(302).header("Location", "/login?msg=403!").build();
-//    }
+    @GetMapping("/{classroomId}/AR/{ARid}")
+    public ResponseEntity<?> getClassroomSections(HttpSession session, @PathVariable String ARid , @PathVariable String classroomId) {
+        if (session.getAttribute("username") == null){
+            Map<String, Object> error = new HashMap<>();
+            error.put("status", false);
+            error.put("msg", "Sign in first!");
+            return ResponseEntity.ok(error);
+        }
+
+        Map<String, Object> res = classromService.getUserRole((String) session.getAttribute("username"), classroomId);
+        if(res.get("obj").equals("student")){
+            res = ARserivce.getARdata(ARid);  ///////AR data for student
+            return ResponseEntity.ok(res);
+        }
+        else if (res.get("obj").equals("teacher") || res.get("obj").equals("admin")){
+            //res = ARserivce.getARdataTeacher(ARid);  /////////////AR data for teacher to tashih : [{firstName, lastName, studentGrade}]
+            return ResponseEntity.ok(res);
+        }
+        else
+            return ResponseEntity.status(302).header("Location", "/login?msg=403!").build();
+    }
 
 //    @GetMapping("/{classroomId}/quiz/{quizId}")
 //    public ResponseEntity<?> getClassroomSections(HttpSession session, @PathVariable String quizId , @PathVariable String classroomId) {

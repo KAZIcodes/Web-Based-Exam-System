@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multiple choice Quiz </title>
+    <title> Quiz </title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,700;1,400&family=Lugrasimo&family=Merriweather+Sans:wght@600&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/CSS/quiz.css">
@@ -13,7 +13,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <img src="/Pics/graduate-student-cartoon-avatar-on-white-background-elements-graduating-student-illustration-people-illustration-vector.jpeg" alt="Member's Picture" class="member-picture">
+            <img src="./Pics/graduate-student-cartoon-avatar-on-white-background-elements-graduating-student-illustration-people-illustration-vector.jpeg" alt="Member's Picture" class="member-picture">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -21,19 +21,18 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a id="homeLink" class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a id="homeLink" class="nav-link active" aria-current="page" href="/panel">Panel</a>
                 </li>
                 <li class="nav-item">
                     <img id="notifIcon" src="/Pics/bell.svg" alt="">
                 </li>
                 <li class="nav-item">
-                    <a id="notification" class="nav-link" href="#">Notifications</a>
+                    <a id="notification" class="nav-link" href="/panel/notifications">Notifications</a>
                 </li>
             </ul>
             <form class="d-flex" role="search">
-                <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button id="search_button" class="btn btn-outline-success" type="submit">
-                    Search
+                <button class="search_button"  type="submit" onclick="window.location.href = window.location.href + '/logout'">
+                    Logout
                 </button>
             </form>
         </div>
@@ -41,14 +40,14 @@
 </nav>
 <div class="quiz-container">
     <div class="quiz-header">
-        <h1 id="quiz-title">Quiz Title</h1>
+        <h1 class="quiz-title" id="quizTitle">Quiz Title</h1>
         <hr>
         <div id="StartEndDate">
             <p id="quiz-start-date">Start Date: <span id="start-date">00:00</span></p>
             <p id="quiz-end-date">End Date: <span id="end-date">00:00</span></p>
         </div>
-        <p id="quiz-timer">Time: <span id="timer-value">00:00</span></p>
-        <button id="start-quiz-btn">Start Quiz</button>
+        <p class="quiz-timer">Time: <span id="timer-value">00:00</span></p>
+        <button class="start-quiz-btn" id="start-quiz-btn">Start Quiz</button>
     </div>
     <div class="quiz-content" id="quiz-content">
         <!-- Question 1 -->
@@ -86,7 +85,7 @@
     </div>
     <!-- Submit Button -->
     <div class="submit-container" style="text-align: right;">
-        <button id="submit-quiz-btn" class="btn btn-primary">Submit Exam</button>
+        <button class="submit-quiz-btn" >Submit Exam</button>
     </div>
 </div>
 
@@ -101,5 +100,48 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+
+    let currentUrl = window.location.href;
+    let urlParts = currentUrl.split("/");
+    let classroomId = urlParts[urlParts.length - 3];
+    let ARid = getQueryParamValue(window.location.href, "AR");
+
+    function getQueryParamValue(url, param) {
+        var queryString = url.split('?')[1];
+        if (!queryString) {
+            return null;
+        }
+
+        var queryParams = queryString.split('&');
+        for (var i = 0; i < queryParams.length; i++) {
+            var pair = queryParams[i].split('=');
+            if (pair[0] === param) {
+                return pair[1];
+            }
+        }
+
+        return null;
+    }
+
+    sendData({},
+        {
+            path:`/api/classrooms/${classroomId}/AR/${ARid}`,
+            method:"GET",
+            headers: [{
+                key:"content-type",
+                value:"application/json"
+            }],
+            json:true
+        },
+        (response) => {
+            if (response.status === true) {
+                document.getElementById("quizTitle").innerText = response.obj.title;
+                document.getElementById("start-date").innerText = response.obj.startDate;
+                document.getElementById("end-date").innerText = response.obj.endDate;
+                document.getElementById("timer-value").innerText = response.obj.duration + "Minutes";
+            }
+        });
+</script>
 </body>
 </html>

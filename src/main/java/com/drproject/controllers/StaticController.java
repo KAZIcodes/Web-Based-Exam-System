@@ -162,30 +162,30 @@ public class StaticController {
     }
 
     //returns quiz or poll pr assignment templates and has AR= param
-//    @GetMapping("/{classroomId}/sections/{sectionId}")
-//    public ResponseEntity<?> getAR(@RequestParam("AR") String ARid, @PathVariable String classroomId, @PathVariable String sectionId, HttpSession session) throws IOException {
-//        if (session.getAttribute("username") == null){
-//            return ResponseEntity.status(302).header("Location", "/login?msg=Sign in first!").build();
-//        }
-//        else if (classroomService.isInClass((String) session.getAttribute("username"), classroomId).get("status").equals(false)){
-//            return ResponseEntity.status(302).header("Location", "/login?msg=403!").build();
-//        }
-//        else {
-//            Map<String,Object> res = ARservice.getARtype(ARid); /////////////////getARtype that takes classroomId and sectionId and ARid and returns the type of the AR (quiz for example)
-//            if (res.get("obj") == "quiz"){
-//                return getHtmlFile("static/html/quiz.html");
-//            }
-//            else if (res.get("obj") == "assignment"){    ////getType method needed for ARs
-//                return getHtmlFile("static/html/assignment.html");
-//            }
-//            else if (res.get("obj") == "poll"){    ////getType method needed for ARs
-//                return getHtmlFile("static/html/poll.html");
-//            }
-//            else {
-//                return ResponseEntity.status(302).header("Location", "/panel?msg=403!").build();
-//            }
-//        }
-//    }
+    @GetMapping("/classrooms/{classroomId}/sections/{sectionId}")
+    public ResponseEntity<?> getAR(@RequestParam("AR") String ARid, @PathVariable String classroomId, @PathVariable String sectionId, HttpSession session) throws IOException {
+        if (session.getAttribute("username") == null){
+            return ResponseEntity.status(302).header("Location", "/login?msg=Sign in first!").build();
+        }
+        else if (classroomService.isInClass((String) session.getAttribute("username"), classroomId).get("status").equals(false)){
+            return ResponseEntity.status(302).header("Location", "/login?msg=403!").build();
+        }
+        else {
+            Map<String,Object> res = ARserivce.getARtype(ARid); /////////////////getARtype that takes classroomId and sectionId and ARid and returns the type of the AR (quiz for example)
+            if (res.get("obj") == "quiz"){
+                return getHtmlFile("static/html/quiz.html");
+            }
+            else if (res.get("obj") == "assignment"){    ////getType method needed for ARs
+                return getHtmlFile("static/html/assignment.html");
+            }
+            else if (res.get("obj") == "poll"){    ////getType method needed for ARs
+                return getHtmlFile("static/html/poll.html");
+            }
+            else {
+                return ResponseEntity.status(302).header("Location", "/panel?msg=403!").build();
+            }
+        }
+    }
 
     @GetMapping("/panel")
     public String panel(HttpSession session) {
