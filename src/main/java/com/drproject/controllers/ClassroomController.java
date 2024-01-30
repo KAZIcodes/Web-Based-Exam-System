@@ -214,5 +214,23 @@ public class ClassroomController {
 //            return ResponseEntity.status(302).header("Location", "/login?msg=403!").build();
 //    }
 
+//    @GetMapping("/{classroomId}/quiz/{quizId}")
+//    public ResponseEntity<?> getClassroomSections(HttpSession session, @PathVariable String quizId , @PathVariable String classroomId) {
+//        if (session.getAttribute("username") == null){
+//            Map<String, Object> error = new HashMap<>();
+//            error.put("status", false);
+//            error.put("msg", "Sign in first!");
+//            return ResponseEntity.ok(error);
+//        }
+//
+//        Map<String, Object> res = classromService.isInClass((String) session.getAttribute("username"), classroomId);
+//        if(res.get("status").equals(true)){
+//            res = ARserivce.getQuizQuestions(quizId);  ////////////////////////getQuizQ for student that returns a list of question objects(hash map)
+//            return ResponseEntity.ok(res);
+//        }
+//        else
+//            return ResponseEntity.status(302).header("Location", "/login?msg=403!").build();
+//    }
+
 
 }
