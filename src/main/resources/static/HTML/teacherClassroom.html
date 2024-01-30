@@ -99,7 +99,7 @@
 </div>
 
 
-<div class="container mt-4">
+<div class="container mt-4" id="containerboos">
     <!-- Activity Section -->
 
 
@@ -111,7 +111,7 @@
                 </button>
                 <span id="topicLink"><a id="editIconLink" href="#"></span> <img src="/Pics/pencil-square.svg" alt=""></a>
                 <div id="editActivity1" class="edit-activity-form">
-                    <input type="text" id="newActivityName" placeholder="Enter new activity name" />
+                    <input type="text" id="newActivityName" class="newActivityName" placeholder="Enter new activity name" />
                     <button id="saveNewActivity" class="btn btn-primary">Save</button>
                 </div>
 
@@ -175,7 +175,7 @@
         </div>
     </div>
 
-    <hr>
+    <hr id="superHR">
 
 
     <button id="addTopic" class="btn btn-link" type="button">
@@ -183,8 +183,8 @@
         <i id="addTopicText" class="fas fa-plus"></i> Add a topic
     </button>
     <div id="editTopic1" class="edit-activity-form"  >
-        <input type="text" id="newTopicName" placeholder="Enter new topic name" />
-        <button id="saveNewTopic" class="btn btn-primary">Save</button>
+        <input type="text" id="newTopicName" style="display: none" placeholder="Enter new topic name" />
+        <button id="saveNewTopic" class="btn btn-primary" style="display: none">Save</button>
     </div>
 
 
@@ -210,31 +210,61 @@
     let classroomId = urlParts[urlParts.length - 1];
 
 
+    document.getElementById("addTopic").onclick = () => {
+        document.getElementById("newTopicName").style.display = "block";
+        document.getElementById("saveNewTopic").style.display = "inline";
+    }
+
+    document.getElementById("saveNewTopic").onclick = () => {
+
+        sendData({newTitle: document.getElementById("newTopicName").value,
+                addNew: true
+            },
+            {
+                path:`/api/classrooms/${classroomId}/sections`,
+                method:"PATCH",
+                headers: [{
+                    key:"content-type",
+                    value:"application/json"
+                }],
+                json:true
+            },
+            (response) => {
+                if (response.status === true) {
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 1600);  // Redirect after 3 seconds
+                }
+                else
+                    showNotification(response.msg, "r");
+            });
+    }
+
     function addTopics(topicName, activities, sectionId, count) {
 
         let card = document.createElement("div");
-        card.class = "card";
+        card.className = "card";
         let cardHeader = document.createElement("div");
-        cardHeader.class = "card-header";
+        cardHeader.className = "card-header";
         cardHeader.innerHTML = `
             <h5 class="mb-0">
                     <button class="btn btn-link btn-block text-left collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#resourceDropdown" aria-expanded="false">
                         ${topicName}
                     </button>
-                    <span id="topicLink"><a id="editIconLink" href="#"></span> <img src="/Pics/pencil-square.svg"
-                                                                                    alt="" id=${"pencile" + count}></a>
-                    <div id=${"editActivity" + count} class="edit-activity-form" style="display: none">
-                        <input type="text" id=${"newActivityName" + count} placeholder="Enter new activity name"/>
+                    <span id="topicLink"><a id="editIconLink" href=""></span> <img src="/Pics/pencil-square.svg"
+                                                                                    alt="" id=${"pencil" + count}></a>
+                    <div id=${"editActivity" + count} class="edit-activity-form" >
+                        <input type="text" id=${"newActivityName" + count} class="newActivityName" placeholder="Enter new topic name"/>
                         <button id=${"saveNewActivity" + count} class="btn btn-primary">Save</button>
                     </div>`;
         card.appendChild(cardHeader);
 
         let resourcesDrop = document.createElement("div");
-        resourcesDrop.class = "collapse";
+        resourcesDrop.className = "collapse";
         resourcesDrop.id = "resourceDropdown";
         resourcesDrop.innerHTML = `
-            <div class="card-body" id="${"parent" + count}">
+            <div class="card-body" id=${"parent" + count}>
 
 
                 <div class="card-footer">
@@ -285,14 +315,16 @@
 
             </div>
         `;
-
         card.appendChild(resourcesDrop);
+        let hrElement = document.getElementById("superHR");
+        hrElement.parentNode.insertBefore(card, hrElement.previousSibling);
+
         let firstChild = document.getElementById("parent" + count).firstChild;
         for (activity of activities){
-            let aTag = document.getElementById("a");
-            aTag.class = "dropdown-item-box";
-            aTag.href = window.location.href + "/sections/" + sectionId + "?AR=" + activity.code;
-            aTag.innerText = activity.name; //////or title
+            let aTag = document.createElement("a");
+            aTag.className = "dropdown-item-box";
+            aTag.href = window.location.href + "/sections/" + sectionId + "?AR=" + activity.id;
+            aTag.innerText = activity.title;
             document.getElementById("parent" + count).insertBefore(aTag, firstChild);
         }
     }
@@ -313,15 +345,20 @@
                 let count = 1;
                 sectionsList = response.obj;
                 for (section of sectionsList){
-                    addTopics(section.title, section.activities, section.code, count);  ///////section.code ?
+                    addTopics(section.title, section.activities, section.id, count);
 
-                    document.getElementById("pencil" + count).onclick = () => {
-                        document.getElementById("editActivity" + count).style.display= "block";
+                    document.getElementById("pencil" + count).onclick = (event) => {
+                        event.preventDefault();
+                        document.getElementById("newActivityName" + count).style.display= "inline";
+                        document.getElementById("saveNewActivity" + count).style.display= "inline";
                     };
                     document.getElementById("saveNewActivity" + count).onclick = (event) => {
                         event.preventDefault();
-                        sectionsList[count-1].title = document.getElementById("newActivityName" + count).innerText;
-                        sendData({sectionsList: sectionsList},
+                        let newTitle = document.getElementById("newActivityName" + count).value;
+                        sendData({newTitle: newTitle,
+                                    sectionId: sectionsList[count - 1].id,
+                                    addNew: false
+                            },
                             {
                                 path:`/api/classrooms/${classroomId}/sections`,
                                 method:"PATCH",

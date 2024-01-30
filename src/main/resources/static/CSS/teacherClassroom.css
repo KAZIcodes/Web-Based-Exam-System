@@ -344,7 +344,7 @@ body {
     color: #392467;
 }
 
-#newActivityName{
+.newActivityName{
     font-size: 15px;
     border-radius: 5px;
     border: none;

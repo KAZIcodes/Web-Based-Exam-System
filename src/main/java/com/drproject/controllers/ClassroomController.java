@@ -92,22 +92,28 @@ public class ClassroomController {
         return ResponseEntity.ok(res);
     }
 
-//    @PatchMapping("/{classroomId}/sections")
-//    public ResponseEntity<?> updateClassroomSection(HttpSession session, @PathVariable String classroomId, @RequestBody HashMap<String, Object> sections) {
-//        if (session.getAttribute("username") == null){
-//            Map<String, Object> error = new HashMap<>();
-//            error.put("status", false);
-//            error.put("msg", "Sign in first!");
-//            return ResponseEntity.ok(error);
-//        }
-//
-//        //////isInClass method needed in classRoom service which if the user has access to the class then returns a MAP(json) of classroom data else nul
-//        Map<String, Object> res = classromService.getUserRole((String) session.getAttribute("username"), classroomId);
-//        if (res.get("obj").equals("teacher") || res.get("obj").equals("admin")){
-//            classromService.updateClassroomSections(sections.get("sectionsList"), classroomId);//////////////////updateClassroomSections which takes user_id and list of all sections(updated) to replace the DB
-//        }
-//        return ResponseEntity.ok(res);
-//    }
+    @PatchMapping("/{classroomId}/sections")
+    public ResponseEntity<?> updateClassroomSection(HttpSession session, @PathVariable String classroomId, @RequestBody HashMap<String, Object> section) {
+        if (session.getAttribute("username") == null){
+            Map<String, Object> error = new HashMap<>();
+            error.put("status", false);
+            error.put("msg", "Sign in first!");
+            return ResponseEntity.ok(error);
+        }
+
+        //////isInClass method needed in classRoom service which if the user has access to the class then returns a MAP(json) of classroom data else nul
+        Map<String, Object> res = classromService.getUserRole((String) session.getAttribute("username"), classroomId);
+        if (res.get("obj").equals("teacher") || res.get("obj").equals("admin")){
+            if (section.get("addNew").equals(false)){
+                res = classromService.updateClassroomSections((String) section.get("newTitle"), classroomId, (String) section.get("sectionId"));
+            }
+            else {
+                res = classromService.updateClassroomSections((String) section.get("newTitle"), classroomId, "");
+            }
+            //////////////////updateClassroomSections which takes user_id and list of all sections(updated) to replace the DB
+        }
+        return ResponseEntity.ok(res);
+    }
 
     //get user grades
     @GetMapping("/{classroomId}/studentGrades")
@@ -185,35 +191,28 @@ public class ClassroomController {
 //        }
 //    }
 
-    //returns AR data
-    @GetMapping("/{classroomId}/ARdata/{ARid}")
-    public ResponseEntity<?> getClassroomSections(HttpSession session, @PathVariable String ARid , @PathVariable String classroomId, @PathVariable String sectionId) {
-        if (session.getAttribute("username") == null){
-            Map<String, Object> error = new HashMap<>();
-            error.put("status", false);
-            error.put("msg", "Sign in first!");
-            return ResponseEntity.ok(error);
-        }
-
-        Map<String, Object> hasAccess = classromService.isInClass((String) session.getAttribute("username"), classroomId);
-        if (hasAccess != null){
-            Map<String, Object> res = ARserivce.getAR(ARid); //////AR service needed and getAR() method which takes AR ID and returns thae data of that AR or null if not found
-            if (res != null){
-                return ResponseEntity.ok(res);
-            }
-            else {
-                Map<String, Object> error = new HashMap<>();
-                error.put("status", false);
-                error.put("msg", "AR ID not found!");
-                return ResponseEntity.ok(error);
-            }
-        }else {
-            Map<String, Object> error = new HashMap<>();
-            error.put("status", false);
-            error.put("msg", "You don't have access to this class or it does not exist!");
-            return ResponseEntity.ok(error);
-        }
-    }
+    //returns AR data for teacher to tashih or for student to do the exam for example
+//    @GetMapping("/{classroomId}/AR/{ARid}")
+//    public ResponseEntity<?> getClassroomSections(HttpSession session, @PathVariable String ARid , @PathVariable String classroomId, @PathVariable String sectionId) {
+//        if (session.getAttribute("username") == null){
+//            Map<String, Object> error = new HashMap<>();
+//            error.put("status", false);
+//            error.put("msg", "Sign in first!");
+//            return ResponseEntity.ok(error);
+//        }
+//
+//        Map<String, Object> res = classromService.getUserRole((String) session.getAttribute("username"), classroomId);
+//        if(res.get("obj").equals("student")){
+//            res = ARserivce.getARdata(ARid);  ///////AR data for student
+//            return ResponseEntity.ok(res);
+//        }
+//        else if (res.get("obj").equals("teacher") || res.get("obj").equals("admin")){
+//            res = ARserivce.getARdataTeacher(ARid);  /////////////AR data for teacher to tashih
+//            return ResponseEntity.ok(res);
+//        }
+//        else
+//            return ResponseEntity.status(302).header("Location", "/login?msg=403!").build();
+//    }
 
 
 }

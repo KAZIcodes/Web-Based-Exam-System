@@ -315,7 +315,7 @@ rel="stylesheet"
         table.innerHTML = `
             <thead>
                 <tr>
-                    <th scope="col">${section.title}</th>    ///////section.name ?
+                    <th scope="col">${section.title}</th>
                     <th scope="col">Score</th>
                 </tr>
             </thead>
@@ -326,7 +326,7 @@ rel="stylesheet"
         for (activity of section.activities){
             let tr = document.createElement("tr");
             tr.innerHTML = `
-                <td>${activity.name}</td>   //////activity.grade ? activity.name???
+                <td>${activity.title}</td>   //////activity.grade ?
                 <td>${activity.grade}</td>
             `;
             table.tBodies[0].appendChild(tr);

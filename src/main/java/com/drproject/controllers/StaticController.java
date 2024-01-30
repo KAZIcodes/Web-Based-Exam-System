@@ -140,7 +140,7 @@ public class StaticController {
 //            return ResponseEntity.status(302).header("Location", "/login?msg=403!").build();
 //        }
 //        else {
-//            Map<String,Object> res = ARservice.getARtype(classroomId, sectionId); /////////////////getARtype that takes classroomId and sectionId and ARid and returns the type of the AR (quiz for example)
+//            Map<String,Object> res = ARservice.getARtype(ARid); /////////////////getARtype that takes classroomId and sectionId and ARid and returns the type of the AR (quiz for example)
 //            if (res.get("obj") == "quiz"){
 //                return getHtmlFile("static/html/quiz.html");
 //            }
