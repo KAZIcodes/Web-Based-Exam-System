@@ -418,7 +418,7 @@ public class ARservice {
                             multipleAnswer.setQuiz(quiz);
 
                             quizQuestionList.add(multipleAnswer);
-                            questionRepository.save(multipleAnswer);
+                            //questionRepository.save(multipleAnswer);
                         }
                         else if (questionHashMap.get("questionType").equals("trueFalse")){
                             MultipleAnswer multipleAnswer = new MultipleAnswer();
@@ -443,20 +443,20 @@ public class ARservice {
                             multipleAnswer.setQuiz(quiz);
 
                             quizQuestionList.add(multipleAnswer);
-                            questionRepository.save(multipleAnswer);
+                            //questionRepository.save(multipleAnswer);
                         }
                         else if(questionHashMap.get("questionType").equals("longAnswer")){
                             LongAnswer longAnswer  = new LongAnswer();
                             longAnswer.setText((String) questionHashMap.get("questionText"));
                             longAnswer.setQuiz(quiz);
                             quizQuestionList.add(longAnswer);
-                            questionRepository.save(longAnswer);
+                            //questionRepository.save(longAnswer);
                         }
                     }
                     quiz.setQuestions(quizQuestionList);
-                    //arRepository.save(quiz);
+                    arRepository.save(quiz);
                     s.getActivities().add(quiz);
-                    //sectionRepository.save(s);
+                    sectionRepository.save(s);
                     res.put("msg", "new quiz added to section successfully");
                     res.put("status", true);
                     res.put("obj", null);

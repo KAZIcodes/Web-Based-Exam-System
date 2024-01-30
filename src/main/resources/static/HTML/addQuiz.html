@@ -495,7 +495,7 @@
                 else if (correctOption === 'B'){
                     result = {
                         questionType: 'multipleAnswer',
-                        questionTextt: document.getElementById(`quizQuestionM${index}`).value,
+                        questionText: document.getElementById(`quizQuestionM${index}`).value,
                         choices: {
                             false1: document.getElementById(`optionAM${index}`).value,
                             true: document.getElementById(`optionBM${index}`).value,
@@ -541,7 +541,7 @@
                     result = {
                         questionType: 'trueFalse',
                         questionText: document.getElementById(`quizQuestionTF${index}`).value,
-                        choice: {
+                        choices: {
                             true: document.getElementById(`optionA${index}`).value,
                             false1: document.getElementById(`optionB${index}`).value
                         }
