@@ -415,7 +415,7 @@ public class ARservice {
                             choiceList.add(false3);
                             multipleAnswer.setChoiceList(choiceList);
                             multipleAnswer.setQuiz(quiz);
-                            questionRepository.save(multipleAnswer);
+                            //questionRepository.save(multipleAnswer);
                             quizQuestionList.add(multipleAnswer);
                         }
                         else if (questionHashMap.get("questionType").equals("trueFalse")){
@@ -437,7 +437,7 @@ public class ARservice {
                             choiceList.add(false1);
                             multipleAnswer.setChoiceList(choiceList);
                             multipleAnswer.setQuiz(quiz);
-                            questionRepository.save(multipleAnswer);
+                            //questionRepository.save(multipleAnswer);
                             quizQuestionList.add(multipleAnswer);
                         }
                         else if(questionHashMap.get("questionType").equals("longAnswer")){

@@ -470,147 +470,151 @@
 
 
     function sendQuizResults() {
-        // Assuming you have an array to store question results
-        let quizResults = [];
+        return new Promise(resolve => {
+            let quizResults = [];
 
-        // Gather multiple choice questions results
-        let mcQuestions = document.querySelectorAll('.CreateQ-mulChoice4');
-        mcQuestions.forEach((question, index) => {
-            let correctOption = document.getElementById(`correctOptionM${index}`).value
-            let result;
-            if (!['A', 'B', 'C', 'D'].includes(correctOption.toUpperCase())){
-                alert("Select  A,B,C,D for corroct option!")
-            }
-            if (correctOption === 'A'){
-                result = {
-                    questionType: 'multipleAnswer',
-                    questionText: document.getElementById(`quizQuestionM${index}`).value,
-                    choices:{true: document.getElementById(`optionAM${index}`).value,
-                        false1: document.getElementById(`optionBM${index}`).value,
-                        false2: document.getElementById(`optionCM${index}`).value,
-                        false3: document.getElementById(`optionDM${index}`).value
-                    }
-                };
-            }
-            else if (correctOption === 'B'){
-                result = {
-                    questionType: 'multipleAnswer',
-                    questionTextt: document.getElementById(`quizQuestionM${index}`).value,
-                    choices: {
-                        false1: document.getElementById(`optionAM${index}`).value,
-                        true: document.getElementById(`optionBM${index}`).value,
-                        false2: document.getElementById(`optionCM${index}`).value,
-                        false3: document.getElementById(`optionDM${index}`).value
-                    }
-                };
-            }else if (correctOption === 'C'){
-                result = {
-                    questionType: 'multipleAnswer',
-                    questionText: document.getElementById(`quizQuestionM${index}`).value,
-                    choices: {
-                        false1: document.getElementById(`optionAM${index}`).value,
-                        false2: document.getElementById(`optionBM${index}`).value,
-                        true: document.getElementById(`optionCM${index}`).value,
-                        false3: document.getElementById(`optionDM${index}`).value
-                    }
-                };
-            }else if (correctOption === 'D'){
-                result = {
-                    questionType: 'multipleAnswer',
-                    questionText: document.getElementById(`quizQuestionM${index}`).value,
-                    choices: {
-                        false1: document.getElementById(`optionAM${index}`).value,
-                        false2: document.getElementById(`optionBM${index}`).value,
-                        false3: document.getElementById(`optionCM${index}`).value,
-                        true: document.getElementById(`optionDM${index}`).value
-                    }
-                };
-            }
-            quizResults.push(result);
-        });
-
-        // Gather true/false questions results
-        let tfQuestions = document.querySelectorAll('.CreateQ-TrueFalse');
-        tfQuestions.forEach((question, index) => {
-            let correctOption = document.getElementById(`correctOption${index}`).value
-            let result;
-            if (!['A', 'B'].includes(correctOption.toUpperCase())){
-                alert("Select  A,B for corroct option!")
-            }
-            if (correctOption === 'A'){
-                result = {
-                    questionType: 'trueFalse',
-                    questionText: document.getElementById(`quizQuestionTF${index}`).value,
-                    choice: {
-                        true: document.getElementById(`optionA${index}`).value,
-                        false1: document.getElementById(`optionB${index}`).value
-                    }
-                };
-            }
-            else if (correctOption === 'B'){
-                result = {
-                    questionType: 'trueFalse',
-                    questionText: document.getElementById(`quizQuestionTF${index}`).value,
-                    choices: {
-                        false1: document.getElementById(`optionA${index}`).value,
-                        true: document.getElementById(`optionB${index}`).value
-                    }
-                };
-            }
-            quizResults.push(result);
-        });
-
-        // Gather long answer questions results
-        let laQuestions = document.querySelectorAll('.CreateQ-longAnswer');
-        laQuestions.forEach((question, index) => {
-            let result = {
-                questionType: 'longAnswer',
-                questionText: document.getElementById(`quizQuestionL${index}`).value
-            };
-            quizResults.push(result);
-        });
-
-        let final = {
-            title: document.getElementById("quizName").value,
-            description: document.getElementById("quizDescription").value,
-            startDate: document.getElementById("startDate").value,
-            endDate: document.getElementById("endDate").value,
-            duration: document.getElementById("quizTime").value,
-            questions: quizResults
-        }
-
-        let currentUrl = window.location.href;
-        let urlParts = currentUrl.split("/");
-        let sectionId = urlParts[urlParts.length - 2];
-        let classroomId = urlParts[urlParts.length - 4];
-        sendData(final,
-            {
-                path:"/api/classrooms/" + classroomId + "/section/" + sectionId + "/addQuiz",
-                method:"POST",
-                headers: [{
-                    key:"content-type",
-                    value:"application/json"
-                }],
-                json:true
-            },
-            (response) => {
-                if (response.status === true) {
-                    showNotification(response.msg, "g");
-                    setTimeout(function () {
-                        window.location.href = '/panel';
-                    }, 1600);  // Redirect after 3 seconds
+            // Gather multiple choice questions results
+            let mcQuestions = document.querySelectorAll('.CreateQ-mulChoice4');
+            mcQuestions.forEach((question, index) => {
+                let correctOption = document.getElementById(`correctOptionM${index}`).value
+                let result;
+                if (!['A', 'B', 'C', 'D'].includes(correctOption.toUpperCase())){
+                    alert("Select  A,B,C,D for corroct option!")
                 }
-                else
-                    showNotification(response.msg, "r");
-
+                if (correctOption === 'A'){
+                    result = {
+                        questionType: 'multipleAnswer',
+                        questionText: document.getElementById(`quizQuestionM${index}`).value,
+                        choices:{true: document.getElementById(`optionAM${index}`).value,
+                            false1: document.getElementById(`optionBM${index}`).value,
+                            false2: document.getElementById(`optionCM${index}`).value,
+                            false3: document.getElementById(`optionDM${index}`).value
+                        }
+                    };
+                }
+                else if (correctOption === 'B'){
+                    result = {
+                        questionType: 'multipleAnswer',
+                        questionTextt: document.getElementById(`quizQuestionM${index}`).value,
+                        choices: {
+                            false1: document.getElementById(`optionAM${index}`).value,
+                            true: document.getElementById(`optionBM${index}`).value,
+                            false2: document.getElementById(`optionCM${index}`).value,
+                            false3: document.getElementById(`optionDM${index}`).value
+                        }
+                    };
+                }else if (correctOption === 'C'){
+                    result = {
+                        questionType: 'multipleAnswer',
+                        questionText: document.getElementById(`quizQuestionM${index}`).value,
+                        choices: {
+                            false1: document.getElementById(`optionAM${index}`).value,
+                            false2: document.getElementById(`optionBM${index}`).value,
+                            true: document.getElementById(`optionCM${index}`).value,
+                            false3: document.getElementById(`optionDM${index}`).value
+                        }
+                    };
+                }else if (correctOption === 'D'){
+                    result = {
+                        questionType: 'multipleAnswer',
+                        questionText: document.getElementById(`quizQuestionM${index}`).value,
+                        choices: {
+                            false1: document.getElementById(`optionAM${index}`).value,
+                            false2: document.getElementById(`optionBM${index}`).value,
+                            false3: document.getElementById(`optionCM${index}`).value,
+                            true: document.getElementById(`optionDM${index}`).value
+                        }
+                    };
+                }
+                quizResults.push(result);
             });
+
+            // Gather true/false questions results
+            let tfQuestions = document.querySelectorAll('.CreateQ-TrueFalse');
+            tfQuestions.forEach((question, index) => {
+                let correctOption = document.getElementById(`correctOption${index}`).value
+                let result;
+                if (!['A', 'B'].includes(correctOption.toUpperCase())){
+                    alert("Select  A,B for corroct option!")
+                }
+                if (correctOption === 'A'){
+                    result = {
+                        questionType: 'trueFalse',
+                        questionText: document.getElementById(`quizQuestionTF${index}`).value,
+                        choice: {
+                            true: document.getElementById(`optionA${index}`).value,
+                            false1: document.getElementById(`optionB${index}`).value
+                        }
+                    };
+                }
+                else if (correctOption === 'B'){
+                    result = {
+                        questionType: 'trueFalse',
+                        questionText: document.getElementById(`quizQuestionTF${index}`).value,
+                        choices: {
+                            false1: document.getElementById(`optionA${index}`).value,
+                            true: document.getElementById(`optionB${index}`).value
+                        }
+                    };
+                }
+                quizResults.push(result);
+            });
+
+            // Gather long answer questions results
+            let laQuestions = document.querySelectorAll('.CreateQ-longAnswer');
+            laQuestions.forEach((question, index) => {
+                let result = {
+                    questionType: 'longAnswer',
+                    questionText: document.getElementById(`quizQuestionL${index}`).value
+                };
+                quizResults.push(result);
+            });
+
+            let final = {
+                title: document.getElementById("quizName").value,
+                description: document.getElementById("quizDescription").value,
+                startDate: document.getElementById("startDate").value,
+                endDate: document.getElementById("endDate").value,
+                duration: document.getElementById("quizTime").value,
+                questions: quizResults
+            }
+
+            resolve(final);
+        });
+
     }
 
 
 
     document.getElementById('createButton').addEventListener('click', function(event) {
         event.preventDefault(); // Prevent the default form submission behavior
-        sendQuizResults();
+        sendQuizResults().then(final => {
+            let currentUrl = window.location.href;
+            let urlParts = currentUrl.split("/");
+            let sectionId = urlParts[urlParts.length - 2];
+            let classroomId = urlParts[urlParts.length - 4];
+            sendData(final,
+                {
+                    path:"/api/classrooms/" + classroomId + "/section/" + sectionId + "/addQuiz",
+                    method:"POST",
+                    headers: [{
+                        key:"content-type",
+                        value:"application/json"
+                    }],
+                    json:true
+                },
+                (response) => {
+                    if (response.status === true) {
+                        showNotification(response.msg, "g");
+                        setTimeout(function () {
+                            window.location.href = '/panel';
+                        }, 1600);  // Redirect after 3 seconds
+                    }
+                    else
+                        showNotification(response.msg, "r");
+
+                });
+        });
     });
 
 
