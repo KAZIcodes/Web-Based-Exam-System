@@ -25,7 +25,7 @@
                         <a id="homeLink" class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <img id="notifIcon" src="./pics/bell.svg" alt="">
+                        <img class="notifIcon" src="./pics/bell.svg" alt="">
                     </li>
                     <li class="nav-item">
                         <a id="notification" class="nav-link" href="#">Notifications</a>
@@ -33,8 +33,9 @@
                 </ul>
                 <form class="d-flex" role="search">
                     <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button id="search_button" class="btn btn-outline-success" type="submit">
+                    <button class="search_button"  type="submit">
                         Search
+                    </button>
                 </form>
             </div>
         </div>
@@ -63,10 +64,10 @@
 
        <!-- multiple choice div (4 choices) -->
 
-<div class="CreateQ" id="mulChoice4">
+<div class="CreateQ-mulChoice4" id="mulChoice4">
     <div class="inner">
         <div class="mb-3">
-            <h2 id="addText" >Add multiple choice question</h2 > 
+            <h2 id="addText" class="addText" >Add multiple choice question</h2 > 
                 <img class="icon" src="../pics/i-exam-multiple-choice-svgrepo-com.svg" alt="" width="40px" height="40px">
         </div>
       
@@ -104,10 +105,10 @@
     <!-- True false div -->
 
 
-<div class="CreateQ" id="TrueFalse">
+<div class="CreateQ-TrueFalse" id="TrueFalse">
     <div class="inner">
         <div class="mb-3">
-            <h2 id="addText" >Add True/False question</h2 > 
+            <h2 id="addText" class="addText" >Add True/False question</h2 > 
                 <img class="icon" src="../pics/i-exam-multiple-choice-svgrepo-com.svg" alt="" width="40px" height="40px">
         </div>
       
@@ -137,10 +138,10 @@
   <!-- long answer div -->
 
 
-<div class="CreateQ" id="longAnswer">
+<div class="CreateQ-longAnswer" id="longAnswer">
     <div class="inner">
         <div class="mb-3">
-            <h2 id="addText" >Add long answer question</h2 > 
+            <h2 id="addText" class="addText" >Add long answer question</h2 > 
                 <img class="icon" src="../pics/i-exam-multiple-choice-svgrepo-com.svg" alt="" width="40px" height="40px">
         </div>
       
@@ -155,7 +156,7 @@
 
 
 <!-- Button trigger modal -->
-<button id="AddQuestionButton" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button id="AddQuestionButton" type="button" class="AddQuestionButton" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Add Question
  </button>
    
@@ -171,22 +172,22 @@
              <div class="question-types">
                  <!-- Multiple Choice Question Box -->
                  <div class="question-box">
-                     <img id="addMulChoiceIcon" src="../pics/check-education-exam-svgrepo-com copy.svg" alt="Multiple Choice Icon" class="icon" />
+                     <img id="addMulChoiceIcon" src="../pics/check-education-exam-svgrepo-com copy.svg" alt="Multiple Choice Icon" class="addMulChoiceIcon" />
                      <button id="addMulChoice" class="select" type="button" >Multiple Choice</button>
                     
                  </div>
          
                  <!-- True/False Question Box -->
                  <div class="question-box">
-                     <img id="addTrueFalseIcon" src="../pics/i-exam-multiple-choice-svgrepo-com.svg" alt="True/False Icon" class="icon" />
+                     <img id="addTrueFalseIcon" src="../pics/i-exam-multiple-choice-svgrepo-com.svg" alt="True/False Icon" class="addTrueFalseIcon" />
                      <button id="addTrueFalse" class="select" type="button" >True/False</button>
                     
                  </div>
          
                  <!-- Long Answer Question Box -->
                  <div class="question-box">
-                     <img id="addLongAnsIcon" src="../pics/q1.svg" alt="Long Answer Icon" class="icon" />
-                     <button id="addLongAns" class="select" type="button">Long Answer</button>
+                     <img id="addLongAnsIcon" src="../pics/q1.svg" alt="Long Answer Icon" class="addLongAnsIcon" />
+                     <button id="LongAns" class="select" type="button">Long Answer</button>
                     
                  </div>
              </div>
