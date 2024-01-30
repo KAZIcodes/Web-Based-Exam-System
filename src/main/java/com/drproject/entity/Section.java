@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -21,7 +22,7 @@ public class Section {
     }
 
     @OneToMany(mappedBy = "section", cascade = CascadeType.ALL)
-    private ArrayList<Activity> activities;
+    private List<Activity> activities;
 
     @Column(name = "Title")
     private String title;
@@ -37,11 +38,11 @@ public class Section {
         this.title = title;
     }
 
-    public ArrayList<Activity> getActivities() {
+    public List<Activity> getActivities() {
         return activities;
     }
 
-    public void setActivities(ArrayList<Activity> activities) {
+    public void setActivities(List<Activity> activities) {
         this.activities = activities;
     }
 
