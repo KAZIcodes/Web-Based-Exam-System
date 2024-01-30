@@ -55,36 +55,40 @@ body {
     margin-right: 10px; 
   }
 
-  #search_button {
+  .search_button {
     
-    background-color: #e2e6ea;
+
     height: 35px;
     padding: 5px;
-   
-    color: #392467;
+    background-color: #5D3587;
     border-color: #5D3587;
+   border-radius: 5px;
+    color: #fff;
+  
     transition: all 0.3s ease;
 
     font-family: 'Merriweather Sans', sans-serif;
 }
 
-#search_button:hover {
-    background-color: #5D3587;
-    color: #ffffff;
+.search_button:hover {
+background-color: #392467;
+    color: #fff;
     border-color: #5D3587;
+
 }
 
 #homeLink{
     color: #392467;
+
+    margin-right: 1rem;
+
 }
 
-#notifIcon{
-    margin-right: 5px;
-}
-#notifIcon{
+.notifIcon{
     margin-left: 0px;
     width: 25px;
     margin-top: 10px;
+    margin-right: 5px;
 }
 
 
@@ -110,9 +114,12 @@ h1 {
     border-color: #392467;
 }
 
-#mulChoice4{
+.CreateQ-mulChoice4{
     background-color: rgb(245, 243, 247);
     border-radius: 5px;
+    height:100%;
+    margin-bottom: 2em;
+    margin-top: 2em;
 
 }
 .CreateQ{
@@ -124,7 +131,8 @@ h1 {
 .inner{
     margin: 2em ;
 }
-#addText{
+
+.addText{
    display: inline-block;
     padding-top: 0.7em;
     padding-bottom: 0.7em;
@@ -135,14 +143,20 @@ h1 {
     margin-left: 1.5em;
     margin-top: -0.8em;
 }
-#TrueFalse{
+.CreateQ-TrueFalse{
     background-color: rgb(245, 243, 247);
     border-radius: 5px;
+    height:100%;
+    margin-bottom: 2em;
+    margin-top: 2em;
 }
 
-#longAnswer{
+.CreateQ-longAnswer{
     background-color: rgb(245, 243, 247);
     border-radius: 5px;
+    height:100%;
+    margin-bottom: 2em;
+    margin-top: 2em;
 }
 
 .question-types {
@@ -182,24 +196,36 @@ h1 {
     
 }
 
-#addMulChoiceIcon{
+.addMulChoiceIcon{
     margin-right: 1.5em;
     margin-bottom: 0.7em;
+    width: 40px;
+    height: 40px;
 }
 
-#addTrueFalseIcon{
+.addTrueFalseIcon{
     margin-right: 1.5em;
     margin-bottom: 0.7em;
+    width: 40px;
+    height: 40px;
 }
 
-#addLongAnsIcon{
+.addLongAnsIcon{
     margin-right: 1.3em;
     margin-bottom: 0.8em;
+    width: 40px;
+    height: 40px;
 }
 
-#AddQuestionButton{
-
+.AddQuestionButton{
+    background-color: #5D3587;
+    border-color: #5D3587;
     margin-bottom: 1em;
+    color: #fff;
+    border-radius: 5px;
+}
+.AddQuestionButton:hover{
+    background-color: #392467;
 }
 
 .newDate{
