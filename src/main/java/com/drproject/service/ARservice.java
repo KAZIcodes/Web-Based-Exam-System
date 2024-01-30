@@ -345,6 +345,7 @@ public class ARservice {
                     } else {
                         LongAnswer lq = (LongAnswer) q;
                         HashMap<String, Object> longAnswerQ = new HashMap<>();
+                        longAnswerQ.put("type","longAnswer");
                         longAnswerQ.put("uuid", lq.getId());
                         longAnswerQ.put("text", lq.getText());
                         outQuestions.add(longAnswerQ);
@@ -474,5 +475,13 @@ public class ARservice {
         res.put("obj", null);
         return res;
     }
+
+    /*
+    public HashMap<String, Object> putUserAnswers(String username, List<String> choiceUUIDs){
+        User user = userRepository.getUserByUsername(username);
+        Choice choice =
+    }
+
+     */
 
 }
