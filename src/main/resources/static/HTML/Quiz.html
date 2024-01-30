@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multiple choice Quiz </title>
+    <title>Create Quiz</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,700;1,400&family=Lugrasimo&family=Merriweather+Sans:wght@600&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="Quiz.css">
+    <link rel="stylesheet" href="addQuiz.css">
 </head>
 <body>
+
+
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="./pics/graduate-student-cartoon-avatar-on-white-background-elements-graduating-student-illustration-people-illustration-vector.jpeg" alt="Member's Picture" class="member-picture">
+                <img src="../pics/graduate-student-cartoon-avatar-on-white-background-elements-graduating-student-illustration-people-illustration-vector.jpeg" alt="Member's Picture" class="member-picture">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -23,7 +25,7 @@
                         <a id="homeLink" class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <img id="notifIcon" src="./pics/bell.svg" alt="">
+                        <img class="notifIcon" src="./pics/bell.svg" alt="">
                     </li>
                     <li class="nav-item">
                         <a id="notification" class="nav-link" href="#">Notifications</a>
@@ -31,72 +33,195 @@
                 </ul>
                 <form class="d-flex" role="search">
                     <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button id="search_button" class="btn btn-outline-success" type="submit">
+                    <button class="search_button" class="btn btn-outline-success" type="submit">
                         Search
-                    </button>
                 </form>
             </div>
         </div>
     </nav>
-    <div class="quiz-container">
-        <div class="quiz-header">
-            <h1 id="quiz-title">Quiz Title</h1>
-            <hr>
-            <div id="StartEndDate">
-                <p id="quiz-start-date">Start Date: <span id="start-date">00:00</span></p>
-                <p id="quiz-end-date">End Date: <span id="end-date">00:00</span></p>
-            </div>
-            <p id="quiz-timer">Time: <span id="timer-value">00:00</span></p>
-            <button id="start-quiz-btn">Start Quiz</button>
+
+
+    <div class="container mt-4">
+        <h1>Create Your Quiz</h1>
+
+        <form id="quizForm">
+
+       <div id="Top">
+        <div class="mb-3">
+            <label for="quizName" class="form-label">Quiz Name</label>
+            <input type="text" class="form-control" id="quizName">
         </div>
-        <div class="quiz-content" id="quiz-content">
-            <!-- Question 1 -->
-            <div class="question-box">
-                <div id="MultipleChoiceQ">
-                    <p id="Qnum1" class="question-number">Question 1:</p>
-                    <p id="q1" class="question">What is the capital of France?</p>
-                    <ul class="choices">
-                        <li><input type="radio" name="q1" id="q1a1"><label for="q1a1">Paris</label></li>
-                        <li><input type="radio" name="q1" id="q1a2"><label for="q1a2">Rome</label></li>
-                        <li><input type="radio" name="q1" id="q1a3"><label for="q1a3">Berlin</label></li>
-                        <li><input type="radio" name="q1" id="q1a4"><label for="q1a4">Madrid</label></li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Question 2 -->
-            <div class="question-box">
-                <div id="TrueFalseQ">
-                    <p id="Qnum2" class="question-number">Question 2:</p>
-                    <p id="q2" class="question">The capital of France is Tehran.</p>
-                    <ul class="choices">
-                        <li><input type="radio" name="q2" id="q2a1"><label for="q2a1">True</label></li>
-                        <li><input type="radio" name="q2" id="q2a2"><label for="q2a2">False</label></li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Question 3 -->
-            <div class="question-box">
-                <div id="LongAnswerQ">
-                    <p id="Qnum3" class="question-number">Question 3:</p>
-                    <p id="q3" class="question">Explain bluh bluh bluh</p>
-                    <textarea class="form-control" id="LongAnswer" rows="3"></textarea>
-                </div>
-            </div>
+        <div class="mb-3">
+            <label for="quizDescription" class="form-label">Quiz Description</label>
+            <textarea class="form-control" id="quizDescription" rows="3"></textarea>
         </div>
-        <!-- Submit Button -->
-        <div class="submit-container" style="text-align: right;">
-            <button id="submit-quiz-btn" class="btn btn-primary">Submit Exam</button>
+        <div class="mb-3">
+            <label id="QFile" for="questionFile" class="form-label">Upload Question File (optional)</label>
+            <input id="file" class="form-control" type="file" id="questionFile" accept=".pdf,.doc,.docx">
         </div>
+       </div>
+
+       <!-- multiple choice div (4 choices) -->
+
+<div class="CreateQ-mulChoice4" id="mulChoice4">
+    <div class="inner">
+        <div class="mb-3">
+            <h2 id="addText" class="addText" >Add multiple choice question</h2 > 
+                <img class="icon" src="../pics/i-exam-multiple-choice-svgrepo-com.svg" alt="" width="40px" height="40px">
+        </div>
+      
+        <div class="mb-3">
+            <label for="quizQuestion" class="form-label">Question</label>
+            <textarea class="form-control" id="quizQuestion" rows="3"></textarea>
+        </div>
+        
+        <div class="mb-3">
+            <label  for="optionA" class="form-label">Option A</label>
+            <input  type="text" class="form-control" id="optionA">
+        </div>
+        <div class="mb-3">
+            <label for="optionB" class="form-label">Option B</label>
+            <input type="text" class="form-control" id="optionB">
+        </div>
+        <div class="mb-3">
+            <label for="optionC" class="form-label">Option C</label>
+            <input type="text" class="form-control" id="optionC">
+        </div>
+        <div class="mb-3">
+            <label for="optionD" class="form-label">Option D</label>
+            <input type="text" class="form-control" id="optionD">
+        </div>
+
+        <div class="mb-3">
+            <label for="CorrectOption" class="form-label">Correct option</label>
+            <input type="text" class="form-control" id="correctOption" placeholder="correct option">
+        </div>
+
     </div>
     
-      
+</div>
 
-    <!-- Results Section (initially hidden) -->
-    <div id="results-container" >
-        <div class="quiz-results" id="quiz-results">
-            <h2>Your Grade: <span id="grade-value">--</span></h2>
-            <p id="grade-summary">You have completed the quiz! Your results will be displayed here.</p>
+    <!-- True false div -->
+
+
+<div class="CreateQ-TrueFalse" id="TrueFalse">
+    <div class="inner">
+        <div class="mb-3">
+            <h2 id="addText" class="addText" >Add True/False question</h2 > 
+                <img class="icon" src="../pics/i-exam-multiple-choice-svgrepo-com.svg" alt="" width="40px" height="40px">
         </div>
+      
+        <div class="mb-3">
+            <label for="quizQuestion" class="form-label">Question</label>
+             <textarea class="form-control" id="quizQuestion" rows="3"></textarea>
+        </div>
+     
+        
+        <div class="mb-3">
+            <label  for="optionA" class="form-label">Option A</label>
+            <input  type="text" class="form-control" id="optionA">
+        </div>
+        <div class="mb-3">
+            <label for="optionB" class="form-label">Option B</label>
+            <input type="text" class="form-control" id="optionB">
+        </div>
+
+        <div class="mb-3">
+            <label for="CorrectOption" class="form-label">Correct option</label>
+            <input type="text" class="form-control" id="correctOption" placeholder="correct option">
+        </div>
+    </div>
+</div>
+ 
+
+  <!-- long answer div -->
+
+
+<div class="CreateQ-longAnswer" id="longAnswer">
+    <div class="inner">
+        <div class="mb-3">
+            <h2 id="addText" class="addText" >Add long answer question</h2 > 
+                <img class="icon" src="../pics/i-exam-multiple-choice-svgrepo-com.svg" alt="" width="40px" height="40px">
+        </div>
+      
+        <div class="mb-3">
+            <label for="quizQuestion" class="form-label">Question</label>
+            <textarea class="form-control" id="quizQuestion" rows="3"></textarea>
+        </div>
+     
+    </div>
+</div>
+<!-- pop up for add question  -->
+
+
+<!-- Button trigger modal -->
+<button id="AddQuestionButton" type="button" class="AddQuestionButton" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Add Question
+ </button>
+   
+   <!-- Modal -->
+   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h1 class="modal-title fs-5" id="exampleModalLabel">Add Question</h1>
+           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+             <div class="question-types">
+                 <!-- Multiple Choice Question Box -->
+                 <div class="question-box">
+                     <img id="addMulChoiceIcon" src="../pics/check-education-exam-svgrepo-com copy.svg" alt="Multiple Choice Icon" class="addMulChoiceIcon" />
+                     <button id="addMulChoice" class="select" type="button" >Multiple Choice</button>
+                    
+                 </div>
+         
+                 <!-- True/False Question Box -->
+                 <div class="question-box">
+                     <img id="addTrueFalseIcon" src="../pics/i-exam-multiple-choice-svgrepo-com.svg" alt="True/False Icon" class="addTrueFalseIcon" />
+                     <button id="addTrueFalse" class="select" type="button" >True/False</button>
+                    
+                 </div>
+         
+                 <!-- Long Answer Question Box -->
+                 <div class="question-box">
+                     <img id="addLongAnsIcon" src="../pics/q1.svg" alt="Long Answer Icon" class="addLongAnsIcon" />
+                     <button id="LongAns" class="select" type="button">Long Answer</button>
+                    
+                 </div>
+             </div>
+         </div>
+         <div class="modal-footer">
+             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+           </div>
+         
+ 
+       </div>
+     </div>
+   </div>
+ 
+ 
+ 
+
+
+
+
+            <div class="mb-3">
+                <label id="time" for="quizTime" class="form-label">Time for the Test (minutes)</label>
+                <input type="number" class="form-control" id="quizTime">
+
+
+<div id="timing">
+    <p class="newDate">start date</p>
+                <input type="datetime-local" id="startDate" class="form-control mb-3" placeholder="Enter the start date">
+                
+        <p class="newDate">end date</p>
+                <input type="datetime-local" id="endDate" class="form-control mb-3" placeholder="Enter the end date">
+            </div>
+            <button id="createButton" type="submit" class="btn btn-primary">Create Quiz</button>
+</div>
+                
+        </form>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
