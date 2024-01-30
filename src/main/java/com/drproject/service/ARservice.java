@@ -55,6 +55,7 @@ public class ARservice {
                 HashMap<String ,String> studentGrade = new HashMap<>();
                 studentGrade.put("firstName",studentLongAnswer.getUser().getFirstName());
                 studentGrade.put("lastName", studentLongAnswer.getUser().getLastName());
+                getStudentGradeForActivity(studentLongAnswer.getUser().getUsername(), uuid);
                 studentGrade.put("grade", studentLongAnswer.getGrade());
                 out.add(studentGrade);
             }
@@ -500,7 +501,7 @@ public class ARservice {
                     res.put("msg", "new quiz added to section successfully");
                     res.put("status", true);
                     res.put("obj", null);
-                    System.out.println("kirrr"+((MultipleAnswer)((Quiz)arRepository.getActivityById(quiz.getId())).getQuestions().get(0)).getChoiceList().get(0).getText());
+                 //   System.out.println("kirrr"+((MultipleAnswer)((Quiz)arRepository.getActivityById(quiz.getId())).getQuestions().get(0)).getChoiceList().get(0).getText());
                     return res;
                 }
             }
