@@ -398,6 +398,7 @@ public class ARservice {
                             false1.setText(choiceHashMap.get("false1"));
                             false1.setCorrectness("0");
                             false1.setMultipleAnswer(multipleAnswer);
+                            System.out.println("\n\n\n\n\n\n"+false1.getText());
 
                             Choice false2 = new Choice();
                             false2.setText(choiceHashMap.get("false2"));
@@ -415,8 +416,9 @@ public class ARservice {
                             choiceList.add(false3);
                             multipleAnswer.setChoiceList(choiceList);
                             multipleAnswer.setQuiz(quiz);
-                            //questionRepository.save(multipleAnswer);
+
                             quizQuestionList.add(multipleAnswer);
+                            questionRepository.save(multipleAnswer);
                         }
                         else if (questionHashMap.get("questionType").equals("trueFalse")){
                             MultipleAnswer multipleAnswer = new MultipleAnswer();
@@ -432,19 +434,23 @@ public class ARservice {
                             false1.setText(choiceHashMap.get("false1"));
                             false1.setCorrectness("0");
                             false1.setMultipleAnswer(multipleAnswer);
+                            System.out.println("\n\n\n\n\n\n"+false1.getText());
 
                             choiceList.add(correctChoice);
                             choiceList.add(false1);
                             multipleAnswer.setChoiceList(choiceList);
+                            System.out.println("\n\n\n\nhereerererer"+ multipleAnswer.getChoiceList().get(0).getText()+"\n\n\n\n");
                             multipleAnswer.setQuiz(quiz);
-                            //questionRepository.save(multipleAnswer);
+
                             quizQuestionList.add(multipleAnswer);
+                            questionRepository.save(multipleAnswer);
                         }
                         else if(questionHashMap.get("questionType").equals("longAnswer")){
                             LongAnswer longAnswer  = new LongAnswer();
                             longAnswer.setText((String) questionHashMap.get("questionText"));
                             longAnswer.setQuiz(quiz);
                             quizQuestionList.add(longAnswer);
+                            questionRepository.save(longAnswer);
                         }
                     }
                     quiz.setQuestions(quizQuestionList);
