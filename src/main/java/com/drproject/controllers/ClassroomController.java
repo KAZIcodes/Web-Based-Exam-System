@@ -92,9 +92,8 @@ public class ClassroomController {
         return ResponseEntity.ok(res);
     }
 
-    //get user grades
-//    @GetMapping("/{classroomId}/grades")
-//    public ResponseEntity<?> getGrades(HttpSession session, @PathVariable String classroomId) {
+//    @PatchMapping("/{classroomId}/sections")
+//    public ResponseEntity<?> updateClassroomSection(HttpSession session, @PathVariable String classroomId, @RequestBody HashMap<String, Object> sections) {
 //        if (session.getAttribute("username") == null){
 //            Map<String, Object> error = new HashMap<>();
 //            error.put("status", false);
@@ -102,11 +101,29 @@ public class ClassroomController {
 //            return ResponseEntity.ok(error);
 //        }
 //
-//        //////getUserGrades method needed that takes username and classroomID and returns a list of sections in which there are the list of acticity of that section and corresponding grade of the user of that activity and the name of the activity and the name of the section
-//        Map<String, Object> res = classromService.getUserGrades((String) session.getAttribute("username"), classroomId);
-//
+//        //////isInClass method needed in classRoom service which if the user has access to the class then returns a MAP(json) of classroom data else nul
+//        Map<String, Object> res = classromService.getUserRole((String) session.getAttribute("username"), classroomId);
+//        if (res.get("obj").equals("teacher") || res.get("obj").equals("admin")){
+//            classromService.updateClassroomSections(sections.get("sectionsList"), classroomId);//////////////////updateClassroomSections which takes user_id and list of all sections(updated) to replace the DB
+//        }
 //        return ResponseEntity.ok(res);
 //    }
+
+    //get user grades
+    @GetMapping("/{classroomId}/studentGrades")
+    public ResponseEntity<?> getGrades(HttpSession session, @PathVariable String classroomId) {
+        if (session.getAttribute("username") == null){
+            Map<String, Object> error = new HashMap<>();
+            error.put("status", false);
+            error.put("msg", "Sign in first!");
+            return ResponseEntity.ok(error);
+        }
+
+        //////getUserGrades method needed that takes username and classroomID and returns a list of sections in which there are the list of acticity of that section and corresponding grade of the user of that activity and the name of the activity and the name of the section
+        Map<String, Object> res = classromService.getUserGrades((String) session.getAttribute("username"), classroomId);
+
+        return ResponseEntity.ok(res);
+    }
 
     //returns glosery of the classroom
     @GetMapping("/{classroomId}/glossary")
@@ -123,27 +140,28 @@ public class ClassroomController {
         return ResponseEntity.ok(res);
     }
 
-//    @PatchMapping("/{classroomId}/glossary")
-//    public ResponseEntity<?> updateClassroomGlossary(HttpSession session, @PathVariable String classroomId, @RequestBody List<HashMap<String, String>> glossaryList) {
-//        if (session.getAttribute("username") == null){
-//            Map<String, Object> error = new HashMap<>();
-//            error.put("status", false);
-//            error.put("msg", "Sign in first!");
-//            return ResponseEntity.ok(error);
-//        }
-//
-//        /////////////////updateClassroomGlossary method needed in classRoom service which takes new glossary list and updates it for the classroom id it takes
-//        if (classromService.isInClass((String) session.getAttribute("username"), classroomId).get("obj").equals("teacher")){
-//            Map<String, Object> res = classromService.updateClassroomGlossary(classroomId, glossaryList);
-//            return ResponseEntity.ok(res);
-//        }
-//        else {
-//            Map<String, Object> error = new HashMap<>();
-//            error.put("status", false);
-//            error.put("msg", "You don't have access to this classroom!");
-//            return ResponseEntity.ok(error);
-//        }
-//    }
+    @PatchMapping("/{classroomId}/glossary")
+    public ResponseEntity<?> updateClassroomGlossary(HttpSession session, @PathVariable String classroomId, @RequestBody HashMap<String, Object> glossaryList) {
+        if (session.getAttribute("username") == null){
+            Map<String, Object> error = new HashMap<>();
+            error.put("status", false);
+            error.put("msg", "Sign in first!");
+            return ResponseEntity.ok(error);
+        }
+
+        /////////////////updateClassroomGlossary method needed in classRoom service which takes new glossary list and updates it for the classroom id it takes
+        Map<String, Object> res = classromService.getUserRole((String) session.getAttribute("username"), classroomId);
+        if (res.get("obj").equals("teacher") || res.get("obj").equals("admin")){
+            res = classromService.updateClassroomGlossary(classroomId, (List<HashMap<String, String>>) glossaryList.get("glossary"));
+            return ResponseEntity.ok(res);
+        }
+        else {
+            Map<String, Object> error = new HashMap<>();
+            error.put("status", false);
+            error.put("msg", "You don't have access to this classroom!");
+            return ResponseEntity.ok(error);
+        }
+    }
 
 //    @GetMapping("/{classroomId}/grades")
 //    public ResponseEntity<?> updateClassroomTopicGrades(HttpSession session, @PathVariable String classroomId, @RequestBody List<HashMap<String, String>> glossaryList) {

@@ -81,10 +81,15 @@ public class StaticController {
         else {
             //gerUserRole method that takes username and classroomID and returns the role of the user in string format(teacher or student)
             Map<String, Object> res = classroomService.getUserRole((String) session.getAttribute("username"), classroomId);
-            if (res.get("obj").equals("teacher") || res.get("obj").equals("admin"))
-                return getHtmlFile("/static/html/teacherClassroom.html");
+            if (res.get("status").equals(true)){
+                if (res.get("obj").equals("teacher") || res.get("obj").equals("admin"))
+                    return getHtmlFile("/static/html/teacherClassroom.html");
+                else if (res.get("obj").equals("student")){
+                    return getHtmlFile("static/html/StudentClassroom.html");
+                }
+            }
         }
-        return getHtmlFile("static/html/StudentClassroom.html");
+        return ResponseEntity.status(302).header("Location", "/login?msg=403").build();
     }
     @GetMapping("/classrooms/{classroomId}/grades")
     public ResponseEntity<String> gradesClassroom(@PathVariable String classroomId, HttpSession session) throws IOException {
@@ -127,19 +132,28 @@ public class StaticController {
 
     //returns quiz or poll pr assignment templates and has AR= param
 //    @GetMapping("/{classroomId}/sections/{sectionId}")
-//    public String getAR(@RequestParam("AR") String ARid, @PathVariable String classroomId) {
-//        AR ar = ARservice.getARdata(ARid);   /////AR service class needed and getARdata method needed and AR entity
-//        if (ar.getType() == "quiz"){
-//            return "quiz.html";
+//    public ResponseEntity<?> getAR(@RequestParam("AR") String ARid, @PathVariable String classroomId, @PathVariable String sectionId, HttpSession session) throws IOException {
+//        if (session.getAttribute("username") == null){
+//            return ResponseEntity.status(302).header("Location", "/login?msg=Sign in first!").build();
 //        }
-//        else if (ar.getType() == "assigenment"){    ////getType method needed for ARs
-//            return "assigenment.html";
+//        else if (classroomService.isInClass((String) session.getAttribute("username"), classroomId).get("status").equals(false)){
+//            return ResponseEntity.status(302).header("Location", "/login?msg=403!").build();
 //        }
-//        else if (ar.getType() == "poll"){    ////getType method needed for ARs
-//            return "poll.html";
+//        else {
+//            Map<String,Object> res = ARservice.getARtype(classroomId, sectionId); /////////////////getARtype that takes classroomId and sectionId and ARid and returns the type of the AR (quiz for example)
+//            if (res.get("obj") == "quiz"){
+//                return getHtmlFile("static/html/quiz.html");
+//            }
+//            else if (res.get("obj") == "assignment"){    ////getType method needed for ARs
+//                return getHtmlFile("static/html/assignment.html");
+//            }
+//            else if (res.get("obj") == "poll"){    ////getType method needed for ARs
+//                return getHtmlFile("static/html/poll.html");
+//            }
+//            else {
+//                return ResponseEntity.status(302).header("Location", "/panel?msg=403!").build();
+//            }
 //        }
-//
-//        return "redirect:/classrooms/" + classroomId;  ////////quiz, poll, assignement, glossary html needed and then JS should get the data based on the ArID
 //    }
 
     @GetMapping("/panel")
@@ -158,13 +172,6 @@ public class StaticController {
         return getHtmlFile("static/html/notification.html");
     }
 
-//    @GetMapping("/panel/profile")
-//    public String getProfile(HttpSession session) {
-//        if (session.getAttribute("username") == null){
-//            return "redirect:/login?msg=Sign in first!";
-//        }
-//        return "classpath:/static/html/profile.html";
-//    }
 
     @GetMapping("/panel/profile")
     public ResponseEntity<String> getHtmlFile(HttpSession session) throws IOException {

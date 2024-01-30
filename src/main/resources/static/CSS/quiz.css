@@ -8,7 +8,7 @@ body {
 }
 
 .quiz-container {
-    position: relative; 
+    position: relative;
     padding-bottom: 70px;
     width: 80%;
     margin: 0 auto;
@@ -16,7 +16,7 @@ body {
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-   
+
 }
 
 .quiz-header {
@@ -55,7 +55,7 @@ body {
     display: none; 
 }*/
 
-.quiz-content{
+/*.quiz-content{
 display: none;
 }*/
 
@@ -70,16 +70,19 @@ display: none;
 .question-number {
     font-weight: bold;
     margin-bottom: 5px;
+    font-family: 'Merriweather Sans', sans-serif;
 }
 
 .question {
     font-weight: bold;
     margin-bottom: 10px;
+    font-family: 'Merriweather Sans', sans-serif;
 }
 
 .choices {
     list-style: none;
     padding: 0;
+    font-family: 'Merriweather Sans', sans-serif;
 }
 
 .choices li {
@@ -135,20 +138,20 @@ display: none;
 }
 
 .member-picture {
-    width: 65px; 
-    height: 65px; 
-    border-radius: 50%; 
-    object-fit: cover; 
-    border: 2px solid #fff; 
-    margin-right: 10px; 
-  }
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    margin-right: 10px;
+}
 
-  #search_button {
-    
+#search_button {
+
     background-color: #e2e6ea;
     height: 35px;
     padding: 5px;
-   
+
     color: #392467;
     border-color: #5D3587;
     transition: all 0.3s ease;
@@ -203,10 +206,10 @@ display: none;
 }
 
 .submit-container {
-    position: absolute; 
-    right: 0px; 
-    bottom: -70px; 
-  
+    position: absolute;
+    right: 0px;
+    bottom: -70px;
+
 }
 
 #submit-quiz-btn {
@@ -217,7 +220,9 @@ display: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
-    display: none; /*start ke zad none nis dge, show result ke zad dbre none mishe*/
+    /* display: none; start ke zad none nis dge, show result ke zad dbre none mishe*/
+    font-family: 'Merriweather Sans', sans-serif;
+    margin-bottom: 10px
 }
 
 #submit-quiz-btn:hover {
@@ -225,16 +230,17 @@ display: none;
 }
 
 .quiz-results {
-   display: none; /* Hidden by default, show result ke zad dge hidden nis */
+    /*display: none; */
     margin-top: 20px;
     padding: 20px;
     border: 1px solid #ddd;
-  
+
     background-color: #f9f9f9;
-    position: relative; 
+    position: relative;
     padding-bottom: 70px;
     width: 80%;
     margin: 0 auto;
+    font-family: 'Merriweather Sans', sans-serif;
 
 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -244,26 +250,35 @@ display: none;
 .quiz-results h2 {
     color: #392467;
     font-weight: bold;
+    font-family: 'Merriweather Sans', sans-serif;
 }
 
 .quiz-results p {
     color: #333;
     margin-top: 10px;
+    font-family: 'Merriweather Sans', sans-serif;
 }
 
 .deadline-container {
     text-align: center;
     margin-top: 20px;
+
 }
 
 .deadline-title {
     color: #392467;
     font-size: 1.2em;
     margin-bottom: 5px;
+    font-family: 'Merriweather Sans', sans-serif;
 }
 
 .deadline-time {
     color: #5D3587;
     font-weight: bold;
     font-size: 1em;
+    font-family: 'Merriweather Sans', sans-serif;
+
 }
+/*#StartEndDate{
+    display: none;
+}*/

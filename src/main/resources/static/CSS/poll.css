@@ -86,7 +86,7 @@ body {
     border-radius: 15px;
     overflow: hidden;
     position: relative;
-   
+
 }
 
 .progress {
@@ -103,13 +103,13 @@ body {
     padding-left: 0.5em;
     padding-top: 0.5em;
     padding-bottom: 2.5em;
-    
-   
-    
+
+
+
 }
 
 .submit-btn {
-/*display: none;*/
+    /*display: none;*/
     width: 100%;
     background-color: #5D3587;
     color: #fff;
@@ -170,20 +170,20 @@ body {
 }
 
 .member-picture {
-    width: 65px; 
-    height: 65px; 
-    border-radius: 50%; 
-    object-fit: cover; 
-    border: 2px solid #fff; 
-    margin-right: 10px; 
-  }
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    margin-right: 10px;
+}
 
-  #search_button {
-    
+#search_button {
+
     background-color: #e2e6ea;
     height: 35px;
     padding: 5px;
-   
+
     color: #392467;
     border-color: #5D3587;
     transition: all 0.3s ease;
@@ -240,4 +240,3 @@ body {
 /*.hidden {
     display: none;
 }
-

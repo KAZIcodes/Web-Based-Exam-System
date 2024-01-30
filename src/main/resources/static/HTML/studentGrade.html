@@ -296,6 +296,10 @@ rel="stylesheet"
 
 <script>
 
+    let currentUrl = window.location.href;
+    let urlParts = currentUrl.split("/");
+    let classroomId = urlParts[urlParts.length - 2];
+
     let base;
     const lastSlashIndex = window.location.href.lastIndexOf("/");
     if (lastSlashIndex !== -1) {
@@ -311,7 +315,7 @@ rel="stylesheet"
         table.innerHTML = `
             <thead>
                 <tr>
-                    <th scope="col">${section.name}</th>    ///////section.name ?
+                    <th scope="col">${section.title}</th>    ///////section.name ?
                     <th scope="col">Score</th>
                 </tr>
             </thead>
@@ -341,12 +345,10 @@ rel="stylesheet"
     }
 
 
-    let currentUrl = window.location.href;
-    let classroomId = currentUrl.split('/').pop();
 
     sendData({},
         {
-            path:`/api/classrooms/${classroomId}/grades`,
+            path:`/api/classrooms/${classroomId}/studentGrades`,
             method:"GET",
             headers: [{
                 key:"content-type",
