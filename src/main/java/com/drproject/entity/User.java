@@ -48,6 +48,9 @@ public class User {
     @Column(name="studentChoices")
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<StudentChoice> studentChoices ;
+    @Column(name="studentLongAnswers")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<StudentLongAnswer> studentLongAnswers ;
 
     public String getId() {
         return id;
@@ -109,8 +112,25 @@ public class User {
         return roleInClassrooms;
     }
 
-    public void setRoleInClassrooms(ArrayList<ClassroomRole> roleInClassrooms) {
+
+    public void setRoleInClassrooms(List<ClassroomRole> roleInClassrooms) {
         this.roleInClassrooms = roleInClassrooms;
+    }
+
+    public List<StudentChoice> getStudentChoices() {
+        return studentChoices;
+    }
+
+    public void setStudentChoices(List<StudentChoice> studentChoices) {
+        this.studentChoices = studentChoices;
+    }
+
+    public List<StudentLongAnswer> getStudentLongAnswers() {
+        return studentLongAnswers;
+    }
+
+    public void setStudentLongAnswers(List<StudentLongAnswer> studentLongAnswers) {
+        this.studentLongAnswers = studentLongAnswers;
     }
 
     public String toBase64(String input) {

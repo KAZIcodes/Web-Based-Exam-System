@@ -15,7 +15,7 @@ public class Quiz extends Activity{
     private List<Question> Questions;
 
     @Column(name = "duration")
-    Duration duration;
+    String duration;
 
     public List<Question> getQuestions() {
         return Questions;
@@ -25,11 +25,11 @@ public class Quiz extends Activity{
         Questions = questions;
     }
 
-    public Duration getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(Duration duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 }

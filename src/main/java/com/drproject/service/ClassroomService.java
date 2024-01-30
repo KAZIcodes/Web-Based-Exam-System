@@ -91,7 +91,6 @@ public class ClassroomService {
                     return  res;
                 }
             }
-
         }
         res.put("status", false);
         res.put("msg", "user not in classroom or classroom does not exist");
@@ -346,6 +345,10 @@ public class ClassroomService {
                         }
                     }
                 }
+                res.put("obj","0");
+                res.put("status", true);
+                res.put("msg", "student doesn't have a grade for activity");
+                return res;
             }
             else {
                 List<StudentLongAnswer> studentLongAnswers=activity.getStudentLongAnswers();
