@@ -68,12 +68,30 @@ public class ClassroomService {
             List<ClassroomRole> classroomRoles = classroom.getRoleInClassrooms();
             for (ClassroomRole c : classroomRoles){
                 if (c.getUser().equals(user)){
+
+                    List<Section> sections = classroom.getSections();
+                    List<HashMap<String, Object>> out = new ArrayList<>();
+                    for (Section s : sections){
+                        HashMap<String, Object> hashMap = new HashMap<>();
+                        hashMap.put("title", s.getTitle());
+                        hashMap.put("id",s.getId());
+                        List<HashMap<String, Object>> activityList = new ArrayList<>();
+                        for(Activity a : s.getActivities()){
+                            HashMap<String ,Object> hashMap1 = new HashMap<>();
+                            hashMap1.put("title", a.getTitle());
+                            hashMap1.put("id", a.getId());
+                            activityList.add(hashMap1);
+                        }
+                        hashMap.put("activities",activityList);
+                        out.add(hashMap);
+                    }
                     res.put("msg","user found in classroom");
                     res.put("status", true);
-                    res.put("obj", classroom.getSections());
-                    return res;
+                    res.put("obj", out);
+                    return  res;
                 }
             }
+
         }
         res.put("status", false);
         res.put("msg", "user not in classroom or classroom does not exist");
