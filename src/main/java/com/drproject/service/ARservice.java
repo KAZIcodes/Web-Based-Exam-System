@@ -454,9 +454,9 @@ public class ARservice {
                         }
                     }
                     quiz.setQuestions(quizQuestionList);
-                    arRepository.save(quiz);
+                    //arRepository.save(quiz);
                     s.getActivities().add(quiz);
-                    sectionRepository.save(s);
+                    //sectionRepository.save(s);
                     res.put("msg", "new quiz added to section successfully");
                     res.put("status", true);
                     res.put("obj", null);
