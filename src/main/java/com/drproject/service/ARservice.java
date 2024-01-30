@@ -460,7 +460,7 @@ public class ARservice {
                     res.put("msg", "new quiz added to section successfully");
                     res.put("status", true);
                     res.put("obj", null);
-                    System.out.println(((MultipleAnswer)((Quiz)arRepository.getActivityById(quiz.getId())).getQuestions().get(0)).getChoiceList().get(0).getText());
+                    System.out.println("kirrr"+((MultipleAnswer)((Quiz)arRepository.getActivityById(quiz.getId())).getQuestions().get(0)).getChoiceList().get(0).getText());
                     return res;
                 }
             }
