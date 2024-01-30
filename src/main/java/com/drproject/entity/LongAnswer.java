@@ -23,4 +23,11 @@ public class LongAnswer extends Question  {
         this.text = text;
     }
 
+    public List<StudentLongAnswer> getStudentLongAnswers() {
+        return studentLongAnswers;
+    }
+
+    public void setStudentLongAnswers(List<StudentLongAnswer> studentLongAnswers) {
+        this.studentLongAnswers = studentLongAnswers;
+    }
 }

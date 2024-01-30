@@ -88,6 +88,7 @@ public class StudentLongAnswer {
         this.longAnswer = longAnswer;
     }
 
+
     public String toBase64(String input) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
