@@ -207,7 +207,7 @@ public class ClassroomController {
 //            return ResponseEntity.ok(res);
 //        }
 //        else if (res.get("obj").equals("teacher") || res.get("obj").equals("admin")){
-//            res = ARserivce.getARdataTeacher(ARid);  /////////////AR data for teacher to tashih
+//            res = ARserivce.getARdataTeacher(ARid);  /////////////AR data for teacher to tashih : [{firstName, lastName, studentGrade}]
 //            return ResponseEntity.ok(res);
 //        }
 //        else
