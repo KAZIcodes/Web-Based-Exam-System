@@ -8,7 +8,7 @@ import java.util.List;
 
 
 @Entity
-@DiscriminatorValue("quiz")
+@DiscriminatorValue("Quiz")
 public class Quiz extends Activity{
 
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
