@@ -54,9 +54,7 @@ body {
     background-color: #e2e6ea;
 }
 
-#file-upload {
-    display: none;
-}
+
 
 .submit-assignment {
     background-color: #392467;
@@ -133,57 +131,42 @@ body {
     margin-right: 10px; 
   }
 
-  #search_button {
+  .search_button {
     
-    background-color: #e2e6ea;
+
     height: 35px;
     padding: 5px;
-   
-    color: #392467;
+    background-color: #5D3587;
     border-color: #5D3587;
+   border-radius: 5px;
+    color: #fff;
+  
     transition: all 0.3s ease;
 
     font-family: 'Merriweather Sans', sans-serif;
 }
 
-#search_button:hover {
-    background-color: #5D3587;
-    color: #ffffff;
+.search_button:hover {
+background-color: #392467;
+    color: #fff;
     border-color: #5D3587;
+
 }
 
 #homeLink{
     color: #392467;
 }
 
-#notifIcon{
-    margin-right: 5px;
-}
-#notifIcon{
+
+.notifIcon{
     margin-left: 0px;
     width: 25px;
     margin-top: 10px;
+    margin-right: 5px;
 }
 
-#StudentGrade{
-    color: #392467;
-}
 
-#studentCourse{
-    color: #392467;
-}
 
-#studentCourse:hover {
-    background-color: #5D3587;
-    color: #ffffff;
-    border-color: #5D3587;
-}
-
-#StudentGrade:hover {
-    background-color: #5D3587;
-    color: #ffffff;
-    border-color: #5D3587;
-}
 
 .nav-tabs .nav-link.active {
     font-weight: bold;
@@ -208,9 +191,9 @@ body {
 }
 
 .btn-download:hover {
-    background-color: #5D3587;
+    background-color: #392467;
     color: #ffffff;
-    border-color: #5D3587;
+    border-color: #392467;
 }
 .container{
     position: relative; 
