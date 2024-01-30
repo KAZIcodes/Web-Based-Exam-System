@@ -395,19 +395,19 @@ public class ARservice {
                             correctChoice.setMultipleAnswer(multipleAnswer);
 
                             Choice false1 = new Choice();
-                            correctChoice.setText(choiceHashMap.get("false1"));
-                            correctChoice.setCorrectness("0");
-                            correctChoice.setMultipleAnswer(multipleAnswer);
+                            false1.setText(choiceHashMap.get("false1"));
+                            false1.setCorrectness("0");
+                            false1.setMultipleAnswer(multipleAnswer);
 
                             Choice false2 = new Choice();
-                            correctChoice.setText(choiceHashMap.get("false2"));
-                            correctChoice.setCorrectness("0");
-                            correctChoice.setMultipleAnswer(multipleAnswer);
+                            false2.setText(choiceHashMap.get("false2"));
+                            false2.setCorrectness("0");
+                            false2.setMultipleAnswer(multipleAnswer);
 
                             Choice false3 = new Choice();
-                            correctChoice.setText(choiceHashMap.get("false3"));
-                            correctChoice.setCorrectness("0");
-                            correctChoice.setMultipleAnswer(multipleAnswer);
+                            false3.setText(choiceHashMap.get("false3"));
+                            false3.setCorrectness("0");
+                            false3.setMultipleAnswer(multipleAnswer);
 
                             choiceList.add(correctChoice);
                             choiceList.add(false1);
@@ -429,9 +429,9 @@ public class ARservice {
                             correctChoice.setMultipleAnswer(multipleAnswer);
 
                             Choice false1 = new Choice();
-                            correctChoice.setText(choiceHashMap.get("false1"));
-                            correctChoice.setCorrectness("0");
-                            correctChoice.setMultipleAnswer(multipleAnswer);
+                            false1.setText(choiceHashMap.get("false1"));
+                            false1.setCorrectness("0");
+                            false1.setMultipleAnswer(multipleAnswer);
 
                             choiceList.add(correctChoice);
                             choiceList.add(false1);
