@@ -359,7 +359,8 @@ public class ClassroomService {
                 Section newSection = new Section();
                 newSection.setTitle(sectionTitle);
                 classroom.getSections().add(newSection);
-                for(Section s:classroom.getSections()){
+                List<Section> sections =classroom.getSections();
+                for(Section s:sections){
                     s.setClassroom(classroom);
                 }
                 classroomRepository.save(classroom);
