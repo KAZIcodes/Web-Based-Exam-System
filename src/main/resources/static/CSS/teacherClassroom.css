@@ -125,12 +125,12 @@ body {
     margin-right: 10px;
 }
 
-#search_button {
+.search_button {
 
     background-color: #e2e6ea;
     height: 35px;
     padding: 5px;
-
+    border-radius: 5px;
     color: #392467;
     border-color: #5D3587;
     transition: all 0.3s ease;
@@ -140,66 +140,52 @@ body {
     margin-right: 2em;
 }
 
-#search_button:hover {
+.search_button:hover {
     background-color: #5D3587;
     color: #ffffff;
     border-color: #5D3587;
 }
 
-#homeLink{
+.homeLink{
     color: #392467;
+    margin-right: 1em;
+
+
 }
 
-#notifIcon{
+.notifIcon{
     margin-right: 5px;
 }
-#notifIcon{
+.notifIcon{
     margin-left: 0px;
     width: 25px;
     margin-top: 10px;
+    margin-right: 5px;
 
 
+}
+
+
+
+.nav-link{
+    color: #392467;
+}
+
+.nav-link:hover{
+    color: #392467;
+    background-color: #5D3587;
+    color: #ffffff;
+    border-color: #5D3587;
 }
 .nav-tabs .nav-link.active {
     font-weight: bold;
     text-decoration: underline;
     text-decoration-color: #5D3587;
     text-decoration-thickness: 2px;
-}
-#Grade{
     color: #392467;
 }
 
-#Course{
-    color: #392467;
-}
-#glossary{
-    color: #392467;
-}
 
-#Course:hover {
-    background-color: #5D3587;
-    color: #ffffff;
-    border-color: #5D3587;
-}
-
-#Grade:hover {
-    background-color: #5D3587;
-    color: #ffffff;
-    border-color: #5D3587;
-}
-#glossary:hover {
-    background-color: #5D3587;
-    color: #ffffff;
-    border-color: #5D3587;
-}
-
-#activities{
-    color: #392467;
-}
-#resources{
-    color: #392467;
-}
 
 .card-header .btn:not(.collapsed) {
     color: #392467;
@@ -214,16 +200,17 @@ body {
     margin-left: 2em;
 }
 
-#toggler{
-    color: #392467;
-}
 
 
-#addActivity {
+.addActivity {
 
-    width: 100%;
+
     text-align: left;
     color: #392467;
+    border: none;
+    background-color: #f1eff5;
+    padding: 0;
+
 
 }
 
@@ -255,10 +242,6 @@ body {
 
 }
 
-#toggler{
-    color: #392467;
-}
-
 /* Override Bootstrap's default styling for the checked state */
 
 /* For Bootstrap 5, you might need to target the .form-switch class specifically */
@@ -282,13 +265,16 @@ body {
     /*display: none;*/
 }
 
-#addTopic {
+.addTopic {
 
     width: 100%;
     margin-top: 1em;
     text-align: left;
     color: #392467;
     /*display: none;*/
+    border: none;
+    background-color: #f4f4f4;
+    margin-bottom: 0.7em;
 
 
 }
@@ -354,14 +340,25 @@ body {
     margin-right: 1em;
 }
 
-#saveNewActivity{
+.saveNewActivity{
     height: 2.3em;
     font-size: 15px;
     margin: auto;
+    background-color: #e2e6ea;
+    height: 35px;
+    color: #392467;
+    border-color: #5D3587;
+    transition: all 0.3s ease;
+
+    border-radius: 5px;
+    font-family: 'Merriweather Sans', sans-serif;
 
 }
-#saveNewActivity:hover{
+.saveNewActivity:hover{
     color: #fff;
+    background-color: #392467;
+
+    border-color: #392467;
 }
 
 .addBox {
@@ -373,9 +370,9 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(245, 243, 247);
+
     border-radius: 8px;
-    width: 70%;
+
 
     margin: auto;
     margin-bottom: 1em;
@@ -395,7 +392,7 @@ body {
 }
 
 
-#newTopicName{
+.newTopicName{
     font-size: 15px;
     border-radius: 5px;
     border: none;
@@ -407,18 +404,27 @@ body {
 
 }
 
-#saveNewTopic{
+.saveNewTopic{
     height: 2.3em;
     font-size: 15px;
     margin: auto;
+    background-color: #e2e6ea;
+    height: 35px;
+    color: #392467;
+    border-color: #5D3587;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    font-family: 'Merriweather Sans', sans-serif;
 
 }
-#saveNewTopic:hover{
+.saveNewTopic:hover{
     color: #fff;
+    background-color: #392467;
+    border-color: #392467;
+    border-radius: 5px;
 }
 
-#editTopic1{
+.editTopic1{
     margin-left: 1em;
     margin-bottom: 1em;
-
 }

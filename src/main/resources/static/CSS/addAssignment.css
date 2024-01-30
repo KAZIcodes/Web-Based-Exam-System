@@ -47,20 +47,20 @@ body {
 }
 
 .member-picture {
-    width: 65px; 
-    height: 65px; 
-    border-radius: 50%; 
-    object-fit: cover; 
-    border: 2px solid #fff; 
-    margin-right: 10px; 
-  }
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    margin-right: 10px;
+}
 
-  #search_button {
-    
+#search_button {
+
     background-color: #e2e6ea;
     height: 35px;
     padding: 5px;
-   
+
     color: #392467;
     border-color: #5D3587;
     transition: all 0.3s ease;
@@ -109,5 +109,4 @@ h1 {
     background-color: #392467;
     border-color: #392467;
 }
-
 

@@ -130,6 +130,36 @@ public class StaticController {
         }
     }
 
+    @GetMapping("/{classroomId}/sections/{sectionId}/addQuiz")
+    public ResponseEntity<String> addQuiz(@PathVariable String classroomId, HttpSession session, @RequestParam("sectionId") String sectionId) throws IOException {
+        if (session.getAttribute("username") == null){
+            return ResponseEntity.status(302).header("Location", "/login?msg=Sign in first!").build();
+        }
+        else {
+            HashMap<String, Object> res = classroomService.getUserRole((String) session.getAttribute("username"), classroomId);
+            if (res.get("obj").equals("teacher") || res.get("obj").equals("admin")){
+                return getHtmlFile("static/html/addQuiz.html");
+            }else {
+                return ResponseEntity.status(302).header("Location", "/login?msg=You dont have access to this classroom!").build();
+            }
+        }
+    }
+
+    @GetMapping("/{classroomId}/sections/{sectionId}/addAssignment")
+    public ResponseEntity<String> addAssignment(@PathVariable String classroomId, HttpSession session) throws IOException {
+        if (session.getAttribute("username") == null){
+            return ResponseEntity.status(302).header("Location", "/login?msg=Sign in first!").build();
+        }
+        else {
+            HashMap<String, Object> res = classroomService.getUserRole((String) session.getAttribute("username"), classroomId);
+            if (res.get("obj").equals("teacher") || res.get("obj").equals("admin")){
+                return getHtmlFile("static/html/addAssignment.html");
+            }else {
+                return ResponseEntity.status(302).header("Location", "/login?msg=You dont have access to this classroom!").build();
+            }
+        }
+    }
+
     //returns quiz or poll pr assignment templates and has AR= param
 //    @GetMapping("/{classroomId}/sections/{sectionId}")
 //    public ResponseEntity<?> getAR(@RequestParam("AR") String ARid, @PathVariable String classroomId, @PathVariable String sectionId, HttpSession session) throws IOException {

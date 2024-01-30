@@ -388,6 +388,7 @@ rel="stylesheet"
         activityDrop.class = "collapse";
         let activityDropInner = document.createElement("div");
         activityDropInner.class = "card-body";
+        let activity;
         for (activity of activities){
             let aTag = document.createElement("a");
             aTag.innerText = activity.name;

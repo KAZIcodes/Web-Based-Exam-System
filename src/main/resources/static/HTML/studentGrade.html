@@ -323,7 +323,7 @@ rel="stylesheet"
             </tbody>
         `;
 
-        for (activity of section.activities){
+        for (let activity of section.activities){
             let tr = document.createElement("tr");
             tr.innerHTML = `
                 <td>${activity.title}</td>   //////activity.grade ?

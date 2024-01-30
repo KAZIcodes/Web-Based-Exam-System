@@ -47,20 +47,20 @@ body {
 }
 
 .member-picture {
-    width: 65px; 
-    height: 65px; 
-    border-radius: 50%; 
-    object-fit: cover; 
-    border: 2px solid #fff; 
-    margin-right: 10px; 
-  }
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    margin-right: 10px;
+}
 
-  #search_button {
-    
+#search_button {
+
     background-color: #e2e6ea;
     height: 35px;
     padding: 5px;
-   
+
     color: #392467;
     border-color: #5D3587;
     transition: all 0.3s ease;
@@ -110,4 +110,99 @@ h1 {
     border-color: #392467;
 }
 
+#mulChoice4{
+    background-color: rgb(245, 243, 247);
+    border-radius: 5px;
 
+}
+.CreateQ{
+    height:100%;
+    margin-bottom: 2em;
+    margin-top: 2em;
+
+}
+.inner{
+    margin: 2em ;
+}
+#addText{
+    display: inline-block;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+.icon{
+    margin-left: 1.5em;
+    margin-top: -0.8em;
+}
+#TrueFalse{
+    background-color: rgb(245, 243, 247);
+    border-radius: 5px;
+}
+
+#longAnswer{
+    background-color: rgb(245, 243, 247);
+    border-radius: 5px;
+}
+
+.question-types {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.question-box {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 10px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(245, 243, 247);
+    border-radius: 8px;
+}
+
+.question-box .btn {
+    font-size: 1rem;
+    padding: 10px 20px;
+    margin-bottom: 40px;
+    border: none;
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+}
+.select{
+    border: none;
+    background-color: rgb(245, 243, 247);
+    color: #392467;
+
+}
+
+#addMulChoiceIcon{
+    margin-right: 1.5em;
+    margin-bottom: 0.7em;
+}
+
+#addTrueFalseIcon{
+    margin-right: 1.5em;
+    margin-bottom: 0.7em;
+}
+
+#addLongAnsIcon{
+    margin-right: 1.3em;
+    margin-bottom: 0.8em;
+}
+
+#AddQuestionButton{
+
+    margin-bottom: 1em;
+}
+
+.newDate{
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
