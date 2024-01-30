@@ -51,49 +51,49 @@
     </div>
     <div class="quiz-content" id="quiz-content">
         <!-- Question 1 -->
-        <div class="question-box">
-            <div id="MultipleChoiceQ">
-                <p id="Qnum1" class="question-number">Question 1:</p>
-                <p id="q1" class="question">What is the capital of France?</p>
-                <ul class="choices">
-                    <li><input type="radio" name="q1" id="q1a1"><label for="q1a1">Paris</label></li>
-                    <li><input type="radio" name="q1" id="q1a2"><label for="q1a2">Rome</label></li>
-                    <li><input type="radio" name="q1" id="q1a3"><label for="q1a3">Berlin</label></li>
-                    <li><input type="radio" name="q1" id="q1a4"><label for="q1a4">Madrid</label></li>
-                </ul>
-            </div>
-        </div>
-        <!-- Question 2 -->
-        <div class="question-box">
-            <div id="TrueFalseQ">
-                <p id="Qnum2" class="question-number">Question 2:</p>
-                <p id="q2" class="question">The capital of France is Tehran.</p>
-                <ul class="choices">
-                    <li><input type="radio" name="q2" id="q2a1"><label for="q2a1">True</label></li>
-                    <li><input type="radio" name="q2" id="q2a2"><label for="q2a2">False</label></li>
-                </ul>
-            </div>
-        </div>
-        <!-- Question 3 -->
-        <div class="question-box">
-            <div id="LongAnswerQ">
-                <p id="Qnum3" class="question-number">Question 3:</p>
-                <p id="q3" class="question">Explain bluh bluh bluh</p>
-                <textarea class="form-control" id="LongAnswer" rows="3"></textarea>
-            </div>
-        </div>
+<!--        <div class="question-box">-->
+<!--            <div id="MultipleChoiceQ">-->
+<!--                <p id="Qnum1" class="question-number">Question 1:</p>-->
+<!--                <p id="q1" class="question">What is the capital of France?</p>-->
+<!--                <ul class="choices">-->
+<!--                    <li><input type="radio" name="q1" id="q1a1"><label for="q1a1">Paris</label></li>-->
+<!--                    <li><input type="radio" name="q1" id="q1a2"><label for="q1a2">Rome</label></li>-->
+<!--                    <li><input type="radio" name="q1" id="q1a3"><label for="q1a3">Berlin</label></li>-->
+<!--                    <li><input type="radio" name="q1" id="q1a4"><label for="q1a4">Madrid</label></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Question 2 &ndash;&gt;-->
+<!--        <div class="question-box">-->
+<!--            <div id="TrueFalseQ">-->
+<!--                <p id="Qnum2" class="question-number">Question 2:</p>-->
+<!--                <p id="q2" class="question">The capital of France is Tehran.</p>-->
+<!--                <ul class="choices">-->
+<!--                    <li><input type="radio" name="q2" id="q2a1"><label for="q2a1">True</label></li>-->
+<!--                    <li><input type="radio" name="q2" id="q2a2"><label for="q2a2">False</label></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Question 3 &ndash;&gt;-->
+<!--        <div class="question-box">-->
+<!--            <div id="LongAnswerQ">-->
+<!--                <p id="Qnum3" class="question-number">Question 3:</p>-->
+<!--                <p id="q3" class="question">Explain bluh bluh bluh</p>-->
+<!--                <textarea class="form-control" id="LongAnswer" rows="3"></textarea>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
     <!-- Submit Button -->
-    <div class="submit-container" style="text-align: right;">
-        <button class="submit-quiz-btn" >Submit Exam</button>
+    <div class="submit-container" style="text-align: right;" >
+        <button class="submit-quiz-btn" id="submitQuiz" style="display: none">Submit Exam</button>
     </div>
 </div>
 
 
 
 <!-- Results Section (initially hidden) -->
-<div id="results-container" >
-    <div class="quiz-results" id="quiz-results">
+<div id="results-container" style="display: none">
+    <div class="quiz-results" id="quiz-results" >
         <h2>Your Grade: <span id="grade-value">--</span></h2>
         <p id="grade-summary">You have completed the quiz! Your results will be displayed here.</p>
     </div>
@@ -108,14 +108,14 @@
     let ARid = getQueryParamValue(window.location.href, "AR");
 
     function getQueryParamValue(url, param) {
-        var queryString = url.split('?')[1];
+        let queryString = url.split('?')[1];
         if (!queryString) {
             return null;
         }
 
-        var queryParams = queryString.split('&');
-        for (var i = 0; i < queryParams.length; i++) {
-            var pair = queryParams[i].split('=');
+        let queryParams = queryString.split('&');
+        for (let i = 0; i < queryParams.length; i++) {
+            let pair = queryParams[i].split('=');
             if (pair[0] === param) {
                 return pair[1];
             }
@@ -142,6 +142,193 @@
                 document.getElementById("timer-value").innerText = response.obj.duration + "Minutes";
             }
         });
+
+    function createQuestionBox(questionNumber, questionText, choices) {
+        // Create the main div with class "question-box"
+        const questionBox = document.createElement('div');
+        questionBox.classList.add('question-box');
+
+        // Create the inner div with id "MultipleChoiceQ"
+        const multipleChoiceDiv = document.createElement('div');
+        multipleChoiceDiv.id = 'MultipleChoiceQ';
+
+        // Create the paragraph for question number
+        const questionNumberParagraph = document.createElement('p');
+        questionNumberParagraph.id = `Qnum${questionNumber}`;
+        questionNumberParagraph.classList.add('question-number');
+        questionNumberParagraph.textContent = `Question ${questionNumber}:`;
+
+        // Create the paragraph for question text
+        const questionParagraph = document.createElement('p');
+        questionParagraph.id = `q${questionNumber}`;
+        questionParagraph.classList.add('question');
+        questionParagraph.textContent = questionText;
+
+        // Create the unordered list for choices
+        const choicesList = document.createElement('ul');
+        choicesList.classList.add('choices');
+
+        // Iterate over choices and create list items with radio inputs and labels
+        choices.forEach((choice, index) => {
+            const listItem = document.createElement('li');
+            const radioInput = document.createElement('input');
+            radioInput.type = 'radio';
+            radioInput.name = `q${questionNumber}`;
+            radioInput.id = `q${questionNumber}a${index + 1}`;
+
+            const label = document.createElement('label');
+            label.htmlFor = `q${questionNumber}a${index + 1}`;
+            label.textContent = choice;
+
+            listItem.appendChild(radioInput);
+            listItem.appendChild(label);
+            choicesList.appendChild(listItem);
+        });
+
+        // Append all elements to the main questionBox div
+        multipleChoiceDiv.appendChild(questionNumberParagraph);
+        multipleChoiceDiv.appendChild(questionParagraph);
+        multipleChoiceDiv.appendChild(choicesList);
+        questionBox.appendChild(multipleChoiceDiv);
+        document.getElementById("quiz-content").appendChild(questionBox);
+    }
+
+    function createTrueFalseQuestionBox(questionNumber, questionText) {
+        // Create the main div with class "question-box"
+        const questionBox = document.createElement('div');
+        questionBox.classList.add('question-box');
+
+        // Create the inner div with id "TrueFalseQ"
+        const trueFalseDiv = document.createElement('div');
+        trueFalseDiv.id = 'TrueFalseQ';
+
+        // Create the paragraph for question number
+        const questionNumberParagraph = document.createElement('p');
+        questionNumberParagraph.id = `Qnum${questionNumber}`;
+        questionNumberParagraph.classList.add('question-number');
+        questionNumberParagraph.textContent = `Question ${questionNumber}:`;
+
+        // Create the paragraph for question text
+        const questionParagraph = document.createElement('p');
+        questionParagraph.id = `q${questionNumber}`;
+        questionParagraph.classList.add('question');
+        questionParagraph.textContent = questionText;
+
+        // Create the unordered list for choices
+        const choicesList = document.createElement('ul');
+        choicesList.classList.add('choices');
+
+        // Create True option
+        const trueListItem = document.createElement('li');
+        const trueRadioInput = document.createElement('input');
+        trueRadioInput.type = 'radio';
+        trueRadioInput.name = `q${questionNumber}`;
+        trueRadioInput.id = `q${questionNumber}a1`;
+
+        const trueLabel = document.createElement('label');
+        trueLabel.htmlFor = `q${questionNumber}a1`;
+        trueLabel.textContent = 'True';
+
+        trueListItem.appendChild(trueRadioInput);
+        trueListItem.appendChild(trueLabel);
+
+        // Create False option
+        const falseListItem = document.createElement('li');
+        const falseRadioInput = document.createElement('input');
+        falseRadioInput.type = 'radio';
+        falseRadioInput.name = `q${questionNumber}`;
+        falseRadioInput.id = `q${questionNumber}a2`;
+
+        const falseLabel = document.createElement('label');
+        falseLabel.htmlFor = `q${questionNumber}a2`;
+        falseLabel.textContent = 'False';
+
+        falseListItem.appendChild(falseRadioInput);
+        falseListItem.appendChild(falseLabel);
+
+        choicesList.appendChild(trueListItem);
+        choicesList.appendChild(falseListItem);
+
+        // Append all elements to the main questionBox div
+        trueFalseDiv.appendChild(questionNumberParagraph);
+        trueFalseDiv.appendChild(questionParagraph);
+        trueFalseDiv.appendChild(choicesList);
+        questionBox.appendChild(trueFalseDiv);
+        document.getElementById("quiz-content").appendChild(questionBox);
+    }
+
+    function createLongAnswerQuestionBox(questionNumber, questionText) {
+        // Create the main div with class "question-box"
+        const questionBox = document.createElement('div');
+        questionBox.classList.add('question-box');
+
+        // Create the inner div with id "LongAnswerQ"
+        const longAnswerDiv = document.createElement('div');
+        longAnswerDiv.id = 'LongAnswerQ';
+
+        // Create the paragraph for question number
+        const questionNumberParagraph = document.createElement('p');
+        questionNumberParagraph.id = `Qnum${questionNumber}`;
+        questionNumberParagraph.classList.add('question-number');
+        questionNumberParagraph.textContent = `Question ${questionNumber}:`;
+
+        // Create the paragraph for question text
+        const questionParagraph = document.createElement('p');
+        questionParagraph.id = `q${questionNumber}`;
+        questionParagraph.classList.add('question');
+        questionParagraph.textContent = questionText;
+
+        // Create the textarea for the long answer
+        const longAnswerTextarea = document.createElement('textarea');
+        longAnswerTextarea.classList.add('form-control');
+        longAnswerTextarea.id = 'LongAnswer';
+        longAnswerTextarea.rows = '3';
+
+        // Append all elements to the main questionBox div
+        longAnswerDiv.appendChild(questionNumberParagraph);
+        longAnswerDiv.appendChild(questionParagraph);
+        longAnswerDiv.appendChild(longAnswerTextarea);
+        questionBox.appendChild(longAnswerDiv);
+
+        document.getElementById("quiz-content").appendChild(questionBox);
+    }
+
+    let questions;
+    document.getElementById("start-quiz-btn").onclick = () => {
+        document.getElementById("submitQuiz").style.display = "block";
+        sendData({},
+            {
+                path:`/api/classrooms/${classroomId}/quiz/${ARid}`,
+                method:"GET",
+                headers: [{
+                    key:"content-type",
+                    value:"application/json"
+                }],
+                json:true
+            },
+            (response) => {
+                if (response.status === true) {
+                    questions = response.obj;
+                    let count = 1;
+                    for (let question of questions){
+                        let choices = question.choices.map(choice => choice.text);
+
+                        if (question.type === "trueFalse"){
+                            createQuestionBox(count, question.text, choices);
+                        }
+                        else if (question.type === "multipleAnswer"){
+                            createQuestionBox(count, question.text, choices);
+                        }
+                        else if (question.type === "longAnswer"){
+                            createLongAnswerQuestionBox(count, question.text);
+                        }
+                    }
+                }
+            });
+    }
+
+
+
 </script>
 </body>
 </html>
