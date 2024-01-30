@@ -130,7 +130,7 @@ public class StaticController {
         }
     }
 
-    @GetMapping("/{classroomId}/sections/{sectionId}/addQuiz")
+    @GetMapping("/classrooms/{classroomId}/sections/{sectionId}/addQuiz")
     public ResponseEntity<String> addQuizzzzzzz(@PathVariable String classroomId, HttpSession session, @PathVariable String sectionId) throws IOException {
         if (session.getAttribute("username") == null){
             return ResponseEntity.status(302).header("Location", "/login?msg=Sign in first!").build();
@@ -145,10 +145,6 @@ public class StaticController {
         }
     }
 
-//    @GetMapping("/addQuiz")
-//    public ResponseEntity<String> addQuizzzz() throws IOException {
-//        return getHtmlFile("static/html/addQuiz.html");
-//    }
 
     @GetMapping("/{classroomId}/sections/{sectionId}/addAssignment")
     public ResponseEntity<String> addAssignment(@PathVariable String classroomId, HttpSession session) throws IOException {

@@ -232,5 +232,23 @@ public class ClassroomController {
 //            return ResponseEntity.status(302).header("Location", "/login?msg=403!").build();
 //    }
 
+    @PostMapping("/{classroomId}/section/{sectionId}/addQuiz")
+    public ResponseEntity<?> getClassroomSections(HttpSession session, @PathVariable String classroomId, @PathVariable String sectionId, @RequestBody HashMap<String, Object> object) {
+        if (session.getAttribute("username") == null){
+            Map<String, Object> error = new HashMap<>();
+            error.put("status", false);
+            error.put("msg", "Sign in first!");
+            return ResponseEntity.ok(error);
+        }
+
+        Map<String, Object> res = classromService.getUserRole((String) session.getAttribute("username"), classroomId);
+        if(res.get("obj").equals("teacher") || res.get("obj").equals("admin")){
+            res = ARserivce.addQuiz(classroomId, sectionId, object);
+            return ResponseEntity.ok(res);
+        }
+        else
+            return ResponseEntity.status(302).header("Location", "/login?msg=403!").build();
+    }
+
 
 }
