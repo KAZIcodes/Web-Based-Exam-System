@@ -7,4 +7,5 @@ import org.springframework.data.repository.query.Param;
 
 public interface ChoiceRepository extends JpaRepository<Choice, Long> {
     public Choice getChoiceById(@Param("UUID") String id);
+    public boolean existsById(@Param("UUID") String id);
 }

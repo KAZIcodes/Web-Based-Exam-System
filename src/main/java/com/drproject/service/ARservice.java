@@ -15,13 +15,19 @@ public class ARservice {
     private final ClassroomRepository classroomRepository;
     private final SectionRepository sectionRepository;
     private final QuestionRepository questionRepository;
+    private final ChoiceRepository choiceRepository;
+    private final StudentLongAnswerRepository studentLongAnswerRepository;
+    private final LongAnswerRepository longAnswerRepository;
 
-    public ARservice(ARRepository arRepository, UserRepository userRepository, ClassroomRepository classroomRepository, SectionRepository sectionRepository, QuestionRepository questionRepository) {
+    public ARservice(ARRepository arRepository, UserRepository userRepository, ClassroomRepository classroomRepository, SectionRepository sectionRepository, QuestionRepository questionRepository, ChoiceRepository choiceRepository, StudentLongAnswerRepository studentLongAnswerRepository, LongAnswerRepository longAnswerRepository) {
         this.arRepository = arRepository;
         this.userRepository = userRepository;
         this.classroomRepository = classroomRepository;
         this.sectionRepository = sectionRepository;
         this.questionRepository = questionRepository;
+        this.choiceRepository = choiceRepository;
+        this.studentLongAnswerRepository = studentLongAnswerRepository;
+        this.longAnswerRepository = longAnswerRepository;
     }
 
     public HashMap<String, Object> getAR(String uuid){
@@ -34,6 +40,31 @@ public class ARservice {
         }
         res.put("obj",null);
         res.put("msg", "failed to find activity object");
+        res.put("status", false);
+        return res;
+    }
+
+    public HashMap<String, Object> getARdataTeacher(String uuid){
+        // get student grades for quiz
+        HashMap<String, Object> res = new HashMap<>();
+        List<HashMap<String, String>> out = new ArrayList<>();
+        if(arRepository.existsById(uuid)){
+            Quiz q = (Quiz) arRepository.getActivityById(uuid);
+            List<StudentLongAnswer> studentLongAnswers = q.getStudentLongAnswers();
+            for(StudentLongAnswer studentLongAnswer : studentLongAnswers){
+                HashMap<String ,String> studentGrade = new HashMap<>();
+                studentGrade.put("firstName",studentLongAnswer.getUser().getFirstName());
+                studentGrade.put("lastName", studentLongAnswer.getUser().getLastName());
+                studentGrade.put("grade", studentLongAnswer.getGrade());
+                out.add(studentGrade);
+            }
+            res.put("obj", out);
+            res.put("msg", "successfully returned student grades");
+            res.put("status", true);
+            return res;
+        }
+        res.put("obj", null);
+        res.put("msg", "activity does not exist");
         res.put("status", false);
         return res;
     }
@@ -159,6 +190,14 @@ public class ARservice {
                         }
                     }
                     String out = "" +  score / quiz.getQuestions().size() * 100;
+                    List<StudentLongAnswer> studentLongAnswers=quiz.getStudentLongAnswers();
+                    for(StudentLongAnswer s : studentLongAnswers){
+                        if(s.getUser().equals(user)){
+                            s.setGrade(""+score);
+
+                            break;
+                        }
+                    }
                     res.put("obj", out);
                     res.put("status", true);
                     res.put("msg", "grade for quiz (assigned by system) returned successfully");
@@ -476,12 +515,51 @@ public class ARservice {
         return res;
     }
 
-    /*
-    public HashMap<String, Object> putUserAnswers(String username, List<String> choiceUUIDs){
+
+    public HashMap<String, Object> putUserAnswers(String username, String activityUUID, List<HashMap<String,String>> choiceUUIDs){
+        HashMap<String, Object> res = new HashMap<>();
         User user = userRepository.getUserByUsername(username);
-        Choice choice =
+        for(HashMap<String, String> answerHashMap : choiceUUIDs) {
+            if(choiceRepository.existsById(answerHashMap.get("uuid"))) {
+                Choice choice = choiceRepository.getChoiceById(answerHashMap.get("uuid"));
+                StudentChoice studentChoice = new StudentChoice();
+                studentChoice.setChoice(choice);
+                studentChoice.setUser(user);
+                user.getStudentChoices().add(studentChoice);
+                choice.getStudentChoices().add(studentChoice);
+                choiceRepository.save(choice);
+            }
+            else {
+                if(longAnswerRepository.existsById(answerHashMap.get("uuid"))){
+                    LongAnswer longAnswer = longAnswerRepository.getLongAnswerById(answerHashMap.get("uuid"));
+                    StudentLongAnswer studentLongAnswer = new StudentLongAnswer();
+                    studentLongAnswer.setLongAnswer(longAnswer);
+                    studentLongAnswer.setUser(user);
+                    studentLongAnswer.setStudentAnswer(answerHashMap.get("answer"));
+                    user.getStudentLongAnswers().add(studentLongAnswer);
+                    longAnswer.getStudentLongAnswers().add(studentLongAnswer);
+                    studentLongAnswerRepository.save(studentLongAnswer);
+
+                }
+                else {
+                    res.put("status", false);
+                    res.put("msg", "invalid choice uuid");
+                    res.put("obj", null);
+                    return res;
+                }
+            }
+        }
+        StudentLongAnswer studentLongAnswer = new StudentLongAnswer();
+        studentLongAnswer.setUser(user);
+        studentLongAnswer.setActivity(arRepository.getActivityById(activityUUID));
+        studentLongAnswer.setGrade("0");
+        user.getStudentLongAnswers().add(studentLongAnswer);
+        userRepository.save(user);
+        res.put("status", true);
+        res.put("msg", "successfully registered user grades");
+        res.put("obj", null);
+        return res;
     }
 
-     */
 
 }
