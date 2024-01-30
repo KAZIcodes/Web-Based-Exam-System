@@ -1,10 +1,7 @@
 package com.drproject.service;
 
 import com.drproject.entity.*;
-import com.drproject.repository.ARRepository;
-import com.drproject.repository.ClassroomRepository;
-import com.drproject.repository.SectionRepository;
-import com.drproject.repository.UserRepository;
+import com.drproject.repository.*;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,12 +14,14 @@ public class ARservice {
     private final UserRepository userRepository;
     private final ClassroomRepository classroomRepository;
     private final SectionRepository sectionRepository;
+    private final QuestionRepository questionRepository;
 
-    public ARservice(ARRepository arRepository, UserRepository userRepository, ClassroomRepository classroomRepository, SectionRepository sectionRepository) {
+    public ARservice(ARRepository arRepository, UserRepository userRepository, ClassroomRepository classroomRepository, SectionRepository sectionRepository, QuestionRepository questionRepository) {
         this.arRepository = arRepository;
         this.userRepository = userRepository;
         this.classroomRepository = classroomRepository;
         this.sectionRepository = sectionRepository;
+        this.questionRepository = questionRepository;
     }
 
     public HashMap<String, Object> getAR(String uuid){
@@ -415,6 +414,8 @@ public class ARservice {
                             choiceList.add(false2);
                             choiceList.add(false3);
                             multipleAnswer.setChoiceList(choiceList);
+                            multipleAnswer.setQuiz(quiz);
+                            questionRepository.save(multipleAnswer);
                             quizQuestionList.add(multipleAnswer);
                         }
                         else if (questionHashMap.get("questionType").equals("trueFalse")){
@@ -436,6 +437,7 @@ public class ARservice {
                             choiceList.add(false1);
                             multipleAnswer.setChoiceList(choiceList);
                             multipleAnswer.setQuiz(quiz);
+                            questionRepository.save(multipleAnswer);
                             quizQuestionList.add(multipleAnswer);
                         }
                         else if(questionHashMap.get("questionType").equals("longAnswer")){
