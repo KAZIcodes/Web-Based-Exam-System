@@ -231,6 +231,23 @@ public class ClassroomController {
         else
             return ResponseEntity.status(302).header("Location", "/login?msg=403!").build();
     }
+    @PatchMapping("/{classroomId}/quiz/{quizId}")
+    public ResponseEntity<?> putQuestionUser(HttpSession session, @PathVariable String quizId , @PathVariable String classroomId, @RequestBody List<HashMap<String, String>> answers) {
+        if (session.getAttribute("username") == null){
+            Map<String, Object> error = new HashMap<>();
+            error.put("status", false);
+            error.put("msg", "Sign in first!");
+            return ResponseEntity.ok(error);
+        }
+
+        Map<String, Object> res = classromService.getUserRole((String) session.getAttribute("username"), classroomId);
+        if(res.get("obj").equals("student")){
+            res = ARserivce.putUserAnswers((String) session.getAttribute("username"), quizId, answers);
+            return ResponseEntity.ok(res);
+        }
+        else
+            return ResponseEntity.status(302).header("Location", "/login?msg=403!").build();
+    }
 
     @PostMapping("/{classroomId}/section/{sectionId}/addQuiz")
     public ResponseEntity<?> getClassroomSections(HttpSession session, @PathVariable String classroomId, @PathVariable String sectionId, @RequestBody HashMap<String, Object> object) {

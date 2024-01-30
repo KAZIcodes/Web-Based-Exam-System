@@ -99,6 +99,9 @@
     </div>
 </div>
 
+<div class="notification" id="redNotification" style="background-color: #ad0000; color: #000000;"></div>
+<div class="notification" id="greenNotification" style="background-color: #09b000; color: #000000;"></div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 
@@ -106,6 +109,7 @@
     let urlParts = currentUrl.split("/");
     let classroomId = urlParts[urlParts.length - 3];
     let ARid = getQueryParamValue(window.location.href, "AR");
+    let questions;
 
     function getQueryParamValue(url, param) {
         let queryString = url.split('?')[1];
@@ -293,9 +297,9 @@
         document.getElementById("quiz-content").appendChild(questionBox);
     }
 
-    let questions;
+
     document.getElementById("start-quiz-btn").onclick = () => {
-        document.getElementById("submitQuiz").style.display = "block";
+
         sendData({},
             {
                 path:`/api/classrooms/${classroomId}/quiz/${ARid}`,
@@ -325,6 +329,78 @@
                     }
                 }
             });
+        document.getElementById("submitQuiz").style.display = "block";
+    }
+
+    function getUserAnswers(Questions) {
+        return new Promise(resolve => {
+            const questions = document.querySelectorAll('.question-box');
+            const userAnswers = [];
+
+            questions.forEach((question, index) => {
+                const questionType = question.querySelector('ul.choices') ? 'multipleChoice' : 'longAnswer';
+
+                if (questionType === 'multipleChoice') {
+                    const questionNumber = index + 1;
+                    const selectedChoice = question.querySelector(`input[name="q${questionNumber}"]:checked`);
+
+                    if (selectedChoice) {
+                        let choosed = selectedChoice.nextSibling.textContent.trim();
+                        let resUUID;
+                        for (let q of Questions){
+                            for (choice of q.choices){
+                                if (choice.text === choosed){
+                                    resUUID = choice.uuid;
+                                    break;
+                                }
+                            }
+                        }
+                        userAnswers.push({
+                            uuid: resUUID,
+                            answer: ""
+                        });
+                    }
+                } else if (questionType === 'longAnswer') {
+                    const questionNumber = index + 1;
+                    const longAnswer = question.querySelector('textarea.form-control').value.trim();
+
+                    if (longAnswer !== '') {
+                        userAnswers.push({
+                            uuid: questions[questionNumber-1].uuid,
+                            answer: longAnswer
+                        });
+                    }
+                }
+            });
+
+                resolve(userAnswers);
+        });
+    }
+
+    document.getElementById("submitQuiz").onclick = () => {
+
+        getUserAnswers(questions).then(answers => {
+            sendData(answers,
+                {
+                    path:`/api/classrooms/${classroomId}/quiz/${ARid}`,
+                    method:"PATCH",
+                    headers: [{
+                        key:"content-type",
+                        value:"application/json"
+                    }],
+                    json:true
+                },
+                (response) => {
+                        if (response.status === true) {
+                            showNotification(response.msg, "g");
+                            setTimeout(function () {
+                                window.location.href = `/classrooms/${classroomId}`;
+                            }, 1500);  // Redirect after 3 seconds
+                        }
+                        else
+                            showNotification(response.msg, "r");
+                });
+        });
     }
 
 
