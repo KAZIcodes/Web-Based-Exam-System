@@ -24,7 +24,7 @@
                         <a id="homeLink" class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <img id="notifIcon" src="./pics/bell.svg" alt="">
+                        <img id="notificationicon" class="notifIcon" src="./pics/bell.svg" alt="">
                     </li>
                     <li class="nav-item">
                         <a id="notification" class="nav-link" href="#">Notifications</a>
@@ -32,7 +32,7 @@
                 </ul>
                 <form class="d-flex" role="search">
                     <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button id="search_button" class="btn btn-outline-success" type="submit">
+                    <button class="search_button"  type="submit">
                         Search
                     </button>
                 </form>
@@ -50,7 +50,7 @@
         </div>
 
         <div class="deadline-container">
- <p class="deadline-title">Deadline date:</p>
+            <p class="deadline-title">Deadline date:</p>
             <p class="deadline-time" id="deadlineTime">31 Jan 11:59 PM</p>
         </div>
         
@@ -65,41 +65,13 @@
         </p>
         <form class="assignment-form" action="/submit-assignment" method="post" enctype="multipart/form-data">
             <div class="upload-section">
-                <label for="file-upload" class="custom-file-upload">
-                    <i id="file" class="fa fa-cloud-upload"></i> Choose File
-                </label>
-                <input id="file-upload" type="file" name="assignment"/>
+              
+                <input id="fileUpload" class="custom-file-upload" type="file" name="assignment"/>
             </div>
             <button id="submitButton" type="submit" class="submit-assignment">Submit Assignment</button>
         </form>
     </div>
-  <!-- 
-    <script>
-        function updateDeadline() {
-    const deadline = new Date("2024-02-01T23:59:59"); // Set your deadline date and time
-    const now = new Date();
-    const diff = deadline - now;
 
-    // Calculate time left
-    let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    let seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-    // Display the result
-    document.getElementById("deadlineTime").innerText = `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds remaining`;
-    
-    // If the countdown is finished, write some text
-    if (diff < 0) {
-        clearInterval(interval);
-        document.getElementById("deadlineTime").innerText = "Deadline has passed";
-    }
-}
-
-// Update the countdown every 1 second
-let interval = setInterval(updateDeadline, 1000);
-
-    </script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
