@@ -91,7 +91,6 @@ public class ClassroomService {
                     return  res;
                 }
             }
-
         }
         res.put("status", false);
         res.put("msg", "user not in classroom or classroom does not exist");

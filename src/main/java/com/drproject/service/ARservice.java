@@ -7,6 +7,7 @@ import com.drproject.repository.UserRepository;
 import org.springframework.data.web.HateoasPageableHandlerMethodArgumentResolver;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -34,6 +35,33 @@ public class ARservice {
         res.put("msg", "failed to find activity object");
         res.put("status", false);
         return res;
+    }
+    public HashMap<String, Object> getAllGradesForClassroom(String classroomCode){
+        HashMap<String, Object> res = new HashMap<>();
+        if(classroomRepository.existsByCode(classroomCode)) {
+            Classroom classroom = classroomRepository.getClassroomByCode(classroomCode);
+            List<HashMap<String,String>> outList = new ArrayList<>();
+            for(ClassroomRole c : classroom.getRoleInClassrooms()){
+                String firstName = c.getUser().getFirstName();
+                String lastName = c.getUser().getLastName();
+                String grade = (String) getStudentGradeForClass(c.getUser().getUsername(),classroomCode).get("obj");
+                HashMap<String,String> out = new HashMap<>();
+                out.put("firstName", firstName);
+                out.put("lastName", lastName);
+                out.put("grade", grade);
+                outList.add(out);
+            }
+            res.put("msg", "successfully returned classroom grades");
+            res.put("obj", outList);
+            res.put("status", true);
+            return res;
+        }
+        else {
+            res.put("status", false);
+            res.put("msg", "classroom not found");
+            res.put("obj", null);
+            return res;
+        }
     }
 
     public HashMap<String, Object> getStudentGradeForClass(String username, String classroomCode){
