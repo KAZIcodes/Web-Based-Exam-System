@@ -55,6 +55,7 @@ public class ARservice {
                 HashMap<String ,String> studentGrade = new HashMap<>();
                 studentGrade.put("firstName",studentLongAnswer.getUser().getFirstName());
                 studentGrade.put("lastName", studentLongAnswer.getUser().getLastName());
+                studentGrade.put("username", studentLongAnswer.getUser().getUsername());
                 getStudentGradeForActivity(studentLongAnswer.getUser().getUsername(), uuid);
                 studentGrade.put("grade", studentLongAnswer.getGrade());
                 out.add(studentGrade);
