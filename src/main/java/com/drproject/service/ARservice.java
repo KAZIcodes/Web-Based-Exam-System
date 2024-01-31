@@ -268,6 +268,7 @@ public class ARservice {
             for(StudentLongAnswer grade : finalGrades){
                 if(grade.getUser().equals(user)){
                     grade.setGrade(newGrade);
+                    studentLongAnswerRepository.save(grade);
                     arRepository.save(activity);
                     res.put("msg", "successfully changed student grade");
                     res.put("status", true);
@@ -580,5 +581,98 @@ public class ARservice {
         return res;
     }
 
+    public HashMap<String, Object> getAnsweredQuiz(String username, String uuid){
+        // returns a list of questions.
+        // the list comes in a form of List<HashMap<QuestionUUID, OBJECT>>
+        // object:
+        // multiple answer: list<Hashmap<choiceUUID, text>>
+        // long answer : string text
+
+        User user = userRepository.getUserByUsername(username);
+
+        HashMap<String, Object> res =  new HashMap<>();
+        if(arRepository.existsById(uuid)) {
+            Activity activity = arRepository.getActivityById(uuid);
+            if (activity instanceof Quiz) {
+                Quiz quiz = (Quiz) activity;
+                List<Question> questions = quiz.getQuestions();
+                List<HashMap<String, Object>> outQuestions = new ArrayList<>(); // Quuid, object
+                for (Question q : questions) {
+                    if (q instanceof MultipleAnswer) {
+                        List<Choice> choiceList = ((MultipleAnswer) q).getChoiceList();
+                        HashMap<String, Object> multipleQuestion = new HashMap<>();
+                        if (choiceList.size() == 4) {
+
+                            multipleQuestion.put("type", "multipleAnswer");
+                            multipleQuestion.put("text", ((MultipleAnswer) q).getText());
+                            multipleQuestion.put("uuid", q.getId());
+                            List<HashMap<String, String>> choicesAndUUIDs = new ArrayList<>();
+                            for (Choice c : choiceList) {
+                                HashMap<String, String> choiceAndUUID = new HashMap<>();
+                                choiceAndUUID.put("uuid", c.getId());
+                                choiceAndUUID.put("text", c.getText());
+
+                                List<StudentChoice> choiceList1 = c.getStudentChoices();
+                                for(StudentChoice studentChoice : choiceList1){
+                                    if (studentChoice.getUser().equals(user)){
+                                        choiceAndUUID.put("stdAnswer", studentChoice.getChoice().getText());
+                                    }
+                                }
+                                choicesAndUUIDs.add(choiceAndUUID);
+                            }
+                            multipleQuestion.put("choices", choicesAndUUIDs);
+                        } else if (choiceList.size() == 2) {
+
+                            multipleQuestion.put("type", "trueFalse");
+                            multipleQuestion.put("text", ((MultipleAnswer) q).getText());
+                            multipleQuestion.put("uuid", q.getId());
+                            List<HashMap<String, String>> choicesAndUUIDs = new ArrayList<>();
+                            for (Choice c : choiceList) {
+                                HashMap<String, String> choiceAndUUID = new HashMap<>();
+                                choiceAndUUID.put("uuid", c.getId());
+                                choiceAndUUID.put("text", c.getText());
+                                choicesAndUUIDs.add(choiceAndUUID);
+
+                                List<StudentChoice> choiceList1 = c.getStudentChoices();
+                                for(StudentChoice studentChoice : choiceList1){
+                                    if (studentChoice.getUser().equals(user)){
+                                        choiceAndUUID.put("stdAnswer", studentChoice.getChoice().getText());
+                                    }
+                                }
+                            }
+
+                            multipleQuestion.put("choices", choicesAndUUIDs);
+                        }
+                        outQuestions.add(multipleQuestion);
+                    } else {
+                        LongAnswer lq = (LongAnswer) q;
+                        HashMap<String, Object> longAnswerQ = new HashMap<>();
+                        longAnswerQ.put("type","longAnswer");
+                        longAnswerQ.put("uuid", lq.getId());
+                        longAnswerQ.put("text", lq.getText());
+                        List<StudentLongAnswer> choiceList1 = lq.getStudentLongAnswers();
+                        for(StudentLongAnswer studentChoice : choiceList1){
+                            if (studentChoice.getUser().equals(user)){
+                                longAnswerQ.put("stdAnswer", studentChoice.getStudentAnswer());
+                            }
+                        }
+                        outQuestions.add(longAnswerQ);
+                    }
+                }
+                res.put("obj", outQuestions);
+                res.put("msg", "returned questions");
+                res.put("status", true);
+                return res;
+            }
+            res.put("obj", null);
+            res.put("msg", "activity not quiz");
+            res.put("status", false);
+            return res;
+        }
+        res.put("obj",null);
+        res.put("msg","failed to fetch activity. Acitivity uuid may not exist");
+        res.put("status", false);
+        return res;
+    }
 
 }
