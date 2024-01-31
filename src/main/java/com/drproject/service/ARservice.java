@@ -138,7 +138,7 @@ public class ARservice {
                 if (s.getId().equals(sectionUUID)) {
                     List<Activity> sectionActivities = s.getActivities();
                     for (Activity a : sectionActivities) {
-                        HashMap<String, Object> hashMappedRes = getStudentGradeForActivity(username, sectionUUID);
+                        HashMap<String, Object> hashMappedRes = getStudentGradeForActivity(username, a.getId());
                         score += Double.parseDouble((String) hashMappedRes.get("obj"));
                     }
                 }
@@ -220,6 +220,12 @@ public class ARservice {
                 List<StudentLongAnswer> studentLongAnswers=activity.getStudentLongAnswers();
                 for(StudentLongAnswer s : studentLongAnswers){
                     if(s.getUser().equals(user)){
+                        if(s.getGrade()==null){
+                            res.put("obj","0");
+                            res.put("status", true);
+                            res.put("msg", "student grade assigned by ostad");
+                            return res;
+                        }
                         res.put("obj",s.getGrade());
                         res.put("status", true);
                         res.put("msg", "student grade assigned by ostad");
