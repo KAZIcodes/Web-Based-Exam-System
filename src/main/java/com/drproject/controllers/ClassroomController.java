@@ -208,7 +208,7 @@ public class ClassroomController {
             return ResponseEntity.ok(res);
         }
         else if (res.get("obj").equals("teacher") || res.get("obj").equals("admin")){
-            //res = ARserivce.getARdataTeacher(ARid);  /////////////AR data for teacher to tashih : [{firstName, lastName, studentGrade}]
+            res = ARserivce.getARdataTeacher(ARid);  /////////////AR data for teacher to tashih : [{firstName, lastName, studentGrade}]
             return ResponseEntity.ok(res);
         }
         else
@@ -266,6 +266,19 @@ public class ClassroomController {
         }
         else
             return ResponseEntity.status(302).header("Location", "/login?msg=403!").build();
+    }
+
+    @PatchMapping("/{classroomId}/quiz/{quizId}/setUserGrade")
+    public ResponseEntity<?> putUserGrade(HttpSession session, @PathVariable String quizId , @PathVariable String classroomId, @RequestBody Map<String, Object> answer) {
+        if (session.getAttribute("username") == null){
+            Map<String, Object> error = new HashMap<>();
+            error.put("status", false);
+            error.put("msg", "Sign in first!");
+            return ResponseEntity.ok(error);
+        }
+
+        Map<String, Object> res = ARserivce.setUserGrade(quizId, (String) answer.get("username"), (String) answer.get("newGrade"));
+        return ResponseEntity.ok(res);
     }
 
 

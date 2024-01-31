@@ -282,7 +282,7 @@
             for (let activity of activities){
                 let aTag = document.createElement("a");
                 aTag.className = "dropdown-item-box";
-                aTag.href = window.location.href + "/sections/" + sectionId + "?AR=" + activity.id;
+                aTag.href = window.location.href + "/sections/" + encodeURIComponent(sectionId) + "?AR=" + encodeURIComponent(activity.id);
                 aTag.innerText = activity.title;
                 document.getElementById("parent" + count).insertBefore(aTag, firstChild);
             }
