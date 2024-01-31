@@ -269,6 +269,7 @@ public class ARservice {
                 if(grade.getUser().equals(user)){
                     grade.setGrade(newGrade);
                     studentLongAnswerRepository.save(grade);
+
                     arRepository.save(activity);
                     res.put("msg", "successfully changed student grade");
                     res.put("status", true);
@@ -285,7 +286,7 @@ public class ARservice {
             user.getStudentLongAnswers().add(newGradeDefinition);
             userRepository.save(user);
             arRepository.save(activity);
-            res.put("msg", "successfully changed student grade");
+            res.put("msg", "successfully changed student grade222");
             res.put("status", true);
             res.put("obj", null);
             return res;
