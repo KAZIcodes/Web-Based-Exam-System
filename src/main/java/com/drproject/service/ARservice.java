@@ -114,7 +114,13 @@ public class ARservice {
                     score += Double.parseDouble((String) hashMap.get("obj"));
                 }
             }
-            String out = "" + (score/classroom.getSections().size() *100);
+            if(classroom.getSections().size()==0) {
+                res.put("obj", "0");
+                res.put("msg", "classroom score for user returned successfully");
+                res.put("status", true);
+                return res;
+            }
+            String out = "" + (score/classroom.getSections().size());
             res.put("obj", out);
             res.put("msg", "classroom score for user returned successfully");
             res.put("status", true);
@@ -143,8 +149,13 @@ public class ARservice {
                     }
                 }
             }
-
-            String out = "" + (score / classroom.getSections().size() * 100);
+            if (classroom.getSections().size()==0){
+                res.put("obj", "0");
+                res.put("msg", "returned user score in section");
+                res.put("status", true);
+                return res;
+            }
+            String out = "" + (score / classroom.getSections().size());
             res.put("obj", out);
             res.put("msg", "returned user score in section");
             res.put("status", true);
@@ -190,7 +201,7 @@ public class ARservice {
                             score += questionScore;
                         }
                     }
-                    String out = "" +  score / quiz.getQuestions().size() * 100;
+                    String out = "" +  score / quiz.getQuestions().size();
                     List<StudentLongAnswer> studentLongAnswers=quiz.getStudentLongAnswers();
                     for(StudentLongAnswer s : studentLongAnswers){
                         if(s.getUser().equals(user)){
