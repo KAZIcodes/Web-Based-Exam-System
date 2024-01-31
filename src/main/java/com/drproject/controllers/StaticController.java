@@ -168,7 +168,7 @@ public class StaticController {
             return ResponseEntity.status(302).header("Location", "/login?msg=Sign in first!").build();
         }
         else {
-            Map<String, Object> res = classroomService.isInClass((String) session.getAttribute("username"), classroomId);
+            Map<String, Object> res = classroomService.getUserRole((String) session.getAttribute("username"), classroomId);
             if (res.get("obj").equals("student")){
                 res = ARserivce.getARtype(ARid);
                 if (res.get("obj") == "quiz"){

@@ -607,7 +607,7 @@
                     if (response.status === true) {
                         showNotification(response.msg, "g");
                         setTimeout(function () {
-                            window.location.href = '/panel';
+                            window.location.href = `/classrooms/${classroomId}`;
                         }, 1600);  // Redirect after 3 seconds
                     }
                     else
