@@ -3,6 +3,7 @@ package com.drproject.entity;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -76,7 +77,7 @@ public class ClassroomRole {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] md5Bytes = md.digest(input.getBytes());
-            return Base64.getEncoder().encodeToString(md5Bytes);
+            return new String(Base64.getUrlEncoder().encode(md5Bytes), StandardCharsets.UTF_8);
         }
         catch (Exception e) {
             return null;
