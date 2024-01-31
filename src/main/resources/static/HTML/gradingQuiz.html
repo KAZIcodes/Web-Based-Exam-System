@@ -188,7 +188,7 @@
                 if (response.status === true) {
                   showNotification(response.msg, "g");
                   setTimeout(function () {
-                    window.location.href = `/classrooms/${classroomId}`;
+                    window.location.reload();
                   }, 1500);  // Redirect after 3 seconds
                 }
                 else

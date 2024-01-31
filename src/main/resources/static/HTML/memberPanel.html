@@ -416,8 +416,8 @@ rel="stylesheet"
           (response) => {
             if (response.status === true) {
               let count = 1;
-              for (kelas of response.obj){
-                  addClassItem("classroom" + count, "/classrooms/" + kelas.code, kelas.className, "From " + kelas.startDate + " to " + kelas.endDate)
+              for (let kelas of response.obj){
+                  addClassItem("classroom" + count, "/classrooms/" + kelas.code, kelas.className, kelas.code)
                   count++;
               }
             }
